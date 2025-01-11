@@ -1,4 +1,4 @@
-import MainHeader from "@/components/main-header";
+import MainHeader from "@/components/main-header/main-header";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -27,7 +27,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <MainHeader />
-        {children}
+        <div className="p-8">
+          {children}
+        </div>
       </body>
     </html>
   );

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import NavLink from "./nav-link";
 
 export default function MainHeader() {
   return (
@@ -19,29 +20,16 @@ export default function MainHeader() {
         <nav className="p-4">
           <ul className="flex space-x-6 items-center">
             <li>
-              <Link href="/" className="hover:text-blue-400 transition-colors">
-                Home
-              </Link>
+              <NavLink href="/dashboard">Dashboard</NavLink>
             </li>
             <li>
-              <Link href="/dashboard" className="hover:text-blue-400 transition-colors">
-                Dashboard
-              </Link>
+              <NavLink href="/orders">Orders</NavLink>
             </li>
             <li>
-              <Link href="/orders" className="hover:text-blue-400 transition-colors">
-                Orders
-              </Link>
+              <NavLink href="/tokens">Tokens</NavLink>
             </li>
             <li>
-              <Link href="/tokens" className="hover:text-blue-400 transition-colors">
-                Tokens
-              </Link>
-            </li>
-            <li>
-              <Link href="/tests" className="hover:text-blue-400 transition-colors">
-                Tests
-              </Link>
+              <NavLink href="/tests">Tests</NavLink>
             </li>
           </ul>
         </nav>
