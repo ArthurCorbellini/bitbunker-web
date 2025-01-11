@@ -1,12 +1,20 @@
 import { PencilIcon, PlusIcon, TrashIcon } from "@heroicons/react/20/solid";
 
-const responseObject = [
-  { id: 1, ucid: 1, name: "Bitcoin", symbol: "BTC", classification: "Tier S" },
-  { id: 2, ucid: 1027, name: "Ethereum", symbol: "ETH", classification: "Tier A" },
-  { id: 3, ucid: 5426, name: "Solana", symbol: "SOL", classification: "Tier A" },
-];
+interface Token {
+  ucid: number;
+  name: string;
+  symbol: string;
+  classification: string;
+}
 
-export default function Tokens() {
+export default async function Tokens() {
+  const url = process.env.API_URL;
+  if (!url)
+    throw new Error('API_URL is not defined in environment variables.');
+
+  const response = await fetch(url + "/token");
+  const data: Token[] = await response.json();
+
   return (
     <div className="p-8">
       <div className="flex mb-4 items-center w-full space-x-2">
@@ -39,8 +47,8 @@ export default function Tokens() {
             </tr>
           </thead>
           <tbody>
-            {responseObject.map((token) => (
-              <tr key={token.id} className="border-b border-gray-800 hover:bg-gray-800 transition-colors">
+            {data.map((token) => (
+              <tr key={token.ucid} className="border-b border-gray-800 hover:bg-gray-800 transition-colors">
                 <td className="px-4 py-6">
                   {token.ucid}
                 </td>
