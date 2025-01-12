@@ -40,17 +40,13 @@ const HeaderRow = ({ children }: { children: ReactNode }) => {
   );
 }
 
-const HeaderCell = ({ children }: { children: ReactNode }) => {
+const HeaderCell = ({ addClassName, children }: {
+  addClassName?: string,
+  children: ReactNode
+}) => {
+  const className = `px-4 py-2 ${addClassName}`;
   return (
-    <th className="px-4 py-2">
-      {children}
-    </th>
-  );
-}
-
-const HeaderCellActions = ({ children }: { children: ReactNode }) => {
-  return (
-    <th className="px-4 py-2 w-40 text-center">
+    <th className={className}>
       {children}
     </th>
   );
@@ -72,17 +68,13 @@ const BodyRow = ({ children }: { children: ReactNode }) => {
   );
 }
 
-const BodyCell = ({ children }: { children: ReactNode }) => {
+const BodyCell = ({ addClassName, children }: {
+  addClassName?: string,
+  children: ReactNode
+}) => {
+  const className = `px-4 py-3 ${addClassName}`
   return (
-    <td className="px-4 py-6">
-      {children}
-    </td>
-  );
-}
-
-const BodyCellActions = ({ children }: { children: ReactNode }) => {
-  return (
-    <td className="px-4 py-3 space-x-2 text-center">
+    <td className={className}>
       {children}
     </td>
   );
@@ -91,11 +83,9 @@ const BodyCellActions = ({ children }: { children: ReactNode }) => {
 export {
   Body,
   BodyCell,
-  BodyCellActions,
   BodyRow,
   Header,
   HeaderCell,
-  HeaderCellActions,
   HeaderRow,
   Table,
   TableTitle

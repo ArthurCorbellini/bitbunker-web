@@ -4,11 +4,9 @@ import { RoundedButton } from "@/components/my-ui/button";
 import {
   Body,
   BodyCell,
-  BodyCellActions,
   BodyRow,
   Header,
   HeaderCell,
-  HeaderCellActions,
   HeaderRow,
   Table,
   TableTitle
@@ -22,7 +20,13 @@ interface Token {
   classification: string;
 }
 
-export default async function Tokens() {
+const testData = [
+  { ucid: 1, name: "Bitcoin", symbol: "BTC", classification: "Tier S" },
+  { ucid: 1027, name: "Ethereum", symbol: "ETH", classification: "Tier A" },
+  { ucid: 5426, name: "Solana", symbol: "SOL", classification: "Tier A" },
+];
+
+async function fetchTokens() {
   const url = process.env.API_URL;
   if (!url)
     throw new Error('API_URL is not defined in environment variables.');
@@ -31,7 +35,12 @@ export default async function Tokens() {
   if (!response.ok)
     throw new Error('Failed to fetch Tokens.');
 
-  const data: Token[] = await response.json();
+  return await response.json();
+}
+
+export default async function Tokens() {
+  const data: Token[] = testData;
+  // const data: Token[] = await fetchTokens();
 
   return (
     <>
@@ -45,7 +54,9 @@ export default async function Tokens() {
             <HeaderCell>Name</HeaderCell>
             <HeaderCell>Symbol</HeaderCell>
             <HeaderCell>Classification</HeaderCell>
-            <HeaderCellActions>Actions</HeaderCellActions>
+            <HeaderCell addClassName="w-40 text-center">
+              Actions
+            </HeaderCell>
           </HeaderRow>
         </Header>
         <Body>
@@ -55,14 +66,14 @@ export default async function Tokens() {
               <BodyCell>{token.name}</BodyCell>
               <BodyCell>{token.symbol}</BodyCell>
               <BodyCell>{token.classification}</BodyCell>
-              <BodyCellActions>
+              <BodyCell addClassName="space-x-2 text-center">
                 <RoundedButton>
                   <PencilIcon className="h-5 w-5" />
                 </RoundedButton>
                 <RoundedButton>
                   <TrashIcon className="h-5 w-5" />
                 </RoundedButton>
-              </BodyCellActions>
+              </BodyCell>
             </BodyRow>
           ))}
         </Body>
