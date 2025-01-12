@@ -1,6 +1,6 @@
-import { PencilIcon, PlusIcon, TrashIcon } from "@heroicons/react/20/solid";
+import { PencilIcon, TrashIcon } from "@heroicons/react/20/solid";
 
-import RoundedButton from "@/components/buttons/rounded-button";
+import { RoundedButton } from "@/components/my-ui/button";
 import {
   Body,
   BodyCell,
@@ -12,7 +12,8 @@ import {
   HeaderRow,
   Table,
   TableTitle
-} from "@/components/table/data-table";
+} from "@/components/my-ui/data-table";
+import CreateToken from "./create-token";
 
 interface Token {
   ucid: number;
@@ -35,15 +36,13 @@ export default async function Tokens() {
   return (
     <>
       <TableTitle title="Tokens">
-        <RoundedButton>
-          <PlusIcon className="h-5 w-5" />
-        </RoundedButton>
+        <CreateToken />
       </TableTitle>
       <Table>
         <Header>
           <HeaderRow>
             <HeaderCell>UCID</HeaderCell>
-            <HeaderCell>Nome</HeaderCell>
+            <HeaderCell>Name</HeaderCell>
             <HeaderCell>Symbol</HeaderCell>
             <HeaderCell>Classification</HeaderCell>
             <HeaderCellActions>Actions</HeaderCellActions>
