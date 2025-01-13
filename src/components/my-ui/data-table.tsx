@@ -44,7 +44,7 @@ const HeaderCell = ({ addClassName, children }: {
   addClassName?: string,
   children: ReactNode
 }) => {
-  const className = `px-4 py-2 ${addClassName}`;
+  const className = `px-4 py-2 space-x-2 ${addClassName}`;
   return (
     <th className={className}>
       {children}
@@ -72,7 +72,7 @@ const BodyCell = ({ addClassName, children }: {
   addClassName?: string,
   children: ReactNode
 }) => {
-  const className = `px-4 py-3 ${addClassName}`
+  const className = `px-4 py-3 space-x-2 ${addClassName}`
   return (
     <td className={className}>
       {children}
