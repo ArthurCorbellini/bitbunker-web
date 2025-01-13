@@ -11,14 +11,9 @@ import {
   Table,
   TableTitle
 } from "@/components/my-ui/data-table";
-import CreateToken from "./create-token";
 
-interface Token {
-  ucid: number;
-  name: string;
-  symbol: string;
-  classification: string;
-}
+import { Token } from "@/interfaces/token.interface";
+import CreateToken from "./create-token";
 
 const testData = [
   { ucid: 1, name: "Bitcoin", symbol: "BTC", classification: "Tier S" },
@@ -54,7 +49,7 @@ export default async function Tokens() {
             <HeaderCell>Name</HeaderCell>
             <HeaderCell>Symbol</HeaderCell>
             <HeaderCell>Classification</HeaderCell>
-            <HeaderCell addClassName="w-40 text-center">
+            <HeaderCell addClassName="w-32 text-center">
               Actions
             </HeaderCell>
           </HeaderRow>
@@ -66,7 +61,7 @@ export default async function Tokens() {
               <BodyCell>{token.name}</BodyCell>
               <BodyCell>{token.symbol}</BodyCell>
               <BodyCell>{token.classification}</BodyCell>
-              <BodyCell addClassName="space-x-2 text-center">
+              <BodyCell addClassName="w-32 text-center">
                 <RoundedButton>
                   <PencilIcon className="h-5 w-5" />
                 </RoundedButton>
