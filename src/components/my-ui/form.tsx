@@ -1,9 +1,9 @@
-import { ChangeEventHandler } from "react";
 
-const InputText = ({ label, value, onChange, addClassName }: {
+const InputText = ({ label, name, value, onChange, addClassName }: {
   label: string,
-  value: string,
-  onChange: (newValue: string) => void;
+  name?: string,
+  value?: string,
+  onChange?: (newValue: string) => void;
   addClassName?: string
 }) => {
   return (
@@ -13,22 +13,21 @@ const InputText = ({ label, value, onChange, addClassName }: {
       </label>
       <input
         type="text"
+        name={name}
         value={value}
-        onChange={event => onChange(event.target.value)}
+        onChange={onChange ? event => onChange(event.target.value) : undefined}
         className="flex h-9 w-full rounded-md border bg-transparent px-3 py-1 mt-1 text-base border-gray-800" />
     </div>
   );
 }
 
-const InputNumber = ({ label, value, onChange, addClassName }: {
+const InputNumber = ({ label, name, value, onChange, addClassName }: {
   label: string,
-  value: string,
-  onChange: (newValue: string) => void;
+  name?: string,
+  value?: string,
+  onChange?: (newValue: string) => void;
   addClassName?: string
 }) => {
-  const eventHandler: ChangeEventHandler<HTMLInputElement> = event => {
-    onChange(event.target.value.replace(/\D/g, ''));
-  };
   return (
     <div className={`p-1 w-full ${addClassName}`}>
       <label className="text-sm">
@@ -36,8 +35,9 @@ const InputNumber = ({ label, value, onChange, addClassName }: {
       </label>
       <input
         type="text"
+        name={name}
         value={value}
-        onChange={eventHandler}
+        onChange={onChange ? event => onChange(event.target.value.replace(/\D/g, '')) : undefined}
         className="flex h-9 w-full rounded-md border bg-transparent px-3 py-1 mt-1 text-base border-gray-800" />
     </div>
   );
