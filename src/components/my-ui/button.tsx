@@ -1,30 +1,22 @@
 import { MouseEventHandler, ReactNode } from "react";
 
-const PrimaryButton = ({
-  addClassName,
-  onClick,
-  children
-}: {
-  addClassName?: string,
+const PrimaryButton = ({ type, onClick, addClassName, children }: {
+  type?: "button" | "submit" | "reset" | undefined
   onClick?: MouseEventHandler<HTMLButtonElement>,
+  addClassName?: string,
   children: ReactNode
 }) => {
   const className = `p-1 w-full ${addClassName}`;
   return (
     <div className={className}>
-      <button onClick={onClick} className={"w-full py-2 bg-blue-800 rounded-lg hover:bg-blue-700 transition"}>
+      <button type={type} onClick={onClick} className={"w-full py-2 bg-blue-800 rounded-lg hover:bg-blue-700 transition"}>
         {children}
       </button>
     </div>
   );
 }
 
-
-const RoundedButton = ({
-  addClassName,
-  onClick,
-  children
-}: {
+const RoundedButton = ({ addClassName, onClick, children }: {
   addClassName?: string,
   onClick?: MouseEventHandler<HTMLButtonElement>,
   children: ReactNode
