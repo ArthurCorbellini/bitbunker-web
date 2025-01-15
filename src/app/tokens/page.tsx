@@ -1,17 +1,7 @@
 import { PencilIcon, TrashIcon } from "@heroicons/react/20/solid";
 
 import { RoundedButton } from "@/components/my-ui/button";
-import {
-  Body,
-  BodyCell,
-  BodyRow,
-  Header,
-  HeaderCell,
-  HeaderRow,
-  Table,
-  TableTitle
-} from "@/components/my-ui/data-table";
-
+import { Body, BodyCell, BodyRow, Header, HeaderCell, HeaderRow, Table, TableTitle } from "@/components/my-ui/data-table";
 import { Token } from "@/lib/interfaces";
 import CreateToken from "./create-token";
 
