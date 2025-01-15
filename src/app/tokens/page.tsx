@@ -12,7 +12,7 @@ import {
   TableTitle
 } from "@/components/my-ui/data-table";
 
-import { Token } from "@/interfaces/token.interface";
+import { Token } from "@/lib/interfaces";
 import CreateToken from "./create-token";
 
 const testData = [
@@ -34,8 +34,8 @@ async function fetchTokens() {
 }
 
 export default async function Tokens() {
-  const data: Token[] = testData;
-  // const data: Token[] = await fetchTokens();
+  // const data: Token[] = testData;
+  const data: Token[] = await fetchTokens();
 
   return (
     <>
