@@ -1,10 +1,16 @@
 "use server";
 
 import { Token } from "./interfaces";
+import { TokenSchema } from "./schemas";
+import { validateFormData } from "./utils";
 
-export const createToken = async (formData: FormData) => {
-  // TODO falta fazer as validações dos campos
-  //    > criar alertas para mostrar possíveis erros de validação/salvamento
+export const createToken = async (prevState: any, formData: FormData) => {
+  try {
+    validateFormData({ schema: TokenSchema, formData });
+  } catch (err) {
+    console.log(err)
+    //    > criar alertas para mostrar possíveis erros de validação/salvamento
+  }
 
   const token: Token = {
     ucid: Number(formData.get("ucid")),
@@ -22,7 +28,6 @@ export const createToken = async (formData: FormData) => {
   });
 
   const res = await response.json();
-  console.log(res)
 
   return res;
 }
