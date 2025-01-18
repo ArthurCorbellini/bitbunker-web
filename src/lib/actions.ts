@@ -8,8 +8,7 @@ export const createToken = async (prevState: any, formData: FormData) => {
   try {
     validateFormData({ schema: TokenSchema, formData });
   } catch (err) {
-    console.log(err)
-    //    > criar alertas para mostrar possíveis erros de validação/salvamento
+    return err;
   }
 
   const token: Token = {

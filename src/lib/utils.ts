@@ -8,13 +8,7 @@ export const validateFormData = ({ schema, formData }: {
     schema.parse(formDataToObject(formData));
   } catch (err) {
     if (err instanceof ZodError)
-      throw err.errors.reduce((acc, error) => {
-        const pathKey = error.path.join('.');
-        if (!acc[pathKey])
-          acc[pathKey] = [];
-        acc[pathKey].push(error.message);
-        return acc;
-      }, {} as Record<string, string[]>);
+      throw convertZodError(err);
     throw ["Unknown error occurred"];
   }
 };
@@ -25,4 +19,17 @@ const formDataToObject = (formData: FormData): { [key: string]: any } => {
     obj[key] = value;
   });
   return obj;
+};
+
+const convertZodError = (err: ZodError) => {
+  return err.errors.reduce((acc, error) => {
+    const pathKey = error.path.join('.');
+
+    if (!acc[pathKey])
+      acc[pathKey] = [];
+
+    acc[pathKey].push(error.message);
+
+    return acc;
+  }, {} as Record<string, string[]>);
 };

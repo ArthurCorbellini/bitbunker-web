@@ -6,7 +6,7 @@ import { useActionState, useState } from "react";
 import { useFormStatus } from "react-dom";
 
 import { PrimaryButton, RoundedButton } from "@/components/my-ui/button";
-import { InputText } from "@/components/my-ui/form";
+import { InputNumber, InputText } from "@/components/my-ui/form";
 import { Modal, ModalBody, ModalFooter, ModalHeader } from "@/components/my-ui/modal";
 import { createToken } from "@/lib/actions";
 
@@ -15,7 +15,7 @@ export default function CreateToken() {
   const openDialog = () => setOpen(true);
   const closeDialog = () => setOpen(false);
   const { pending } = useFormStatus();
-  const [state, formAction] = useActionState(createToken, { message: null })
+  const [formState, formAction] = useActionState(createToken, {})
 
   return (
     <>
@@ -27,27 +27,28 @@ export default function CreateToken() {
           <ModalHeader
             title="Create new Token"
             description="Form to create token" />
-
-          {state.message && <p>{state.message}</p>}
-
           <ModalBody>
-            <InputText
+            <InputNumber
               label="UCID"
               name="ucid"
               disabled={pending}
-              addClassName="w-2/4" />
+              formState={formState}
+              addClassName="w-6/12" />
             <InputText
               label="Symbol"
               name="symbol"
               disabled={pending}
-              addClassName="w-2/4" />
+              formState={formState}
+              addClassName="w-6/12" />
             <InputText
               label="Name"
               name="name"
+              formState={formState}
               disabled={pending} />
             <InputText
               label="Classification"
               name="classification"
+              formState={formState}
               disabled={pending} />
           </ModalBody>
           <ModalFooter>
