@@ -1,3 +1,4 @@
+import { useState } from "react";
 
 const InputText = ({ label, name, value, onChange, disabled, addClassName }: {
   label: string,
@@ -23,14 +24,17 @@ const InputText = ({ label, name, value, onChange, disabled, addClassName }: {
   );
 }
 
-const InputNumber = ({ label, name, value, onChange, disabled, addClassName }: {
+const InputNumber = ({ label, name, value, disabled, addClassName }: {
   label: string,
   name?: string,
   value?: string,
-  onChange?: (newValue: string) => void;
   disabled?: boolean,
   addClassName?: string
 }) => {
+  const [inputValue, setInputValue] = useState(value || "");
+  const handleChange = (e: any) => {
+    setInputValue(e.target.value.replace(/\D/g, ''));
+  };
   return (
     <div className={`p-1 w-full ${addClassName}`}>
       <label className="text-sm">
@@ -39,9 +43,9 @@ const InputNumber = ({ label, name, value, onChange, disabled, addClassName }: {
       <input
         type="text"
         name={name}
-        value={value}
+        value={inputValue}
         disabled={disabled}
-        onChange={onChange ? event => onChange(event.target.value.replace(/\D/g, '')) : undefined}
+        onChange={handleChange}
         className="flex h-9 w-full rounded-md border bg-transparent px-3 py-1 mt-1 text-base border-gray-800 disabled:opacity-50" />
     </div>
   );
