@@ -33,23 +33,25 @@ export default function CreateToken() {
               name="ucid"
               disabled={pending}
               formState={formState}
-              addClassName="w-6/12" />
+              addClassName="w-1/2" />
             <InputText
               label="Symbol"
               name="symbol"
               disabled={pending}
               formState={formState}
-              addClassName="w-6/12" />
+              addClassName="w-1/2" />
             <InputText
               label="Name"
               name="name"
               formState={formState}
-              disabled={pending} />
+              disabled={pending}
+              addClassName="w-full" />
             <InputText
               label="Classification"
               name="classification"
               formState={formState}
-              disabled={pending} />
+              disabled={pending}
+              addClassName="w-full" />
           </ModalBody>
           <ModalFooter>
             <PrimaryButton

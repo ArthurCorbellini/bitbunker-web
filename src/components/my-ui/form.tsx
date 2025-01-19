@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+const defaultInputClassName = "flex h-9 w-full rounded-md px-3 py-1 mt-1 text-base bg-slate-800 hover:bg-slate-700 transition border border-slate-700 hover:border-slate-500 disabled:opacity-50 disabled:pointer-events-none"
+
 const InputText = ({ label, name, value, disabled, formState, addClassName }: {
   label: string,
   name?: string,
@@ -9,7 +11,7 @@ const InputText = ({ label, name, value, disabled, formState, addClassName }: {
   addClassName?: string
 }) => {
   return (
-    <div className={`p-1 w-full ${addClassName}`}>
+    <div className={`p-1 ${addClassName}`}>
       <label className="text-sm">
         {label}
       </label>
@@ -18,10 +20,7 @@ const InputText = ({ label, name, value, disabled, formState, addClassName }: {
         name={name}
         value={value}
         disabled={disabled}
-        className="flex h-9 w-full rounded-md px-3 py-1 mt-1 text-base
-        bg-slate-800 hover:bg-slate-700 transition
-        border border-slate-700 
-        disabled:opacity-50 disabled:pointer-events-none" />
+        className={defaultInputClassName} />
       {name && formState[name] && <p className="p-1 text-xs text-red-700">{formState[name][0]}</p>}
     </div>
   );
@@ -40,7 +39,7 @@ const InputNumber = ({ label, name, value, disabled, formState, addClassName }: 
     setInputValue(e.target.value.replace(/\D/g, ''));
   };
   return (
-    <div className={`p-1 w-full ${addClassName}`}>
+    <div className={`p-1 ${addClassName}`}>
       <label className="text-sm">
         {label}
       </label>
@@ -50,10 +49,7 @@ const InputNumber = ({ label, name, value, disabled, formState, addClassName }: 
         value={inputValue}
         disabled={disabled}
         onChange={handleChange}
-        className="flex h-9 w-full rounded-md px-3 py-1 mt-1 text-base
-        bg-slate-800 hover:bg-slate-700 transition
-        border border-slate-700 
-        disabled:opacity-50 disabled:pointer-events-none" />
+        className={defaultInputClassName} />
       {name && formState[name] && <p className="p-1 text-xs text-red-700">{formState[name][0]}</p>}
     </div>
   );
