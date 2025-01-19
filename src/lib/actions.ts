@@ -1,32 +1,28 @@
 "use server";
 
-import { Token } from "./interfaces";
+import { redirect } from "next/navigation";
 import { TokenSchema } from "./schemas";
-import { validateFormData } from "./utils";
+import { convertZodError, urlRoot, validateFormData } from "./utils";
 
 export const createToken = async (prevState: any, formData: FormData) => {
-  try {
-    validateFormData({ schema: TokenSchema, formData });
-  } catch (err) {
-    return err;
-  }
+  const validation = validateFormData({ schema: TokenSchema, formData });
 
-  const token: Token = {
-    ucid: Number(formData.get("ucid")),
-    name: formData.get("name") as string,
-    symbol: formData.get("symbol") as string,
-    classification: formData.get("classification") as string
-  }
+  if (!validation.success)
+    return convertZodError(validation.error);
 
-  const response = await fetch("http://localhost:9000/token", { // TODO pensar numa forma de gerenciar a url
+  const response = await fetch(urlRoot + "/token", {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(token),
+    body: JSON.stringify(validation.data),
   });
 
-  const res = await response.json();
+  if (!response.ok)
+    // mostrar ao usuário o erro do back, talvez apontar para a error.tsx 
+    //   se o token já existir com o id inserido, vai dar voltar um 400
+    //   talvez mostrar os 4xx ao usuário no modal e o resto mandar para a error.tsx
+    throw Error(JSON.stringify(await response.json())); // to-do better error handling  
 
-  return res;
+  redirect("/tokens");
 }

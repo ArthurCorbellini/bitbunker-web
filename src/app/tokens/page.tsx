@@ -3,6 +3,7 @@ import { PencilIcon, TrashIcon } from "@heroicons/react/20/solid";
 import { RoundedButton } from "@/components/my-ui/button";
 import { Body, BodyCell, BodyRow, Header, HeaderCell, HeaderRow, Table, TableTitle } from "@/components/my-ui/data-table";
 import { Token } from "@/lib/interfaces";
+import { urlRoot } from "@/lib/utils";
 import CreateToken from "./create-token";
 
 const testData = [
@@ -12,11 +13,7 @@ const testData = [
 ];
 
 async function fetchTokens() {
-  const url = process.env.API_URL;
-  if (!url)
-    throw new Error('API_URL is not defined in environment variables.');
-
-  const response = await fetch(url + "/token");
+  const response = await fetch(urlRoot + "/token");
   if (!response.ok)
     throw new Error('Failed to fetch Tokens.');
 

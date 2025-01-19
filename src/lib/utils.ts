@@ -1,27 +1,15 @@
 import { ZodError, ZodObject } from "zod";
 
+export const urlRoot = process.env.API_URL;
+
 export const validateFormData = ({ schema, formData }: {
   schema: ZodObject<any>;
   formData: FormData;
 }) => {
-  try {
-    schema.parse(formDataToObject(formData));
-  } catch (err) {
-    if (err instanceof ZodError)
-      throw convertZodError(err);
-    throw ["Unknown error occurred"];
-  }
+  return schema.safeParse(formDataToObject(formData));
 };
 
-const formDataToObject = (formData: FormData): { [key: string]: any } => {
-  const obj: { [key: string]: any } = {};
-  formData.forEach((value, key) => {
-    obj[key] = value;
-  });
-  return obj;
-};
-
-const convertZodError = (err: ZodError) => {
+export const convertZodError = (err: ZodError) => {
   return err.errors.reduce((acc, error) => {
     const pathKey = error.path.join('.');
 
@@ -32,4 +20,12 @@ const convertZodError = (err: ZodError) => {
 
     return acc;
   }, {} as Record<string, string[]>);
+};
+
+const formDataToObject = (formData: FormData): { [key: string]: any } => {
+  const obj: { [key: string]: any } = {};
+  formData.forEach((value, key) => {
+    obj[key] = value;
+  });
+  return obj;
 };
