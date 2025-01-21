@@ -5,6 +5,7 @@ import Form from 'next/form';
 import { useActionState, useState } from "react";
 import { useFormStatus } from "react-dom";
 
+import { FormAlert } from "@/components/my-ui/alert";
 import { PrimaryButton, RoundedButton } from "@/components/my-ui/button";
 import { InputNumber, InputText } from "@/components/my-ui/form";
 import { Modal, ModalBody, ModalFooter, ModalHeader } from "@/components/my-ui/modal";
@@ -27,6 +28,7 @@ export default function CreateToken() {
           <ModalHeader
             title="Create new Token"
             description="Form to create token" />
+          <FormAlert formState={formState} />
           <ModalBody>
             <InputNumber
               label="UCID"

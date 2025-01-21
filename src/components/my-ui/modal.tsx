@@ -30,7 +30,7 @@ const ModalHeader = ({ title, description }: {
   description?: string,
 }) => {
   return (
-    <div className="m-1 mb-6">
+    <div className="p-1 pb-2">
       <h2 className="text-2xl font-bold">
         {title}
       </h2>
