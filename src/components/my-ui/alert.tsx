@@ -1,5 +1,5 @@
 import { Alert } from "@/lib/interfaces";
-import { ExclamationTriangleIcon } from "@heroicons/react/20/solid";
+import { ExclamationCircleIcon, ExclamationTriangleIcon, XCircleIcon } from "@heroicons/react/20/solid";
 
 export const FormAlert = ({ formState }: {
   formState: any
@@ -7,33 +7,46 @@ export const FormAlert = ({ formState }: {
   const alert: Alert = formState["_alert"];
   if (!alert) return;
 
+  let icon;
   let className = "p-2 space-y-1 rounded-md border"
   switch (alert.severity) {
     case "info":
-      className = `${className} bg-blue-600 border-blue-300`
+      icon = <><ExclamationCircleIcon className="w-7 mr-1" /></>
+      className = `${className} bg-blue-500 border-blue-300`
       break;
     case "warning":
-      className = `${className} bg-orange-600 border-orange-300`
+      icon = <><ExclamationTriangleIcon className="w-7 mr-1" /></>
+      className = `${className} bg-orange-500 border-orange-300`
       break;
     case "error":
-      className = `${className} bg-red-600 border-red-300`
+      icon = <><XCircleIcon className="w-7 mr-1" /></>
+      className = `${className} bg-red-500 border-red-300`
       break;
   }
 
   return (
     <div className="p-1 w-full">
       <div className={className}>
-        {alert.title &&
-          <h2 className="font-bold">
-            {alert.title}
-          </h2>
+        {alert.title ?
+          <>
+            <div className="flex items-center">
+              {icon}
+              <h2 className="font-bold">
+                {alert.title}
+              </h2>
+            </div>
+            <p className="text-sm">
+              {alert.message}
+            </p>
+          </>
+          :
+          <div className="flex items-center">
+            {icon}
+            <p className="text-sm">
+              {alert.message}
+            </p>
+          </div>
         }
-        <div className="flex items-center">
-          <ExclamationTriangleIcon className="h-5 w-5 mr-1" />
-          <p className="text-sm">
-            {alert.message}
-          </p>
-        </div>
       </div>
     </div>
   );
