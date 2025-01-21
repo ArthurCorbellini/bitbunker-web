@@ -3,7 +3,8 @@ import { PencilIcon, TrashIcon } from "@heroicons/react/20/solid";
 import { RoundedButton } from "@/components/my-ui/button";
 import { Body, BodyCell, BodyRow, Header, HeaderCell, HeaderRow, Table, TableTitle } from "@/components/my-ui/data-table";
 import { Token } from "@/lib/interfaces";
-import { urlRoot } from "@/lib/utils";
+import { convertResponseData } from "@/lib/util/api.util";
+import { urlRoot } from "@/lib/util/form.util";
 import CreateToken from "./create-token";
 
 const testData = [
@@ -14,10 +15,10 @@ const testData = [
 
 async function fetchTokens() {
   const response = await fetch(urlRoot + "/token");
-  if (!response.ok)
-    throw new Error('Failed to fetch Tokens.');
+  if (response.ok)
+    return await convertResponseData(response);
 
-  return await response.json();
+  throw new Error('Failed to fetch Tokens.');
 }
 
 export default async function Tokens() {

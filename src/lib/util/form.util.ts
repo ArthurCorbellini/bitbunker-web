@@ -1,4 +1,5 @@
 import { ZodError, ZodObject } from "zod";
+import { Alert } from "../interfaces";
 
 export const urlRoot = process.env.API_URL;
 
@@ -9,7 +10,7 @@ export const validateFormData = ({ schema, formData }: {
   return schema.safeParse(formDataToObject(formData));
 };
 
-export const convertZodError = (err: ZodError) => {
+export const convertFormError = (err: ZodError) => {
   return err.errors.reduce((acc, error) => {
     const pathKey = error.path.join('.');
 
@@ -21,6 +22,16 @@ export const convertZodError = (err: ZodError) => {
     return acc;
   }, {} as Record<string, string[]>);
 };
+
+export const convertFormAlert = ({ severity, title, message }: {
+  severity: "info" | "warning" | "error",
+  title?: string,
+  message: string
+}): {
+  _alert: Alert
+} => {
+  return { _alert: { severity, title, message } }
+}
 
 const formDataToObject = (formData: FormData): { [key: string]: any } => {
   const obj: { [key: string]: any } = {};
