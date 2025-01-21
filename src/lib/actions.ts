@@ -29,7 +29,7 @@ export const createToken = async (prevState: any, formData: FormData) => {
       message: "Token already exists with the given UCID."
     });
 
-  convertFormAlert({
+  return convertFormAlert({
     severity: "error",
     message: "Internal server error. Please try again later."
   });
