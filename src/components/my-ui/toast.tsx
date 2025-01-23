@@ -1,15 +1,19 @@
-import { Alert } from "@/lib/interfaces";
-import { ExclamationCircleIcon, ExclamationTriangleIcon, XCircleIcon } from "@heroicons/react/20/solid";
+"use client"
 
-export const FormAlert = ({ formState }: {
-  formState: any
-}) => {
-  const alert: Alert = formState["_alert"];
-  if (!alert) return;
+import { CheckCircleIcon, ExclamationCircleIcon, ExclamationTriangleIcon, XCircleIcon } from "@heroicons/react/20/solid";
+import { useToast } from "../../lib/store/toast.context";
+
+export const Toast = () => {
+  const { toast } = useToast();
+  if (!toast) return;
 
   let icon;
   let className = "p-2 space-y-1 rounded-md border"
-  switch (alert.severity) {
+  switch (toast.severity) {
+    case "success":
+      icon = <><CheckCircleIcon className="w-7 mr-1" /></>
+      className = `${className} bg-green-500 border-green-300`
+      break;
     case "info":
       icon = <><ExclamationCircleIcon className="w-7 mr-1" /></>
       className = `${className} bg-blue-500 border-blue-300`
@@ -25,25 +29,25 @@ export const FormAlert = ({ formState }: {
   }
 
   return (
-    <div className="p-1 w-full">
+    <div className="m-3 w-96 fixed right-0 bottom-0 z-50">
       <div className={className}>
-        {alert.title ?
+        {toast.title ?
           <>
             <div className="flex items-center">
               {icon}
               <h2 className="font-bold">
-                {alert.title}
+                {toast.title}
               </h2>
             </div>
             <p className="text-sm">
-              {alert.message}
+              {toast.message}
             </p>
           </>
           :
           <div className="flex items-center">
             {icon}
             <p className="text-sm">
-              {alert.message}
+              {toast.message}
             </p>
           </div>
         }

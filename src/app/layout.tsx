@@ -1,4 +1,6 @@
 import MainHeader from "@/components/main-header/main-header";
+import { Toast } from "@/components/my-ui/toast";
+import { ToastContextProvider } from "@/lib/store/toast.context";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -26,10 +28,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <MainHeader />
-        <main className="p-8">
-          {children}
-        </main>
+        <ToastContextProvider>
+          <MainHeader />
+          <main className="p-8">
+            {children}
+          </main>
+          <Toast />
+        </ToastContextProvider>
       </body>
     </html>
   );

@@ -2,21 +2,30 @@
 
 import { PlusIcon } from "@heroicons/react/20/solid";
 import Form from 'next/form';
-import { useActionState, useState } from "react";
+import { useActionState, useEffect, useState } from "react";
 import { useFormStatus } from "react-dom";
 
-import { FormAlert } from "@/components/my-ui/alert";
 import { PrimaryButton, RoundedButton } from "@/components/my-ui/button";
 import { InputNumber, InputText } from "@/components/my-ui/form";
 import { Modal, ModalBody, ModalFooter, ModalHeader } from "@/components/my-ui/modal";
 import { createToken } from "@/lib/actions";
+import { useToast } from "@/lib/store/toast.context";
 
 export default function CreateToken() {
   const [open, setOpen] = useState(false);
   const openDialog = () => setOpen(true);
   const closeDialog = () => setOpen(false);
+
   const { pending } = useFormStatus();
-  const [formState, formAction] = useActionState(createToken, {})
+  const [formState, formAction] = useActionState(createToken, null);
+
+  const { setToast } = useToast();
+
+  useEffect(() => {
+    if (formState?.serverError) {
+      setToast(formState.serverError)
+    }
+  }, [formState])
 
   return (
     <>
@@ -28,7 +37,6 @@ export default function CreateToken() {
           <ModalHeader
             title="Create new Token"
             description="Form to create token" />
-          <FormAlert formState={formState} />
           <ModalBody>
             <InputNumber
               label="UCID"

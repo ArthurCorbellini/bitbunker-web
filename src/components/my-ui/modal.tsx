@@ -12,7 +12,7 @@ const Modal = ({ open, closeHandler, children }: {
     <>
       {open && (
         <div className="text-left">
-          <div className="fixed inset-0 bg-black/80 z-50" />
+          <div className="fixed inset-0 bg-black/80 z-40" />
           <div className="fixed p-3 left-[50%] top-[50%] z-50 w-96 translate-x-[-50%] translate-y-[-50%] bg-background border rounded border-gray-800">
             <RoundedButton addClassName="absolute right-4 top-4" onClick={closeHandler}>
               <XMarkIcon className="h-5 w-5" />
