@@ -7,12 +7,6 @@ import { convertResponseData } from "@/lib/util/api.util";
 import { urlRoot } from "@/lib/util/form.util";
 import CreateToken from "./create-token";
 
-const testData = [
-  { ucid: 1, name: "Bitcoin", symbol: "BTC", classification: "Tier S" },
-  { ucid: 1027, name: "Ethereum", symbol: "ETH", classification: "Tier A" },
-  { ucid: 5426, name: "Solana", symbol: "SOL", classification: "Tier A" },
-];
-
 async function fetchTokens() {
   const response = await fetch(urlRoot + "/token");
   if (response.ok)
@@ -22,7 +16,6 @@ async function fetchTokens() {
 }
 
 export default async function Tokens() {
-  // const data: Token[] = testData;
   const data: Token[] = await fetchTokens();
 
   return (
