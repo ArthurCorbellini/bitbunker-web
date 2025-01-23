@@ -25,7 +25,7 @@ export default function CreateToken() {
     if (formState?.serverError) {
       setToast(formState.serverError)
     }
-  }, [formState])
+  }, [formState, setToast])
 
   return (
     <>

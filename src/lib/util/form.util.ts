@@ -1,10 +1,10 @@
-import { ZodError, ZodObject } from "zod";
+import { ZodError, ZodTypeAny } from "zod";
 import { CustomFormState, Toast } from "../interfaces";
 
 export const urlRoot = process.env.API_URL;
 
 export const validateFormData = ({ schema, formData }: {
-  schema: ZodObject<any>;
+  schema: ZodTypeAny;
   formData: FormData;
 }) => {
   return schema.safeParse(formDataToObject(formData));
@@ -36,8 +36,8 @@ export const buildDefaultServerError = (): CustomFormState => {
   });
 }
 
-const formDataToObject = (formData: FormData): { [key: string]: any } => {
-  const obj: { [key: string]: any } = {};
+const formDataToObject = (formData: FormData): { [key: string]: string | File } => {
+  const obj: { [key: string]: string | File } = {};
   formData.forEach((value, key) => {
     obj[key] = value;
   });

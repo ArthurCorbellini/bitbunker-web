@@ -1,5 +1,5 @@
 import { CustomFormState } from "@/lib/interfaces";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 
 const defaultInputClassName = "flex h-9 w-full rounded-md px-3 py-1 mt-1 text-base bg-slate-800 hover:bg-slate-700 transition border border-slate-700 hover:border-slate-500 disabled:opacity-50 disabled:pointer-events-none"
 
@@ -36,7 +36,7 @@ const InputNumber = ({ label, name, value, disabled, formState, addClassName }: 
   addClassName?: string
 }) => {
   const [inputValue, setInputValue] = useState(value || "");
-  const handleChange = (e: any) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value.replace(/\D/g, ''));
   };
   return (
