@@ -4,8 +4,10 @@ import { CheckCircleIcon, ExclamationCircleIcon, ExclamationTriangleIcon, XCircl
 import { useToast } from "../../lib/store/toast.context";
 
 export const Toast = () => {
-  const { toast } = useToast();
+  const { toast, setToast } = useToast();
   if (!toast) return;
+
+  setTimeout(() => setToast(null), 3000);
 
   let icon;
   let className = "p-2 space-y-1 rounded-md border"
