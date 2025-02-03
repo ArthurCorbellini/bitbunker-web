@@ -1,13 +1,14 @@
 "use client"
 
 import { CheckCircleIcon, ExclamationCircleIcon, ExclamationTriangleIcon, XCircleIcon } from "@heroicons/react/20/solid";
+import { motion } from "framer-motion";
 import { useToast } from "../../lib/store/toast.context";
 
 export const Toast = () => {
   const { toast, setToast } = useToast();
   if (!toast) return;
 
-  setTimeout(() => setToast(null), 3000);
+  setTimeout(() => setToast(null), 5000);
 
   let icon;
   let className = "p-2 space-y-1 rounded-md border"
@@ -53,6 +54,11 @@ export const Toast = () => {
             </p>
           </div>
         }
+        <motion.div
+          className="h-1 bg-white absolute bottom-0 left-0 w-full rounded-bl-full"
+          initial={{ width: "0%" }}
+          animate={{ width: "100%" }}
+          transition={{ duration: 5.1, ease: "linear" }} />
       </div>
     </div>
   );
