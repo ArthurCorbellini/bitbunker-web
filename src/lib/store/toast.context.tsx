@@ -17,7 +17,6 @@ export const ToastContextProvider = ({ children }: {
 
   const setToast = (toast: Toast | null) => {
     setState(toast);
-    setTimeout(() => setState(null), 5000);
   };
 
   return (
