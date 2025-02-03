@@ -1,9 +1,10 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
 import { CustomFormState } from "./interfaces";
 import { TokenSchema } from "./schemas";
 import { ApiErrorCode, convertResponseError } from "./util/api.util";
-import { buildClientError, buildDefaultServerError, buildServerError, urlRoot, validateFormData } from "./util/form.util";
+import { buildClientError, buildInternalServerError, buildServerError, buildServerSuccess, urlRoot, validateFormData } from "./util/form.util";
 
 export const createToken = async (
   prevState: CustomFormState | null,
@@ -23,17 +24,13 @@ export const createToken = async (
   });
 
   if (response.ok) {
-    // revalidatePath("/tokens", "layout");
-    return { success: true };
+    revalidatePath("/tokens", "layout");
+    return buildServerSuccess("Token saved successfully!");
   }
 
   const error = await convertResponseError(response);
   if (ApiErrorCode.RESOURCE_ALREADY_EXISTS === error)
-    return buildServerError({
-      title: "Oops!",
-      severity: "warning",
-      message: "Token already exists with the given UCID."
-    });
+    return buildServerError("Token already exists with the given UCID.");
 
-  return buildDefaultServerError();
+  return buildInternalServerError();
 }

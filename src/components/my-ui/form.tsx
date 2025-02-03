@@ -60,8 +60,8 @@ const errorLabel = ({ name, formState }: {
   name?: string,
   formState?: CustomFormState | null
 }) => {
-  if (!name || !formState || !formState.clientError) return;
-  const errors = formState.clientError[name];
+  if (!name || !formState || !formState.formErrors) return;
+  const errors = formState.formErrors[name];
   if (!errors) return;
   return (
     <p className="p-1 text-xs text-red-700">{errors[0]}</p>

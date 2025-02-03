@@ -22,18 +22,27 @@ export const buildClientError = (err: ZodError): CustomFormState => {
     return acc;
   }, {} as Record<string, string[]>);
 
-  return { success: false, clientError: formErrors };
+  return { formErrors };
 };
 
-export const buildServerError = (toast: Toast): CustomFormState => {
-  return { success: false, serverError: toast };
+export const buildServerSuccess = (message: string): CustomFormState => {
+  return buildServerResponse({ title: "Huhuu!", severity: "success", message });
 }
 
-export const buildDefaultServerError = (): CustomFormState => {
-  return buildServerError({
+export const buildServerError = (message: string): CustomFormState => {
+  return buildServerResponse({ title: "Oops!", severity: "warning", message });
+}
+
+export const buildInternalServerError = (): CustomFormState => {
+  return buildServerResponse({
+    title: "Outch!",
     severity: "error",
     message: "Internal server error. Please try again later."
   });
+}
+
+const buildServerResponse = (toast: Toast): CustomFormState => {
+  return { serverResponse: toast };
 }
 
 const formDataToObject = (formData: FormData): { [key: string]: string | File } => {

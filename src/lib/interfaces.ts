@@ -1,9 +1,8 @@
 export interface CustomFormState {
-  success: boolean;
-  clientError?: {
+  formErrors?: {
     [key: string]: string[]
   }
-  serverError?: Toast
+  serverResponse?: Toast
 }
 
 export interface Toast {
