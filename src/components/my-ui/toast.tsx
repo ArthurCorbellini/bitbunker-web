@@ -56,9 +56,9 @@ export const Toast = () => {
         }
         <motion.div
           className="h-1 bg-white absolute bottom-0 left-0 w-full rounded-bl-full"
-          initial={{ width: "0%" }}
-          animate={{ width: "100%" }}
-          transition={{ duration: 5.1, ease: "linear" }} />
+          initial={{ width: "100%" }}
+          animate={{ width: "0%" }}
+          transition={{ duration: 5, ease: "linear" }} />
       </div>
     </div>
   );
