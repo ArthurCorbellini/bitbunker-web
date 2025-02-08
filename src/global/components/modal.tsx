@@ -1,7 +1,6 @@
 import { XMarkIcon } from "@heroicons/react/20/solid";
 import { MouseEventHandler, ReactNode } from "react";
-
-import { RoundedButton } from "../../components/my-ui/button";
+import { RoundedButton } from "./button";
 
 const Modal = ({ open, closeHandler, children }: {
   open: boolean,
