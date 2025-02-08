@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 
-import { CustomFormState } from "@/lib/interfaces";
+import { CustomFormState } from "@/global/interfaces/custom-form-state.interfaces";
 import { TokenSchema } from "@/lib/schemas";
 import { ApiErrorCode, convertResponseError } from "@/lib/util/api.util";
 import { buildClientError, buildInternalServerError, buildServerError, buildServerSuccess, urlRoot, validateFormData } from "@/lib/util/form.util";

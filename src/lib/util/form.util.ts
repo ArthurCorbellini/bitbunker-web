@@ -1,5 +1,6 @@
+import { CustomFormState } from "@/global/interfaces/custom-form-state.interfaces";
+import { Toast } from "@/global/interfaces/toast.interface";
 import { ZodError, ZodTypeAny } from "zod";
-import { CustomFormState, Toast } from "../interfaces";
 
 export const urlRoot = process.env.API_URL;
 
