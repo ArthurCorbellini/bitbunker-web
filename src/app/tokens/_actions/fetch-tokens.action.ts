@@ -1,8 +1,8 @@
 "use server"
 
-import { tokenApi } from "@/global/api/token.api";
-import { Token } from "@/global/types/token.type";
-import { convertResponseData } from "@/global/util/api.util";
+import { tokenApi } from "@/lib/api/token.api";
+import { Token } from "@/lib/types/token.type";
+import { convertResponseData } from "@/lib/util/api.util";
 
 export const fetchTokens = async (): Promise<Token[]> => {
   const response = await tokenApi.fetchTokens();

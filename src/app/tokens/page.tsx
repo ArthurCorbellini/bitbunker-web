@@ -1,9 +1,9 @@
 import { PencilIcon, TrashIcon } from "@heroicons/react/20/solid";
 
-import { RoundedButton } from "@/global/components/button";
-import { Body, BodyCell, BodyRow, Header, HeaderCell, HeaderRow, Table, TableTitle } from "@/global/components/data-table";
+import { RoundedButton } from "@/components/button";
+import { Body, BodyCell, BodyRow, Header, HeaderCell, HeaderRow, Table, TableTitle } from "@/components/data-table";
 
-import { Token } from "@/global/types/token.type";
+import { Token } from "@/lib/types/token.type";
 import { fetchTokens } from "./_actions/fetch-tokens.action";
 import CreateToken from "./_components/create-token";
 

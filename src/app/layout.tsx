@@ -1,6 +1,6 @@
 import MainHeader from "@/app/_components/main-header/main-header";
-import { Toast } from "@/global/components/toast";
-import { ToastContextProvider } from "@/global/store/toast.context";
+import { Toast } from "@/components/toast";
+import { ToastContextProvider } from "@/lib/store/toast.context";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";

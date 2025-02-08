@@ -5,10 +5,10 @@ import Form from 'next/form';
 import { useActionState, useEffect, useState } from "react";
 import { useFormStatus } from "react-dom";
 
-import { PrimaryButton, RoundedButton } from "@/global/components/button";
-import { InputNumber, InputText } from "@/global/components/form";
-import { Modal, ModalBody, ModalFooter, ModalHeader } from "@/global/components/modal";
-import { useToast } from "@/global/store/toast.context";
+import { PrimaryButton, RoundedButton } from "@/components/button";
+import { InputNumber, InputText } from "@/components/form";
+import { Modal, ModalBody, ModalFooter, ModalHeader } from "@/components/modal";
+import { useToast } from "@/lib/store/toast.context";
 import { createToken } from "../_actions/create-token.action";
 
 export default function CreateToken() {
