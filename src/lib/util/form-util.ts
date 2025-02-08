@@ -1,5 +1,5 @@
-import { CustomFormState } from "@/lib/types/custom-form-state.type";
-import { Toast } from "@/lib/types/toast.type";
+import { CustomFormState } from "@/lib/types/custom-form-state-type";
+import { Toast } from "@/lib/types/toast-type";
 import { ZodError, ZodTypeAny } from "zod";
 
 export const urlRoot = process.env.API_URL;

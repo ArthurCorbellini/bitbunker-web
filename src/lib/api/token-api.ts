@@ -1,5 +1,5 @@
-import { Token } from "../types/token.type";
-import { urlRoot } from "../util/form.util";
+import { Token } from "../types/token-type";
+import { urlRoot } from "../util/form-util";
 
 export const tokenApi = {
   createToken: async (data: Token): Promise<Response> => {

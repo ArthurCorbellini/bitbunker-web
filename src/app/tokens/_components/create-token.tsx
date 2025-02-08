@@ -8,8 +8,8 @@ import { useFormStatus } from "react-dom";
 import { PrimaryButton, RoundedButton } from "@/components/button";
 import { InputNumber, InputText } from "@/components/form";
 import { Modal, ModalBody, ModalFooter, ModalHeader } from "@/components/modal";
-import { useToast } from "@/lib/store/toast.context";
-import { createToken } from "../_actions/create-token.action";
+import { useToast } from "@/lib/store/toast-context";
+import { createToken } from "../_actions/create-token-action";
 
 export default function CreateToken() {
   const [open, setOpen] = useState(false);

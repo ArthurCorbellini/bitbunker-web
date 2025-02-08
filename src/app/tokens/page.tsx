@@ -3,8 +3,8 @@ import { PencilIcon, TrashIcon } from "@heroicons/react/20/solid";
 import { RoundedButton } from "@/components/button";
 import { Body, BodyCell, BodyRow, Header, HeaderCell, HeaderRow, Table, TableTitle } from "@/components/data-table";
 
-import { Token } from "@/lib/types/token.type";
-import { fetchTokens } from "./_actions/fetch-tokens.action";
+import { Token } from "@/lib/types/token-type";
+import { fetchTokens } from "./_actions/fetch-tokens-action";
 import CreateToken from "./_components/create-token";
 
 export default async function Tokens() {

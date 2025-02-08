@@ -1,4 +1,4 @@
-import { Toast } from "./toast.type"
+import { Toast } from "./toast-type"
 
 export interface CustomFormState {
   formErrors?: {
