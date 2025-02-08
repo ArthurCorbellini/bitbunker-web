@@ -5,7 +5,7 @@ import { Body, BodyCell, BodyRow, Header, HeaderCell, HeaderRow, Table, TableTit
 import { Token } from "@/lib/interfaces";
 import { convertResponseData } from "@/lib/util/api.util";
 import { urlRoot } from "@/lib/util/form.util";
-import CreateToken from "./create-token";
+import CreateToken from "./_components/create-token";
 
 async function fetchTokens() {
   const response = await fetch(urlRoot + "/token");
