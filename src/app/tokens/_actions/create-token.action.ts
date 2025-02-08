@@ -3,9 +3,9 @@
 import { revalidatePath } from "next/cache";
 
 import { CustomFormState } from "@/global/interfaces/custom-form-state.interfaces";
-import { TokenSchema } from "@/lib/schemas";
-import { ApiErrorCode, convertResponseError } from "@/lib/util/api.util";
-import { buildClientError, buildInternalServerError, buildServerError, buildServerSuccess, urlRoot, validateFormData } from "@/lib/util/form.util";
+import { TokenSchema } from "@/global/schemas/token.schema";
+import { ApiErrorCode, convertResponseError } from "@/global/util/api.util";
+import { buildClientError, buildInternalServerError, buildServerError, buildServerSuccess, urlRoot, validateFormData } from "@/global/util/form.util";
 
 export const createToken = async (
   prevState: CustomFormState | null,

@@ -3,8 +3,8 @@ import { PencilIcon, TrashIcon } from "@heroicons/react/20/solid";
 import { RoundedButton } from "@/components/my-ui/button";
 import { Body, BodyCell, BodyRow, Header, HeaderCell, HeaderRow, Table, TableTitle } from "@/components/my-ui/data-table";
 import { Token } from "@/global/interfaces/token.interface";
-import { convertResponseData } from "@/lib/util/api.util";
-import { urlRoot } from "@/lib/util/form.util";
+import { convertResponseData } from "@/global/util/api.util";
+import { urlRoot } from "@/global/util/form.util";
 import CreateToken from "./_components/create-token";
 
 async function fetchTokens() {

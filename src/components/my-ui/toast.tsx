@@ -1,8 +1,8 @@
 "use client"
 
+import { useToast } from "@/global/store/toast.context";
 import { CheckCircleIcon, ExclamationCircleIcon, ExclamationTriangleIcon, XCircleIcon } from "@heroicons/react/20/solid";
 import { motion } from "framer-motion";
-import { useToast } from "../../lib/store/toast.context";
 
 export const Toast = () => {
   const { toast, setToast } = useToast();
