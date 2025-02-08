@@ -2,18 +2,10 @@ import { PencilIcon, TrashIcon } from "@heroicons/react/20/solid";
 
 import { RoundedButton } from "@/global/components/button";
 import { Body, BodyCell, BodyRow, Header, HeaderCell, HeaderRow, Table, TableTitle } from "@/global/components/data-table";
-import { Token } from "@/global/interfaces/token.interface";
-import { convertResponseData } from "@/global/util/api.util";
-import { urlRoot } from "@/global/util/form.util";
+
+import { Token } from "@/global/types/token.type";
+import { fetchTokens } from "./_actions/fetch-tokens.action";
 import CreateToken from "./_components/create-token";
-
-async function fetchTokens() {
-  const response = await fetch(urlRoot + "/token");
-  if (response.ok)
-    return await convertResponseData(response);
-
-  throw new Error('Failed to fetch Tokens.');
-}
 
 export default async function Tokens() {
   const data: Token[] = await fetchTokens();

@@ -3,8 +3,8 @@
 import { revalidatePath } from "next/cache";
 
 import { tokenApi } from "@/global/api/token.api";
-import { CustomFormState } from "@/global/interfaces/custom-form-state.interfaces";
-import { TokenSchema } from "@/global/schemas/token.schema";
+import { CustomFormState } from "@/global/types/custom-form-state.type";
+import { TokenSchema } from "@/global/types/token.type";
 import { ApiErrorCode, convertResponseError } from "@/global/util/api.util";
 import { buildClientError, buildInternalServerError, buildServerError, buildServerSuccess, validateFormData } from "@/global/util/form.util";
 
@@ -13,6 +13,7 @@ export const createToken = async (
   formData: FormData
 ): Promise<CustomFormState> => {
   const validation = validateFormData({ schema: TokenSchema, formData });
+  console.log(validation)
   if (!validation.success)
     return buildClientError(validation.error);
 
