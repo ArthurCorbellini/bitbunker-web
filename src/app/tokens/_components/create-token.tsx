@@ -5,9 +5,9 @@ import Form from 'next/form';
 import { useActionState, useEffect, useState } from "react";
 import { useFormStatus } from "react-dom";
 
-import { PrimaryButton, RoundedButton } from "@/components/my-ui/button";
-import { InputNumber, InputText } from "@/components/my-ui/form";
-import { Modal, ModalBody, ModalFooter, ModalHeader } from "@/components/my-ui/modal";
+import { PrimaryButton, RoundedButton } from "@/global/components/button";
+import { InputNumber, InputText } from "@/global/components/form";
+import { Modal, ModalBody, ModalFooter, ModalHeader } from "@/global/components/modal";
 import { useToast } from "@/global/store/toast.context";
 import { createToken } from "../_actions/create-token.action";
 
