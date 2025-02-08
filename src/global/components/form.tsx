@@ -1,4 +1,4 @@
-import { CustomFormState } from "@/global/interfaces/custom-form-state.interfaces";
+import { CustomFormState } from "@/global/types/custom-form-state.type";
 import { ChangeEvent, useState } from "react";
 
 const defaultInputClassName = "flex h-9 w-full rounded-md px-3 py-1 mt-1 text-base bg-slate-800 hover:bg-slate-700 transition border border-slate-700 hover:border-slate-500 disabled:opacity-50 disabled:pointer-events-none"

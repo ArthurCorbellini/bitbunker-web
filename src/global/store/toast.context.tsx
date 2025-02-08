@@ -1,6 +1,6 @@
 "use client"
 
-import { Toast } from "@/global/interfaces/toast.interface";
+import { Toast } from "@/global/types/toast.type";
 import { createContext, ReactNode, useContext, useState } from "react";
 
 interface ToastContextProps {
