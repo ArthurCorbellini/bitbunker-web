@@ -2,7 +2,7 @@
 const root = process.env.API_URL;
 
 export interface ApiResponse<T> {
-  ok: boolean;
+  success: boolean;
   apiPath: string;
   timestamp: string;
   error: ApiResponseError | null;

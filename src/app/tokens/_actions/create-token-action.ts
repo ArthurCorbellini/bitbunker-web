@@ -17,7 +17,7 @@ export const createToken = async (
     return buildClientError(validation.error);
 
   const response = await tokenApi.createToken(validation.data);
-  if (response.ok) {
+  if (response.success) {
     revalidatePath("/tokens", "layout");
     return buildServerSuccess("Token saved successfully!");
   }
