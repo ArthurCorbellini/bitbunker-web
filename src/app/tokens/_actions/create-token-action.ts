@@ -22,7 +22,7 @@ export const createToken = async (
     return buildServerSuccess("Token saved successfully!");
   }
 
-  const error = await convertResponseError(response);
+  const error = convertResponseError(response);
   if (ApiErrorCode.RESOURCE_ALREADY_EXISTS === error)
     return buildServerError("Token already exists with the given UCID.");
 

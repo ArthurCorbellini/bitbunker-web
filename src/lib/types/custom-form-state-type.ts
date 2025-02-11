@@ -4,5 +4,5 @@ export interface CustomFormState {
   formErrors?: {
     [key: string]: string[]
   }
-  serverResponse?: Toast
+  toast?: Toast
 }

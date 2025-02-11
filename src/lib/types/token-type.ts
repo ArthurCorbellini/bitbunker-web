@@ -20,4 +20,4 @@ export const TokenSchema = z.object({
     .nonempty("Can not be empty")
 });
 
-export type Token = z.infer<typeof TokenSchema> 
+export type Token = z.infer<typeof TokenSchema>;

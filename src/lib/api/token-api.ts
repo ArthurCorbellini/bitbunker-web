@@ -1,18 +1,12 @@
 import { Token } from "../types/token-type";
-import { urlRoot } from "../util/form-util";
+import { ApiResponse, httpClient } from "../util/api-util";
 
 export const tokenApi = {
-  createToken: async (data: Token): Promise<Response> => {
-    return await fetch(urlRoot + "/token", {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    });
+  createToken: async (data: Token): Promise<ApiResponse<string>> => {
+    return httpClient.post("/token", data);
   },
 
-  fetchTokens: async (): Promise<Response> => {
-    return await fetch(urlRoot + "/token");
+  fetchTokens: async (): Promise<ApiResponse<Token[]>> => {
+    return httpClient.get("/token");
   }
 }

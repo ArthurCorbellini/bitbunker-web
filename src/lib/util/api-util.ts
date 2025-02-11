@@ -1,4 +1,20 @@
 
+const root = process.env.API_URL;
+
+export interface ApiResponse<T> {
+  ok: boolean;
+  apiPath: string;
+  timestamp: string;
+  error: ApiResponseError | null;
+  data: T;
+}
+
+export interface ApiResponseError {
+  code: string;
+  message: string;
+  details?: Record<string, string[]> | string;
+}
+
 export enum ApiErrorCode {
   RESOURCE_VALIDATION_ERROR,
   RESOURCE_ALREADY_EXISTS,
@@ -8,14 +24,8 @@ export enum ApiErrorCode {
   UNMAPPED_ERROR,
 }
 
-export const convertResponseData = async (response: Response) => {
-  return (await response.json()).data;
-}
-
-export const convertResponseError = async (response: Response) => {
-  const error = (await response.json()).error;
-
-  switch (error.code) {
+export const convertResponseError = <T>(response: ApiResponse<T>) => {
+  switch (response.error?.code) {
     case "VALIDATION_ERROR":
       return ApiErrorCode.RESOURCE_VALIDATION_ERROR;
     case "ALREADY_EXISTS":
@@ -27,4 +37,28 @@ export const convertResponseError = async (response: Response) => {
     default:
       return ApiErrorCode.UNMAPPED_ERROR;
   }
+}
+
+export const httpClient = {
+  get: async <T>(
+    url: string
+  ): Promise<ApiResponse<T>> => {
+    const response = await fetch(root + url);
+    return response.json();
+  },
+  post: async <T, D>(
+    url: string,
+    payload: D
+  ): Promise<ApiResponse<T>> => {
+    const response = await fetch(root + url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    });
+    return response.json();
+  },
+  put: () => { },
+  delete: () => { },
 }

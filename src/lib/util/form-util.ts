@@ -2,8 +2,6 @@ import { CustomFormState } from "@/lib/types/custom-form-state-type";
 import { Toast } from "@/lib/types/toast-type";
 import { ZodError, ZodTypeAny } from "zod";
 
-export const urlRoot = process.env.API_URL;
-
 export const validateFormData = ({ schema, formData }: {
   schema: ZodTypeAny;
   formData: FormData;
@@ -26,15 +24,15 @@ export const buildClientError = (err: ZodError): CustomFormState => {
   return { formErrors };
 };
 
-export const buildServerSuccess = (message: string): CustomFormState => {
+export const buildServerSuccess = (message: string) => {
   return buildServerResponse({ title: "Huhuu!", severity: "success", message });
 }
 
-export const buildServerError = (message: string): CustomFormState => {
+export const buildServerError = (message: string) => {
   return buildServerResponse({ title: "Oops!", severity: "warning", message });
 }
 
-export const buildInternalServerError = (): CustomFormState => {
+export const buildInternalServerError = () => {
   return buildServerResponse({
     title: "Outch!",
     severity: "error",
@@ -42,8 +40,8 @@ export const buildInternalServerError = (): CustomFormState => {
   });
 }
 
-const buildServerResponse = (toast: Toast): CustomFormState => {
-  return { serverResponse: toast };
+const buildServerResponse = (toast: Toast) => {
+  return { toast };
 }
 
 const formDataToObject = (formData: FormData): { [key: string]: string | File } => {

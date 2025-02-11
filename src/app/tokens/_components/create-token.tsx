@@ -22,8 +22,8 @@ export default function CreateToken() {
   const { setToast } = useToast();
 
   useEffect(() => {
-    if (formState?.serverResponse) {
-      setToast(formState.serverResponse)
+    if (formState?.toast) {
+      setToast(formState.toast)
     }
   }, [formState])
 
