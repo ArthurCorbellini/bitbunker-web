@@ -1,6 +1,6 @@
 import { CustomFormState } from "@/lib/types/custom-form-state-type";
-import { Toast } from "@/lib/types/toast-type";
 import { ZodError, ZodTypeAny } from "zod";
+import { errorToast, successToast, warningToast } from "./toast-util";
 
 export const validateFormData = ({ schema, formData }: {
   schema: ZodTypeAny;
@@ -24,23 +24,18 @@ export const buildClientError = (err: ZodError): CustomFormState => {
   return { formErrors };
 };
 
-export const buildServerSuccess = (message: string) => {
-  return buildServerResponse({ title: "Huhuu!", severity: "success", message });
+export const buildServerSuccess = (message: string): CustomFormState => {
+  const toast = successToast(message);
+  return { toast };
 }
 
-export const buildServerError = (message: string) => {
-  return buildServerResponse({ title: "Oops!", severity: "warning", message });
+export const buildServerError = (message: string): CustomFormState => {
+  const toast = warningToast(message);
+  return { toast };
 }
 
-export const buildInternalServerError = () => {
-  return buildServerResponse({
-    title: "Outch!",
-    severity: "error",
-    message: "Internal server error. Please try again later."
-  });
-}
-
-const buildServerResponse = (toast: Toast) => {
+export const buildInternalServerError = (): CustomFormState => {
+  const toast = errorToast("Internal server error. Please try again later.");
   return { toast };
 }
 

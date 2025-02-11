@@ -15,10 +15,8 @@ export default function CreateToken() {
   const [open, setOpen] = useState(false);
   const openDialog = () => setOpen(true);
   const closeDialog = () => setOpen(false);
-
   const { pending } = useFormStatus();
   const [formState, formAction] = useActionState(createToken, null);
-
   const { setToast } = useToast();
 
   useEffect(() => {
