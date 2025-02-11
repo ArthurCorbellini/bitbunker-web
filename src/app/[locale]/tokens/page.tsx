@@ -3,26 +3,28 @@ import { PencilIcon, TrashIcon } from "@heroicons/react/20/solid";
 import { RoundedButton } from "@/components/button";
 import { Body, BodyCell, BodyRow, Header, HeaderCell, HeaderRow, Table, TableTitle } from "@/components/data-table";
 
+import { getTranslations } from "next-intl/server";
 import { fetchTokens } from "./_actions/fetch-tokens-action";
 import CreateToken from "./_components/create-token";
 
 export default async function Tokens() {
+  const t = await getTranslations("shared");
   const data = await fetchTokens();
 
   return (
     <>
-      <TableTitle title="Tokens">
+      <TableTitle title={t("Tokens")}>
         <CreateToken />
       </TableTitle>
       <Table>
         <Header>
           <HeaderRow>
-            <HeaderCell>UCID</HeaderCell>
-            <HeaderCell>Name</HeaderCell>
-            <HeaderCell>Symbol</HeaderCell>
-            <HeaderCell>Classification</HeaderCell>
+            <HeaderCell>{t("UCID")}</HeaderCell>
+            <HeaderCell>{t("Name")}</HeaderCell>
+            <HeaderCell>{t("Symbol")}</HeaderCell>
+            <HeaderCell>{t("Classification")}</HeaderCell>
             <HeaderCell addClassName="w-32 text-center">
-              Actions
+              {t("Actions")}
             </HeaderCell>
           </HeaderRow>
         </Header>
