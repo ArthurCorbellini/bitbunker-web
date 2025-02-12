@@ -3,14 +3,15 @@ import { ChangeEvent, useState } from "react";
 
 const defaultInputClassName = "flex h-9 w-full rounded-md px-3 py-1 mt-1 text-base bg-slate-800 hover:bg-slate-700 transition border border-slate-700 hover:border-slate-500 disabled:opacity-50 disabled:pointer-events-none"
 
-const InputText = ({ label, name, value, disabled, formState, addClassName }: {
+export const InputText = ({ label, name, value, disabled, state, addClassName }: {
   label: string,
-  name?: string,
+  name: string,
   value?: string,
   disabled?: boolean,
-  formState?: CustomFormState | null
+  state?: CustomFormState | null
   addClassName?: string
 }) => {
+  const defaultValue = state?.inputs?.[name] instanceof File ? undefined : state?.inputs?.[name];
   return (
     <div className={`p-1 ${addClassName}`}>
       <label className="text-sm">
@@ -19,26 +20,28 @@ const InputText = ({ label, name, value, disabled, formState, addClassName }: {
       <input
         type="text"
         name={name}
+        defaultValue={defaultValue}
         value={value}
         disabled={disabled}
         className={defaultInputClassName} />
-      {errorLabel({ name, formState })}
+      {errorLabel({ name, state })}
     </div>
   );
 }
 
-const InputNumber = ({ label, name, value, disabled, formState, addClassName }: {
+export const InputNumber = ({ label, name, value, disabled, state, addClassName }: {
   label: string,
-  name?: string,
+  name: string,
   value?: string,
   disabled?: boolean,
-  formState?: CustomFormState | null
+  state?: CustomFormState | null
   addClassName?: string
 }) => {
   const [inputValue, setInputValue] = useState(value || "");
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value.replace(/\D/g, ''));
   };
+  const defaultValue = state?.inputs?.[name] instanceof File ? undefined : state?.inputs?.[name];
   return (
     <div className={`p-1 ${addClassName}`}>
       <label className="text-sm">
@@ -47,29 +50,24 @@ const InputNumber = ({ label, name, value, disabled, formState, addClassName }: 
       <input
         type="text"
         name={name}
+        defaultValue={defaultValue}
         value={inputValue}
         disabled={disabled}
         onChange={handleChange}
         className={defaultInputClassName} />
-      {errorLabel({ name, formState })}
+      {errorLabel({ name, state })}
     </div>
   );
 }
 
-const errorLabel = ({ name, formState }: {
+const errorLabel = ({ name, state }: {
   name?: string,
-  formState?: CustomFormState | null
+  state?: CustomFormState | null
 }) => {
-  if (!name || !formState || !formState.formErrors) return;
-  const errors = formState.formErrors[name];
+  if (!name || !state || !state.formErrors) return;
+  const errors = state.formErrors[name];
   if (!errors) return;
   return (
     <p className="p-1 text-xs text-red-700">{errors[0]}</p>
   );
 }
-
-export {
-  InputNumber,
-  InputText
-};
-

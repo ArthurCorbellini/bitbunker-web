@@ -3,7 +3,6 @@
 import { PlusIcon } from "@heroicons/react/20/solid";
 import Form from 'next/form';
 import { useActionState, useEffect, useState } from "react";
-import { useFormStatus } from "react-dom";
 
 import { PrimaryButton, RoundedButton } from "@/components/button";
 import { InputNumber, InputText } from "@/components/form";
@@ -19,15 +18,14 @@ export default function CreateToken() {
   const [open, setOpen] = useState(false);
   const openDialog = () => setOpen(true);
   const closeDialog = () => setOpen(false);
-  const { pending } = useFormStatus();
-  const [formState, formAction] = useActionState(createToken, null);
+  const [state, action, pending] = useActionState(createToken, null);
   const { setToast } = useToast();
 
   useEffect(() => {
-    if (formState?.toast) {
-      setToast(formState.toast)
+    if (state?.toast) {
+      setToast(state.toast)
     }
-  }, [formState])
+  }, [state])
 
   return (
     <>
@@ -35,7 +33,7 @@ export default function CreateToken() {
         <PlusIcon className="h-5 w-5" />
       </RoundedButton>
       <Modal open={open} closeHandler={closeDialog}>
-        <Form action={formAction}>
+        <Form action={action}>
           <ModalHeader
             title={t2("title")}
             description={t2("description")} />
@@ -44,24 +42,24 @@ export default function CreateToken() {
               label={t1("UCID")}
               name="ucid"
               disabled={pending}
-              formState={formState}
+              state={state}
               addClassName="w-1/2" />
             <InputText
               label={t1("Symbol")}
               name="symbol"
               disabled={pending}
-              formState={formState}
+              state={state}
               addClassName="w-1/2" />
             <InputText
               label={t1("Name")}
               name="name"
-              formState={formState}
+              state={state}
               disabled={pending}
               addClassName="w-full" />
             <InputText
               label={t1("Classification")}
               name="classification"
-              formState={formState}
+              state={state}
               disabled={pending}
               addClassName="w-full" />
           </ModalBody>

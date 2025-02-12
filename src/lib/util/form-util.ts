@@ -3,17 +3,20 @@ import { getTranslations } from "next-intl/server";
 import { ZodError, ZodTypeAny } from "zod";
 import { errorToast, successToast, warningToast } from "./toast-util";
 
-export const validateFormData = async ({ schemaFunction, formData }: {
+export const validateFormData = async ({ schemaFunction, data }: {
   schemaFunction: (t: (key: string) => string) => ZodTypeAny;
-  formData: FormData;
+  data: { [key: string]: string | File };
 }) => {
   const t = await getTranslations("errors");
   const schema = schemaFunction(t);
-  return schema.safeParse(formDataToObject(formData));
+  return schema.safeParse(data);
 };
 
-export const buildClientError = (err: ZodError): CustomFormState => {
-  const formErrors = err.errors.reduce((acc, error) => {
+export const buildClientError = ({ zodError, inputs }: {
+  zodError: ZodError,
+  inputs: { [key: string]: string | File }
+}): CustomFormState => {
+  const formErrors = zodError.errors.reduce((acc, error) => {
     const pathKey = error.path.join('.');
 
     if (!acc[pathKey])
@@ -24,26 +27,34 @@ export const buildClientError = (err: ZodError): CustomFormState => {
     return acc;
   }, {} as Record<string, string[]>);
 
-  return { formErrors };
+  return { success: false, formErrors, inputs };
 };
 
-export const buildServerSuccess = (message: string): CustomFormState => {
+export const buildServerSuccess = ({ message, inputs }: {
+  message: string;
+  inputs?: { [key: string]: string | File }
+}): CustomFormState => {
   const toast = successToast(message);
-  return { toast };
+  return { success: true, toast, inputs };
 }
 
-export const buildServerWarning = (message: string): CustomFormState => {
+export const buildServerWarning = ({ message, inputs }: {
+  message: string;
+  inputs?: { [key: string]: string | File }
+}): CustomFormState => {
   const toast = warningToast(message);
-  return { toast };
+  return { success: false, toast, inputs };
 }
 
-export const buildInternalServerError = async (): Promise<CustomFormState> => {
+export const buildInternalServerError = async ({ inputs }: {
+  inputs?: { [key: string]: string | File }
+}): Promise<CustomFormState> => {
   const t = await getTranslations("errors");
   const toast = errorToast(t("internalServerErrorMessage"));
-  return { toast };
+  return { success: false, toast, inputs };
 }
 
-const formDataToObject = (formData: FormData): { [key: string]: string | File } => {
+export const formDataToObject = (formData: FormData): { [key: string]: string | File } => {
   const obj: { [key: string]: string | File } = {};
   formData.forEach((value, key) => {
     obj[key] = value;

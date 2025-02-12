@@ -1,8 +1,12 @@
-import { Toast } from "./toast-type"
+import { Toast } from "./toast-type";
 
 export interface CustomFormState {
+  success: boolean;
   formErrors?: {
     [key: string]: string[]
   }
-  toast?: Toast
+  toast?: Toast,
+  inputs?: {
+    [key: string]: string | File
+  };
 }
