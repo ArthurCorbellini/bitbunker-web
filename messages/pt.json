@@ -1,0 +1,30 @@
+{
+  "shared": {
+    "Dashboard": "Dashboard",
+    "Tokens": "Tokens",
+    "Orders": "Ordens",
+    "UCID": "UCID",
+    "Name": "Nome",
+    "Symbol": "Símbolo",
+    "Classification": "Classificação",
+    "Actions": "Ações",
+    "Saving": "Salvando",
+    "Save": "Salvar",
+    "": ""
+  },
+  "errors": {
+    "notEmpty": "Não pode ser vazio",
+    "mustBeNumber": "Precisa ser um número",
+    "mustBePositiveNumber": "Precisa ser um número positivo",
+    "lengthLessThan": "O tamanho precisa ser menor que",
+    "internalServerErrorMessage": "Erro interno. Por favor, tente novamente mais tarde",
+    "": ""
+  },
+  "CreateToken": {
+    "title": "Criar novo Token",
+    "description": "Formulário para criar um novo token",
+    "tokenSavedSuccessfully": "Token salvo com sucesso!",
+    "tokenAlreadyExists": "Já existe um Token cadastrado com o UCID informado.",
+    "": ""
+  }
+}

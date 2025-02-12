@@ -1,11 +1,14 @@
 import { CustomFormState } from "@/lib/types/custom-form-state-type";
+import { getTranslations } from "next-intl/server";
 import { ZodError, ZodTypeAny } from "zod";
 import { errorToast, successToast, warningToast } from "./toast-util";
 
-export const validateFormData = ({ schema, formData }: {
-  schema: ZodTypeAny;
+export const validateFormData = async ({ schemaFunction, formData }: {
+  schemaFunction: (t: (key: string) => string) => ZodTypeAny;
   formData: FormData;
 }) => {
+  const t = await getTranslations("errors");
+  const schema = schemaFunction(t);
   return schema.safeParse(formDataToObject(formData));
 };
 
@@ -29,13 +32,14 @@ export const buildServerSuccess = (message: string): CustomFormState => {
   return { toast };
 }
 
-export const buildServerError = (message: string): CustomFormState => {
+export const buildServerWarning = (message: string): CustomFormState => {
   const toast = warningToast(message);
   return { toast };
 }
 
-export const buildInternalServerError = (): CustomFormState => {
-  const toast = errorToast("Internal server error. Please try again later.");
+export const buildInternalServerError = async (): Promise<CustomFormState> => {
+  const t = await getTranslations("errors");
+  const toast = errorToast(t("internalServerErrorMessage"));
   return { toast };
 }
 

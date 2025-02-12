@@ -1,8 +1,11 @@
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 import NavLink from "./nav-link";
 
 export default function MainHeader() {
+  const t = useTranslations("shared");
+
   return (
     <header>
       <div className="flex items-center space-x-4 p-4">
@@ -20,16 +23,13 @@ export default function MainHeader() {
         <nav className="p-4">
           <ul className="flex space-x-6 items-center">
             <li>
-              <NavLink href="/dashboard">Dashboard</NavLink>
+              <NavLink href="/dashboard">{t("Dashboard")}</NavLink>
             </li>
             <li>
-              <NavLink href="/orders">Orders</NavLink>
+              <NavLink href="/orders">{t("Orders")}</NavLink>
             </li>
             <li>
-              <NavLink href="/tokens">Tokens</NavLink>
-            </li>
-            <li>
-              <NavLink href="/tests">Tests</NavLink>
+              <NavLink href="/tokens">{t("Tokens")}</NavLink>
             </li>
           </ul>
         </nav>
