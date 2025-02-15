@@ -1,6 +1,7 @@
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import Link from "next/link";
+
+import { Link } from "@/i18n/routing";
 import NavLink from "./nav-link";
 
 export default function MainHeader() {
