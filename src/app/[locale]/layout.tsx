@@ -1,6 +1,6 @@
 import MainHeader from "@/app/[locale]/_components/main-header/main-header";
 import { Toast } from "@/components/toast";
-import { routing } from "@/i18n/routing";
+import { Locale, routing } from "@/i18n/routing";
 import { ToastContextProvider } from "@/lib/store/toast-context";
 import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
@@ -33,7 +33,7 @@ export default async function RootLayout({
 }>) {
   const { locale } = await params;
 
-  if (!routing.locales.includes(locale as any))
+  if (!routing.locales.includes(locale as Locale))
     notFound();
 
   const messages = await getMessages();
