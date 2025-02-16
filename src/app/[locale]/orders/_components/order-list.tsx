@@ -30,7 +30,7 @@ export default async function OrderList() {
 
   return (
     <>
-      <TableTitle title={t("Orders")}>
+      <TableTitle title={t("orders")}>
         <RoundedLink href="/orders/create">
           <PlusIcon className="h-5 w-5" />
         </RoundedLink>

@@ -24,13 +24,13 @@ export default function MainHeader() {
         <nav className="p-4">
           <ul className="flex space-x-6 items-center">
             <li>
-              <NavLink href="/dashboard">{t("Dashboard")}</NavLink>
+              <NavLink href="/dashboard">{t("dashboard")}</NavLink>
             </li>
             <li>
-              <NavLink href="/orders">{t("Orders")}</NavLink>
+              <NavLink href="/orders">{t("orders")}</NavLink>
             </li>
             <li>
-              <NavLink href="/tokens">{t("Tokens")}</NavLink>
+              <NavLink href="/tokens">{t("tokens")}</NavLink>
             </li>
           </ul>
         </nav>

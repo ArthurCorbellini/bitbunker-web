@@ -14,7 +14,7 @@ export default function OrderForm() {
       onCloseRoute="/orders"
       footer={
         <PrimaryButton type="submit">
-          {t1("Save")}
+          {t1("save")}
         </PrimaryButton>
       }>
       teste

@@ -39,25 +39,25 @@ export default function CreateToken() {
             description={t2("description")} />
           <ModalBody>
             <InputNumber
-              label={t1("UCID")}
+              label={t1("ucid")}
               name="ucid"
               disabled={pending}
               state={state}
               addClassName="w-1/2" />
             <InputText
-              label={t1("Symbol")}
+              label={t1("symbol")}
               name="symbol"
               disabled={pending}
               state={state}
               addClassName="w-1/2" />
             <InputText
-              label={t1("Name")}
+              label={t1("name")}
               name="name"
               state={state}
               disabled={pending}
               addClassName="w-full" />
             <InputText
-              label={t1("Classification")}
+              label={t1("classification")}
               name="classification"
               state={state}
               disabled={pending}
@@ -67,7 +67,7 @@ export default function CreateToken() {
             <PrimaryButton
               type="submit"
               disabled={pending}>
-              {pending ? `${t1("Saving")}...` : t1("Save")}
+              {pending ? `${t1("saving")}...` : t1("save")}
             </PrimaryButton>
           </ModalFooter>
         </Form>

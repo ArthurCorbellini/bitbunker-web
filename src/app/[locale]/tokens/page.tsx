@@ -13,18 +13,18 @@ export default async function Tokens() {
 
   return (
     <>
-      <TableTitle title={t("Tokens")}>
+      <TableTitle title={t("tokens")}>
         <CreateToken />
       </TableTitle>
       <Table>
         <Header>
           <HeaderRow>
-            <HeaderCell>{t("UCID")}</HeaderCell>
-            <HeaderCell>{t("Name")}</HeaderCell>
-            <HeaderCell>{t("Symbol")}</HeaderCell>
-            <HeaderCell>{t("Classification")}</HeaderCell>
+            <HeaderCell>{t("ucid")}</HeaderCell>
+            <HeaderCell>{t("name")}</HeaderCell>
+            <HeaderCell>{t("symbol")}</HeaderCell>
+            <HeaderCell>{t("classification")}</HeaderCell>
             <HeaderCell addClassName="w-32 text-center">
-              {t("Actions")}
+              {t("actions")}
             </HeaderCell>
           </HeaderRow>
         </Header>

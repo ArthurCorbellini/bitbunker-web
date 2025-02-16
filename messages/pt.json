@@ -1,15 +1,17 @@
 {
   "shared": {
-    "Dashboard": "Dashboard",
-    "Tokens": "Tokens",
-    "Orders": "Ordens",
-    "UCID": "UCID",
-    "Name": "Nome",
-    "Symbol": "Símbolo",
-    "Classification": "Classificação",
-    "Actions": "Ações",
-    "Saving": "Salvando",
-    "Save": "Salvar",
+    "dashboard": "Dashboard",
+    "tokens": "Tokens",
+    "orders": "Ordens",
+    "ucid": "UCID",
+    "name": "Nome",
+    "symbol": "Símbolo",
+    "classification": "Classificação",
+    "actions": "Ações",
+    "saving": "Salvando",
+    "save": "Salvar",
+    "type": "Tipo",
+    "quantity": "Quantidade",
     "": ""
   },
   "errors": {
@@ -26,5 +28,9 @@
     "tokenSavedSuccessfully": "Token salvo com sucesso!",
     "tokenAlreadyExists": "Já existe um Token cadastrado com o UCID informado.",
     "": ""
+  },
+  "OrderForm": {
+    "title": "Criar nova Ordem",
+    "description": "Formulário para criar uma nova ordem"
   }
 }
