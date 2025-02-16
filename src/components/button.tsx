@@ -1,6 +1,9 @@
+import { Link } from "@/i18n/routing";
 import { MouseEventHandler, ReactNode } from "react";
 
-const PrimaryButton = ({ type, onClick, disabled, addClassName, children }: {
+const defaultRoundedStyle = "p-2 bg-gray-700 rounded-full hover:bg-blue-700 transition";
+
+export const PrimaryButton = ({ type, onClick, disabled, addClassName, children }: {
   type?: "button" | "submit" | "reset" | undefined
   onClick?: MouseEventHandler<HTMLButtonElement>,
   disabled?: boolean,
@@ -21,12 +24,12 @@ const PrimaryButton = ({ type, onClick, disabled, addClassName, children }: {
   );
 }
 
-const RoundedButton = ({ addClassName, onClick, children }: {
+export const RoundedButton = ({ addClassName, onClick, children }: {
   addClassName?: string,
   onClick?: MouseEventHandler<HTMLButtonElement>,
   children: ReactNode
 }) => {
-  const className = `p-2 bg-gray-700 rounded-full hover:bg-blue-700 transition ${addClassName}`;
+  const className = `${defaultRoundedStyle} ${addClassName}`;
   return (
     <button onClick={onClick} className={className}>
       {children}
@@ -34,8 +37,15 @@ const RoundedButton = ({ addClassName, onClick, children }: {
   );
 }
 
-export {
-  PrimaryButton,
-  RoundedButton
-};
-
+export const RoundedLink = ({ addClassName, href, children }: {
+  addClassName?: string,
+  href: string,
+  children: ReactNode,
+}) => {
+  const className = `${defaultRoundedStyle} ${addClassName}`;
+  return (
+    <Link href={href} className={className}>
+      {children}
+    </Link>
+  );
+}
