@@ -41,7 +41,7 @@ export default async function OrderList() {
             <HeaderCell>{t("type")}</HeaderCell>
             <HeaderCell>{t("quantity")}</HeaderCell>
             <HeaderCell addClassName="w-32 text-center">
-              {t("Actions")}
+              {t("actions")}
             </HeaderCell>
           </HeaderRow>
         </Header>
