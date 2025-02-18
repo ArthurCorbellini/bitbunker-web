@@ -1,8 +1,8 @@
-import { Token } from "./token-type";
+import { Asset } from "./asset-type";
 
 export interface Order {
   id: number;
-  token: Token;
+  asset: Asset;
   type: "BUY" | "SELL";
   quantity: number;
   fiatCurrencyMoved: number;

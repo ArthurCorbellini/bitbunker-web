@@ -1,5 +1,5 @@
-import { getTranslations } from "next-intl/server";
 import { PencilIcon, PlusIcon, TrashIcon } from "@heroicons/react/20/solid";
+import { getTranslations } from "next-intl/server";
 
 import { RoundedButton, RoundedLink } from "@/components/button";
 import { Body, BodyCell, BodyRow, Header, HeaderCell, HeaderRow, Table, TableTitle } from "@/components/data-table";
@@ -19,7 +19,7 @@ export default async function OrderList() {
       <Table>
         <Header>
           <HeaderRow>
-            <HeaderCell>{t("token")}</HeaderCell>
+            <HeaderCell>{t("asset")}</HeaderCell>
             <HeaderCell>{t("type")}</HeaderCell>
             <HeaderCell>{t("quantity")}</HeaderCell>
             <HeaderCell addClassName="w-32 text-center">
@@ -30,7 +30,7 @@ export default async function OrderList() {
         <Body>
           {data.map((o) => (
             <BodyRow key={o.id}>
-              <BodyCell>{o.token.symbol}</BodyCell>
+              <BodyCell>{o.asset.symbol}</BodyCell>
               <BodyCell>{o.type}</BodyCell>
               <BodyCell>{o.quantity}</BodyCell>
               <BodyCell addClassName="w-32 text-center">

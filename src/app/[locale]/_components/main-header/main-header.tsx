@@ -30,7 +30,7 @@ export default function MainHeader() {
               <NavLink href="/orders">{t("orders")}</NavLink>
             </li>
             <li>
-              <NavLink href="/tokens">{t("tokens")}</NavLink>
+              <NavLink href="/assets">{t("assets")}</NavLink>
             </li>
           </ul>
         </nav>

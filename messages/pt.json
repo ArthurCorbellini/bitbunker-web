@@ -1,8 +1,8 @@
 {
   "shared": {
     "dashboard": "Dashboard",
-    "tokens": "Tokens",
-    "token": "Token",
+    "assets": "Ativos",
+    "asset": "Ativo",
     "orders": "Ordens",
     "ucid": "UCID",
     "name": "Nome",
@@ -23,11 +23,11 @@
     "internalServerErrorMessage": "Erro interno. Por favor, tente novamente mais tarde",
     "": ""
   },
-  "CreateToken": {
-    "title": "Criar novo Token",
-    "description": "Formulário para criar um novo token",
-    "tokenSavedSuccessfully": "Token salvo com sucesso!",
-    "tokenAlreadyExists": "Já existe um Token cadastrado com o UCID informado.",
+  "CreateAsset": {
+    "title": "Criar novo Ativo",
+    "description": "Formulário para criar um novo ativo",
+    "assetSavedSuccessfully": "Ativo salvo com sucesso!",
+    "assetAlreadyExists": "Já existe um Ativo cadastrado com o UCID informado.",
     "": ""
   },
   "OrderForm": {

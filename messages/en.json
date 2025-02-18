@@ -1,8 +1,8 @@
 {
   "shared": {
     "dashboard": "Dashboard",
-    "tokens": "Tokens",
-    "token": "Token",
+    "assets": "Assets",
+    "asset": "Asset",
     "orders": "Orders",
     "ucid": "UCID",
     "name": "Name",
@@ -23,11 +23,11 @@
     "internalServerErrorMessage": "Internal server error. Please try again later.",
     "": ""
   },
-  "CreateToken": {
-    "title": "Create new Token",
-    "description": "Form to create token",
-    "tokenSavedSuccessfully": "Token saved successfully!",
-    "tokenAlreadyExists": "Token already exists with the given UCID.",
+  "CreateAsset": {
+    "title": "Create new Asset",
+    "description": "Form to create asset",
+    "assetSavedSuccessfully": "Asset saved successfully!",
+    "assetAlreadyExists": "Asset already exists with the given UCID.",
     "": ""
   },
   "OrderForm": {

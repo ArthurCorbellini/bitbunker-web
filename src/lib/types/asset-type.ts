@@ -1,6 +1,6 @@
 import { z, ZodTypeAny } from "zod";
 
-export const getTokenSchema = (t: (key: string) => string): ZodTypeAny => {
+export const getAssetSchema = (t: (key: string) => string): ZodTypeAny => {
   return z.object({
     ucid: z
       .string()
@@ -22,7 +22,7 @@ export const getTokenSchema = (t: (key: string) => string): ZodTypeAny => {
   });
 }
 
-export interface Token {
+export interface Asset {
   ucid: number;
   name: string;
   symbol: string;

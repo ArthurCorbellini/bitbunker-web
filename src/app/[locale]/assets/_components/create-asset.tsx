@@ -9,16 +9,16 @@ import { InputNumber, InputText } from "@/components/form";
 import { Modal, ModalBody, ModalFooter, ModalHeader } from "@/components/modal";
 import { useToast } from "@/lib/store/toast-context";
 import { useTranslations } from "next-intl";
-import { createToken } from "../_actions/create-token-action";
+import { createAsset } from "../_actions/create-asset-action";
 
-export default function CreateToken() {
+export default function CreateAsset() {
   const t1 = useTranslations("shared");
-  const t2 = useTranslations("CreateToken");
+  const t2 = useTranslations("CreateAsset");
 
   const [open, setOpen] = useState(false);
   const openDialog = () => setOpen(true);
   const closeDialog = () => setOpen(false);
-  const [state, action, pending] = useActionState(createToken, null);
+  const [state, action, pending] = useActionState(createAsset, null);
   const { setToast } = useToast();
 
   useEffect(() => {
