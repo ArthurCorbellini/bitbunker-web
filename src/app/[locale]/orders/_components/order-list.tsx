@@ -7,6 +7,7 @@ import { fetchOrders } from "../_actions/fetch-orders-action";
 
 export default async function OrderList() {
   const t = await getTranslations("shared");
+  const t2 = await getTranslations("OrderList");
   const data = await fetchOrders();
 
   return (
@@ -22,6 +23,8 @@ export default async function OrderList() {
             <HeaderCell>{t("asset")}</HeaderCell>
             <HeaderCell>{t("type")}</HeaderCell>
             <HeaderCell>{t("quantity")}</HeaderCell>
+            <HeaderCell>{t2("brlQuantity")}</HeaderCell>
+            <HeaderCell>{t2("notes")}</HeaderCell>
             <HeaderCell addClassName="w-32 text-center">
               {t("actions")}
             </HeaderCell>
@@ -33,6 +36,8 @@ export default async function OrderList() {
               <BodyCell>{o.asset.symbol}</BodyCell>
               <BodyCell>{o.type}</BodyCell>
               <BodyCell>{o.quantity}</BodyCell>
+              <BodyCell>{o.brlQuantity}</BodyCell>
+              <BodyCell>{o.notes}</BodyCell>
               <BodyCell addClassName="w-32 text-center">
                 <RoundedButton>
                   <PencilIcon className="h-5 w-5" />

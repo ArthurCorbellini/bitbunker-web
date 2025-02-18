@@ -30,6 +30,10 @@
     "assetAlreadyExists": "Já existe um Ativo cadastrado com o UCID informado.",
     "": ""
   },
+  "OrderList": {
+    "brlQuantity": "BRL",
+    "notes": "Observações"
+  },
   "OrderForm": {
     "title": "Criar nova Ordem",
     "description": "Formulário para criar uma nova ordem"

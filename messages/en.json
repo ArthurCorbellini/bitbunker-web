@@ -30,6 +30,10 @@
     "assetAlreadyExists": "Asset already exists with the given UCID.",
     "": ""
   },
+  "OrderList": {
+    "brlQuantity": "BRL",
+    "notes": "Notes"
+  },
   "OrderForm": {
     "title": "Create new Order",
     "description": "Form to create order"

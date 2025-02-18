@@ -1,6 +1,7 @@
 "use client";
 
 import { PlusIcon } from "@heroicons/react/20/solid";
+import { useTranslations } from "next-intl";
 import Form from 'next/form';
 import { useActionState, useEffect, useState } from "react";
 
@@ -8,7 +9,6 @@ import { PrimaryButton, RoundedButton } from "@/components/button";
 import { InputNumber, InputText } from "@/components/form";
 import { Modal, ModalBody, ModalFooter, ModalHeader } from "@/components/modal";
 import { useToast } from "@/lib/store/toast-context";
-import { useTranslations } from "next-intl";
 import { createAsset } from "../_actions/create-asset-action";
 
 export default function CreateAsset() {
