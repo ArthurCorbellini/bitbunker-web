@@ -3,7 +3,7 @@
 import { revalidatePath } from "next/cache";
 
 import { assetApi } from "@/lib/api/asset-api";
-import { getAssetSchema } from "@/lib/types/asset-type";
+import { getAssetSchema } from "@/lib/schemas/asset-schema";
 import { CustomFormState } from "@/lib/types/custom-form-state-type";
 import { ApiErrorCode, convertResponseError } from "@/lib/util/api-util";
 import { buildClientError, buildInternalServerError, buildServerSuccess, buildServerWarning, formDataToObject, validateFormData } from "@/lib/util/form-util";
