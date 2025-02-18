@@ -2,6 +2,7 @@
   "shared": {
     "dashboard": "Dashboard",
     "tokens": "Tokens",
+    "token": "Token",
     "orders": "Orders",
     "ucid": "UCID",
     "name": "Name",

@@ -1,28 +1,9 @@
+import { getTranslations } from "next-intl/server";
+import { PencilIcon, PlusIcon, TrashIcon } from "@heroicons/react/20/solid";
+
 import { RoundedButton, RoundedLink } from "@/components/button";
 import { Body, BodyCell, BodyRow, Header, HeaderCell, HeaderRow, Table, TableTitle } from "@/components/data-table";
-import { Order } from "@/lib/types/order-type";
-import { PencilIcon, PlusIcon, TrashIcon } from "@heroicons/react/20/solid";
-import { getTranslations } from "next-intl/server";
-
-export const fetchOrders = async (): Promise<Order[]> => {
-  return [
-    {
-      id: 1,
-      type: "BUY",
-      quantity: 10
-    },
-    {
-      id: 2,
-      type: "SELL",
-      quantity: 11
-    },
-    {
-      id: 3,
-      type: "BUY",
-      quantity: 13
-    }
-  ]
-}
+import { fetchOrders } from "../_actions/fetch-orders-action";
 
 export default async function OrderList() {
   const t = await getTranslations("shared");
@@ -38,6 +19,7 @@ export default async function OrderList() {
       <Table>
         <Header>
           <HeaderRow>
+            <HeaderCell>{t("token")}</HeaderCell>
             <HeaderCell>{t("type")}</HeaderCell>
             <HeaderCell>{t("quantity")}</HeaderCell>
             <HeaderCell addClassName="w-32 text-center">
@@ -48,6 +30,7 @@ export default async function OrderList() {
         <Body>
           {data.map((o) => (
             <BodyRow key={o.id}>
+              <BodyCell>{o.token.symbol}</BodyCell>
               <BodyCell>{o.type}</BodyCell>
               <BodyCell>{o.quantity}</BodyCell>
               <BodyCell addClassName="w-32 text-center">

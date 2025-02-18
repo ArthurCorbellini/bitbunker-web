@@ -1,9 +1,10 @@
+import { Token } from "./token-type";
 
 export interface Order {
-  // token: Token;
   id: number;
+  token: Token;
   type: "BUY" | "SELL";
   quantity: number;
-  // fiatCurrencyMoved: number;
+  fiatCurrencyMoved: number;
   notes?: string;
 }
