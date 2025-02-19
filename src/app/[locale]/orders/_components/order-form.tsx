@@ -1,7 +1,7 @@
 "use client"
 
-import { PrimaryButton } from "@/components/button";
-import Drawer from "@/components/drawer";
+import { PrimaryButton } from "@/components/legacy/button";
+import Drawer from "@/components/legacy/drawer";
 import { useToast } from "@/lib/store/toast-context";
 import { useTranslations } from "next-intl";
 import Form from "next/form";

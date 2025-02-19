@@ -1,7 +1,7 @@
 import { PencilIcon, TrashIcon } from "@heroicons/react/20/solid";
 
-import { RoundedButton } from "@/components/button";
-import { Body, BodyCell, BodyRow, Header, HeaderCell, HeaderRow, Table, TableTitle } from "@/components/data-table";
+import { RoundedButton } from "@/components/legacy/button";
+import { Body, BodyCell, BodyRow, Header, HeaderCell, HeaderRow, Table, TableTitle } from "@/components/legacy/data-table";
 
 import { getTranslations } from "next-intl/server";
 import { fetchAssets } from "./_actions/fetch-assets-action";

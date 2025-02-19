@@ -1,8 +1,8 @@
 import { PencilIcon, PlusIcon, TrashIcon } from "@heroicons/react/20/solid";
 import { getTranslations } from "next-intl/server";
 
-import { RoundedButton, RoundedLink } from "@/components/button";
-import { Body, BodyCell, BodyRow, Header, HeaderCell, HeaderRow, Table, TableTitle } from "@/components/data-table";
+import { RoundedButton, RoundedLink } from "@/components/legacy/button";
+import { Body, BodyCell, BodyRow, Header, HeaderCell, HeaderRow, Table, TableTitle } from "@/components/legacy/data-table";
 import { fetchOrders } from "../_actions/fetch-orders-action";
 
 export default async function OrderList() {

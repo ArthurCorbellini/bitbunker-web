@@ -5,9 +5,9 @@ import { useTranslations } from "next-intl";
 import Form from 'next/form';
 import { useActionState, useEffect, useState } from "react";
 
-import { PrimaryButton, RoundedButton } from "@/components/button";
-import { InputNumber, InputText } from "@/components/form";
-import { Modal, ModalBody, ModalFooter, ModalHeader } from "@/components/modal";
+import { PrimaryButton, RoundedButton } from "@/components/legacy/button";
+import { InputNumber, InputText } from "@/components/legacy/form";
+import { Modal, ModalBody, ModalFooter, ModalHeader } from "@/components/legacy/modal";
 import { useToast } from "@/lib/store/toast-context";
 import { createAsset } from "../_actions/create-asset-action";
 

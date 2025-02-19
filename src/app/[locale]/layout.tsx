@@ -1,5 +1,5 @@
 import MainHeader from "@/app/[locale]/_components/main-header/main-header";
-import { Toast } from "@/components/toast";
+import { Toast } from "@/components/legacy/toast";
 import { Locale, routing } from "@/i18n/routing";
 import { ToastContextProvider } from "@/lib/store/toast-context";
 import type { Metadata } from "next";
