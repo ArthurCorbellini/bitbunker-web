@@ -1,0 +1,41 @@
+{
+  "shared": {
+    "dashboard": "Dashboard",
+    "assets": "Ativos",
+    "asset": "Ativo",
+    "orders": "Ordens",
+    "ucid": "UCID",
+    "name": "Nome",
+    "symbol": "Símbolo",
+    "classification": "Classificação",
+    "actions": "Ações",
+    "saving": "Salvando",
+    "save": "Salvar",
+    "type": "Tipo",
+    "quantity": "Quantidade",
+    "": ""
+  },
+  "errors": {
+    "notEmpty": "Não pode ser vazio",
+    "mustBeNumber": "Precisa ser um número",
+    "mustBePositiveNumber": "Precisa ser um número positivo",
+    "lengthLessThan": "O tamanho precisa ser menor que",
+    "internalServerErrorMessage": "Erro interno. Por favor, tente novamente mais tarde",
+    "": ""
+  },
+  "CreateAsset": {
+    "title": "Criar novo Ativo",
+    "description": "Formulário para criar um novo ativo",
+    "assetSavedSuccessfully": "Ativo salvo com sucesso!",
+    "assetAlreadyExists": "Já existe um Ativo cadastrado com o UCID informado.",
+    "": ""
+  },
+  "OrderList": {
+    "brlQuantity": "BRL",
+    "notes": "Observações"
+  },
+  "OrderForm": {
+    "title": "Criar nova Ordem",
+    "description": "Formulário para criar uma nova ordem"
+  }
+}

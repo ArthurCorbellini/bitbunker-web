@@ -1,0 +1,41 @@
+{
+  "shared": {
+    "dashboard": "Dashboard",
+    "assets": "Assets",
+    "asset": "Asset",
+    "orders": "Orders",
+    "ucid": "UCID",
+    "name": "Name",
+    "symbol": "Symbol",
+    "classification": "Classification",
+    "actions": "Actions",
+    "saving": "Saving",
+    "save": "Save",
+    "type": "Type",
+    "quantity": "Quantity",
+    "": ""
+  },
+  "errors": {
+    "notEmpty": "Can not be empty",
+    "mustBeNumber": "Must be a number",
+    "mustBePositiveNumber": "Must be a positive number",
+    "lengthLessThan": "Length should be less than",
+    "internalServerErrorMessage": "Internal server error. Please try again later.",
+    "": ""
+  },
+  "CreateAsset": {
+    "title": "Create new Asset",
+    "description": "Form to create asset",
+    "assetSavedSuccessfully": "Asset saved successfully!",
+    "assetAlreadyExists": "Asset already exists with the given UCID.",
+    "": ""
+  },
+  "OrderList": {
+    "brlQuantity": "BRL",
+    "notes": "Notes"
+  },
+  "OrderForm": {
+    "title": "Create new Order",
+    "description": "Form to create order"
+  }
+}
