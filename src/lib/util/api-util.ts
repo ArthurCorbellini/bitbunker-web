@@ -46,7 +46,7 @@ export const httpClient = {
     const response = await fetch(root + url);
     return response.json();
   },
-  post: async <T, D>(
+  post: async <D, T>(
     url: string,
     payload: D
   ): Promise<ApiResponse<T>> => {

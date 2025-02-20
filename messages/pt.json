@@ -37,5 +37,14 @@
   "OrderForm": {
     "title": "Criar nova Ordem",
     "description": "Formulário para criar uma nova ordem"
+  },
+  "orderApi": {
+    "createOrder": {
+      "success": "Ordem criada com sucesso!"
+    }
+  },
+  "apiErrors": {
+    "internalServerError": "Ocorreu um erro no servidor. Tente novamente mais tarde ou contate o time de desenvolvimento.",
+    "unmappedError": "Ocorreu um erro desconhecido. Contate o time de desenvolvimento."
   }
 }

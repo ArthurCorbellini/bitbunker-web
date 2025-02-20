@@ -3,12 +3,17 @@ import { getTranslations } from "next-intl/server";
 
 import { RoundedButton, RoundedLink } from "@/components/legacy/button";
 import { Body, BodyCell, BodyRow, Header, HeaderCell, HeaderRow, Table, TableTitle } from "@/components/legacy/data-table";
-import { fetchOrders } from "../_actions/fetch-orders-action";
+import { orderApi } from "@/lib/api/order-api";
 
 export default async function OrderList() {
   const t = await getTranslations("shared");
   const t2 = await getTranslations("OrderList");
-  const data = await fetchOrders();
+  const response = await orderApi.fetchOrders();
+
+  if (!response.success) {
+    //to-do notificação
+    response.error
+  }
 
   return (
     <>
@@ -31,7 +36,7 @@ export default async function OrderList() {
           </HeaderRow>
         </Header>
         <Body>
-          {data.map((o) => (
+          {response.data?.map((o) => (
             <BodyRow key={o.id}>
               <BodyCell>{o.asset.symbol}</BodyCell>
               <BodyCell>{o.type}</BodyCell>

@@ -3,12 +3,6 @@ import { getAssetSchema } from "./asset-schema";
 
 export const getOrderSchema = (t: (key: string) => string): ZodTypeAny => {
   return z.object({
-    id: z
-      .string()
-      .nonempty(t("notEmpty"))
-      .transform((val) => Number(val))
-      .refine((val) => Number.isInteger(val), t("mustBeNumber"))
-      .refine((val) => val > 0, t("mustBePositiveNumber")),
     asset: getAssetSchema(t),
     type: z
       .string()
