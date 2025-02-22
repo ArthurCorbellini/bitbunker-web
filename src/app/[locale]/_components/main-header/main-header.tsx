@@ -2,6 +2,7 @@ import { useTranslations } from "next-intl";
 import Image from "next/image";
 
 import { Link } from "@/i18n/routing";
+import { ModeToggle } from "./mode-toggle";
 import NavLink from "./nav-link";
 
 export default function MainHeader() {
@@ -31,6 +32,9 @@ export default function MainHeader() {
             </li>
             <li>
               <NavLink href="/assets">{t("assets")}</NavLink>
+            </li>
+            <li>
+              <ModeToggle />
             </li>
           </ul>
         </nav>
