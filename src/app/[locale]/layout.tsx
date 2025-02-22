@@ -1,24 +1,14 @@
-import MainHeader from "@/app/[locale]/_components/main-header/main-header";
-import { Toast } from "@/components/legacy/toast";
 import { Locale, routing } from "@/i18n/routing";
-import { ToastContextProvider } from "@/lib/store/toast-context";
 import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { ThemeProvider } from "next-themes";
-import { Geist, Geist_Mono } from "next/font/google";
 import { notFound } from "next/navigation";
+
+import { Toast } from "@/components/legacy/toast";
+import { ToastContextProvider } from "@/lib/store/toast-context";
+import MainHeader from "./_components/main-header/main-header";
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "Bitbunker App",
@@ -40,8 +30,8 @@ export default async function RootLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale}>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+    <html lang={locale} suppressHydrationWarning>
+      <body>
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider
             attribute="class"
