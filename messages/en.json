@@ -46,5 +46,20 @@
   "apiErrors": {
     "internalServerError": "Ocorreu um erro no servidor. Tente novamente mais tarde ou contate o time de desenvolvimento.",
     "unmappedError": "Ocorreu um erro desconhecido. Contate o time de desenvolvimento."
+  },
+  "globalComponents": {
+    "dataTable": {
+      "view": "View",
+      "toggleColumns": "Toggle columns",
+      "noResults": "No results",
+      "of": "of",
+      "rowsSelected": "row(s) selected",
+      "rowsPerPage": "Rows per page",
+      "page": "Page",
+      "goFirstPage": "Go to first page",
+      "goPreviousPage": "Go to previous page",
+      "goNextPage": "Go to next page",
+      "goLastPage": "Go to last page"
+    }
   }
 }
