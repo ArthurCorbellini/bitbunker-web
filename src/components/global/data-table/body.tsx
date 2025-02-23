@@ -1,14 +1,13 @@
 import { TableBody, TableCell, TableRow } from "@/components/ui/table";
-import { ColumnDef, flexRender, Table } from "@tanstack/react-table";
+import { flexRender, Table } from "@tanstack/react-table";
 import { useTranslations } from "next-intl";
 
-interface Props<TData, TValue> {
+interface Props<TData> {
   t: ReturnType<typeof useTranslations>,
-  columns: ColumnDef<TData, TValue>[],
   table: Table<TData>,
 }
 
-export function Body<TData, TValue>({ t, columns, table }: Props<TData, TValue>) {
+export function Body<TData>({ t, table }: Props<TData>) {
   return (
     <TableBody>
       {table.getRowModel().rows?.length ? (
@@ -17,7 +16,7 @@ export function Body<TData, TValue>({ t, columns, table }: Props<TData, TValue>)
             key={row.id}
             data-state={row.getIsSelected() && "selected"}>
             {row.getVisibleCells().map((cell) => (
-              <TableCell key={cell.id}>
+              <TableCell key={cell.id} width={cell.column.columnDef.size}>
                 {flexRender(cell.column.columnDef.cell, cell.getContext())}
               </TableCell>
             ))}
@@ -25,7 +24,7 @@ export function Body<TData, TValue>({ t, columns, table }: Props<TData, TValue>)
         ))
       ) : (
         <TableRow>
-          <TableCell colSpan={columns.length} className="h-24 text-center">
+          <TableCell colSpan={table.getAllColumns().length} className="h-24 text-center">
             {t("noResults")}.
           </TableCell>
         </TableRow>

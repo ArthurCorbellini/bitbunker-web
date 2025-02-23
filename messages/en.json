@@ -59,7 +59,10 @@
       "goFirstPage": "Go to first page",
       "goPreviousPage": "Go to previous page",
       "goNextPage": "Go to next page",
-      "goLastPage": "Go to last page"
+      "goLastPage": "Go to last page",
+      "asc": "Asc",
+      "desc": "Desc",
+      "hide": "Hide"
     }
   }
 }
