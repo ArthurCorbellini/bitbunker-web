@@ -13,6 +13,8 @@
     "save": "Save",
     "type": "Type",
     "quantity": "Quantity",
+    "edit": "Edit",
+    "delete": "Delete",
     "": ""
   },
   "errors": {
@@ -29,6 +31,11 @@
     "assetSavedSuccessfully": "Asset saved successfully!",
     "assetAlreadyExists": "Asset already exists with the given UCID.",
     "": ""
+  },
+  "orders": {
+    "asset": "Asset",
+    "type": "Type",
+    "brl": "BRL"
   },
   "OrderList": {
     "brlQuantity": "BRL",
