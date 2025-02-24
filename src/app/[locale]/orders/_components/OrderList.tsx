@@ -1,4 +1,4 @@
-import { H2, Lead } from "@/components/global/typography";
+import { H2, Muted } from "@/components/global/typography";
 import { Button } from "@/components/ui/button";
 import { orderApi } from "@/lib/api/order-api";
 import { Plus } from "lucide-react";
@@ -17,7 +17,7 @@ export const OrderList = async () => {
   return (
     <>
       <H2>{t("transactions")}</H2>
-      <Lead>{t("transactionsLegend")}</Lead>
+      <Muted>{t("transactionsLegend")}</Muted>
 
       <div className="flex justify-end py-4">
         <Button>

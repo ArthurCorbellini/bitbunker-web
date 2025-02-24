@@ -46,9 +46,9 @@ export function P({ as: Tag = "p", className, children }: TypographyProps) {
   );
 }
 
-export function Lead({ as: Tag = "p", className, children }: TypographyProps) {
+export function Muted({ as: Tag = "p", className, children }: TypographyProps) {
   return (
-    <Tag className={cn("text-xl text-muted-foreground", className)}>
+    <Tag className={cn("text-muted-foreground", className)}>
       {children}
     </Tag>
   );
