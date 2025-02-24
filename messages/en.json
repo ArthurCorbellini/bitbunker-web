@@ -35,7 +35,10 @@
   "orders": {
     "asset": "Asset",
     "type": "Type",
-    "brl": "BRL"
+    "brl": "BRL",
+    "transactions": "Transactions",
+    "transactionsLegend": "Here you can manage your transactions, create new ones, export and more!",
+    "addTransactions": "add transaction"
   },
   "OrderList": {
     "brlQuantity": "BRL",
