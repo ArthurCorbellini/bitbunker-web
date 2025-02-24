@@ -12,7 +12,7 @@ import { useToast } from "@/lib/store/toast-context";
 import { createAsset } from "../_actions/create-asset-action";
 
 export default function CreateAsset() {
-  const t1 = useTranslations("shared");
+  const t1 = useTranslations("global");
   const t2 = useTranslations("CreateAsset");
 
   const [open, setOpen] = useState(false);

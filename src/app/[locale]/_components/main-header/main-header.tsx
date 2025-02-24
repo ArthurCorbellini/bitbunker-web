@@ -6,7 +6,7 @@ import { ModeToggle } from "./mode-toggle";
 import NavLink from "./nav-link";
 
 export default function MainHeader() {
-  const t = useTranslations("shared");
+  const t = useTranslations("global");
 
   return (
     <header>

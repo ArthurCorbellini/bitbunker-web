@@ -1,5 +1,5 @@
 {
-  "shared": {
+  "global": {
     "dashboard": "Dashboard",
     "assets": "Ativos",
     "asset": "Ativo",

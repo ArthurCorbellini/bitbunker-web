@@ -8,7 +8,7 @@ import { fetchAssets } from "./_actions/fetch-assets-action";
 import CreateAsset from "./_components/create-asset";
 
 export default async function Assets() {
-  const t = await getTranslations("shared");
+  const t = await getTranslations("global");
   const data = await fetchAssets();
 
   return (
