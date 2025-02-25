@@ -16,7 +16,7 @@ export const OrderDataTable = ({
   data: Order[]
 }) => {
   const t = useTranslations("global");
-  const t2 = useTranslations("orders");
+  const t2 = useTranslations("order");
 
   const columns: ColumnDef<Order>[] = [
     {
