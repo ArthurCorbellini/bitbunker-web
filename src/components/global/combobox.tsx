@@ -22,6 +22,7 @@ import { cn } from "@/lib/utils"
 interface Props {
   placeholder: string,
   emptyMessage?: string,
+  onSelect?: (value: string) => void,
   options: ComboboxOptions[],
 }
 
@@ -34,9 +35,17 @@ export const Combobox = ({
   placeholder,
   emptyMessage,
   options,
+  onSelect,
 }: Props) => {
   const [open, setOpen] = useState(false)
   const [value, setValue] = useState("")
+
+  const onSelectHandle = (currentValue: string) => {
+    if (onSelect) onSelect(currentValue);
+
+    setValue(currentValue === value ? "" : currentValue)
+    setOpen(false)
+  }
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -64,17 +73,9 @@ export const Combobox = ({
                 <CommandItem
                   key={opt.value}
                   value={opt.value}
-                  onSelect={(currentValue) => {
-                    setValue(currentValue === value ? "" : currentValue)
-                    setOpen(false)
-                  }}>
+                  onSelect={onSelectHandle}>
                   {opt.label}
-                  <Check
-                    className={cn(
-                      "ml-auto",
-                      value === opt.value ? "opacity-100" : "opacity-0"
-                    )}
-                  />
+                  <Check className={cn("ml-auto", value === opt.value ? "opacity-100" : "opacity-0")} />
                 </CommandItem>
               ))}
             </CommandGroup>
