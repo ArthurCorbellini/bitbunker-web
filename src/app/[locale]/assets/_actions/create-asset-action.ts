@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 
-import { assetApi } from "@/lib/api/asset-api";
+import { assetService } from "@/lib/api/assetService";
 import { getAssetSchema } from "@/lib/schemas/asset-schema";
 import { CustomFormState } from "@/lib/types/custom-form-state-type";
 import { ApiErrorCode, convertResponseError } from "@/lib/util/api-util";
@@ -23,7 +23,7 @@ export const createAsset = async (
       inputs
     });
 
-  const response = await assetApi.createAsset(validation.data);
+  const response = await assetService.create(validation.data);
   if (response.success) {
     revalidatePath("/assets", "layout");
     return buildServerSuccess({

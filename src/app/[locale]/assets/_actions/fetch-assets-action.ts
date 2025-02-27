@@ -1,10 +1,10 @@
 "use server";
 
-import { assetApi } from "@/lib/api/asset-api";
+import { assetService } from "@/lib/api/assetService";
 import { Asset } from "@/lib/types/asset-type";
 
 export const fetchAssets = async (): Promise<Asset[]> => {
-  const response = await assetApi.fetchAssets();
+  const response = await assetService.fetch();
   if (response.success)
     return response.data;
 
