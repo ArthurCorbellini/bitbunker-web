@@ -16,15 +16,18 @@
   },
   "transactions": {
     "transactionsLegend": "Aqui você pode gerenciar suas transações, criar novas, exportar e mais!",
-    "form": {
-      "addTransactions": "Adicionar Transação",
-      "title": "Criar Nova Transação",
-      "description": "Crie novas transações aqui. Clique em salvar quando terminar.",
-      "save": "Salvar Transação",
-      "buySell": "Comprar & Vender",
-      "deposit": "Depósito",
-      "withdrawal": "Saque"
-    }
+    "addTransactions": "Adicionar Transação",
+    "title": "Criar Nova Transação",
+    "description": "Crie novas transações aqui. Clique em salvar quando terminar.",
+    "save": "Salvar Transação",
+    "buySell": "Comprar & Vender",
+    "deposit": "Depósito",
+    "withdrawal": "Saque",
+    "source": "Saída",
+    "sourceDescription": "Ativo debitado",
+    "target": "Entrada",
+    "targetDescription": "Ativo creditado",
+    "": ""
   },
   "globalComponents": {
     "myDataTable": {
@@ -43,5 +46,11 @@
       "desc": "Descendente",
       "hide": "Ocultar"
     }
+  },
+  "zodErrors": {
+    "notEmpty": "Não pode ser vazio.",
+    "mustBeNumber": "Precisa ser um número.",
+    "mustBePositiveNumber": "Precisa ser um número positivo.",
+    "textLengthLessThan": "Texto não pode ser inferior a {count} caracteres."
   }
 }

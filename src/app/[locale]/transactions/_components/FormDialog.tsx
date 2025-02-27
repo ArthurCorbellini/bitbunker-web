@@ -13,6 +13,7 @@ import {
   DialogTrigger
 } from "@/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { BuyAndSellForm } from "./BuyAndSellForm";
 
 export const FormDialog = () => {
   const t = useTranslations("transactions.form");
@@ -40,7 +41,7 @@ export const FormDialog = () => {
             <TabsTrigger value="withdrawal">{t("withdrawal")}</TabsTrigger>
           </TabsList>
           <TabsContent value="buySell">
-            to-do
+            <BuyAndSellForm />
           </TabsContent>
           <TabsContent value="deposit">
             to-do
