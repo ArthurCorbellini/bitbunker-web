@@ -6,7 +6,7 @@ import { ModeToggle } from "./mode-toggle";
 import NavLink from "./nav-link";
 
 export default function MainHeader() {
-  const t = useTranslations("global");
+  const t = useTranslations("common");
 
   return (
     <header>
@@ -28,7 +28,7 @@ export default function MainHeader() {
               <NavLink href="/dashboard">{t("dashboard")}</NavLink>
             </li>
             <li>
-              <NavLink href="/orders">{t("orders")}</NavLink>
+              <NavLink href="/transactions">{t("transactions")}</NavLink>
             </li>
             <li>
               <NavLink href="/assets">{t("assets")}</NavLink>

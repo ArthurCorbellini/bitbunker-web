@@ -1,50 +1,47 @@
 {
-  "global": {
-    "dashboard": "Dashboard",
-    "assets": "Ativos",
+  "common": {
     "asset": "Ativo",
-    "orders": "Ordens",
-    "ucid": "UCID",
-    "name": "Nome",
-    "symbol": "Símbolo",
-    "classification": "Classificação",
-    "actions": "Ações",
-    "saving": "Salvando",
-    "save": "Salvar",
+    "assets": "Ativos",
+    "dashboard": "Dashboard",
+    "transactions": "Transações",
     "type": "Tipo",
-    "quantity": "Quantidade",
+    "amount": "Quantidade",
+    "unitPrice": "Preço unitário",
+    "totalValue": "Valor total",
+    "date": "Data",
+    "actions": "Ações",
+    "edit": "Editar",
+    "delete": "Excluir",
     "": ""
   },
-  "errors": {
-    "notEmpty": "Não pode ser vazio",
-    "mustBeNumber": "Precisa ser um número",
-    "mustBePositiveNumber": "Precisa ser um número positivo",
-    "lengthLessThan": "O tamanho precisa ser menor que",
-    "internalServerErrorMessage": "Erro interno. Por favor, tente novamente mais tarde",
-    "": ""
-  },
-  "CreateAsset": {
-    "title": "Criar novo Ativo",
-    "description": "Formulário para criar um novo ativo",
-    "assetSavedSuccessfully": "Ativo salvo com sucesso!",
-    "assetAlreadyExists": "Já existe um Ativo cadastrado com o UCID informado.",
-    "": ""
-  },
-  "OrderList": {
-    "brlQuantity": "BRL",
-    "notes": "Observações"
-  },
-  "OrderForm": {
-    "title": "Criar nova Ordem",
-    "description": "Formulário para criar uma nova ordem"
-  },
-  "orderApi": {
-    "createOrder": {
-      "success": "Ordem criada com sucesso!"
+  "transactions": {
+    "transactionsLegend": "Aqui você pode gerenciar suas transações, criar novas, exportar e mais!",
+    "form": {
+      "addTransactions": "Adicionar Transação",
+      "title": "Criar Nova Transação",
+      "description": "Crie novas transações aqui. Clique em salvar quando terminar.",
+      "save": "Salvar Transação",
+      "buySell": "Comprar & Vender",
+      "deposit": "Depósito",
+      "withdrawal": "Saque"
     }
   },
-  "apiErrors": {
-    "internalServerError": "Ocorreu um erro no servidor. Tente novamente mais tarde ou contate o time de desenvolvimento.",
-    "unmappedError": "Ocorreu um erro desconhecido. Contate o time de desenvolvimento."
+  "globalComponents": {
+    "myDataTable": {
+      "view": "Visualização",
+      "toggleColumns": "Alternar colunas",
+      "noResults": "Nenhum resultado",
+      "of": "de",
+      "rowsSelected": "linha(s) selecionada(s)",
+      "rowsPerPage": "Linhas por página",
+      "page": "Página",
+      "goFirstPage": "Ir para a primeira página",
+      "goPreviousPage": "Ir para a página anterior",
+      "goNextPage": "Ir para a próxima página",
+      "goLastPage": "Ir para a última página",
+      "asc": "Ascendente",
+      "desc": "Descendente",
+      "hide": "Ocultar"
+    }
   }
 }
