@@ -16,7 +16,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { BuyAndSellForm } from "./BuyAndSellForm";
 
 export const FormDialog = () => {
-  const t = useTranslations("transactions.form");
+  const t = useTranslations("transactions");
 
   return (
     <Dialog>

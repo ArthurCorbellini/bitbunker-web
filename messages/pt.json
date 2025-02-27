@@ -27,6 +27,8 @@
     "sourceDescription": "Ativo debitado",
     "target": "Entrada",
     "targetDescription": "Ativo creditado",
+    "selectAsset": "Selecione o ativo...",
+    "selectAssetEmpty": "Nenhum ativo encontrado.",
     "": ""
   },
   "globalComponents": {

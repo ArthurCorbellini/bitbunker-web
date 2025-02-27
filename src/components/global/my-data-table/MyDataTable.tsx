@@ -19,7 +19,7 @@ interface GeneralProps<TData> {
 }
 
 export function MyDataTable<TData>({ table, }: DataTableProps<TData>) {
-  const t = useTranslations("globalComponents.dataTable");
+  const t = useTranslations("globalComponents.myDataTable");
 
   const rowsSelected = table.getFilteredSelectedRowModel().rows.length;
   const numberOfRows = table.getFilteredRowModel().rows.length;

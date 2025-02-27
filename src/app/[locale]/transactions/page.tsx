@@ -6,7 +6,8 @@ import { DataTable } from "./_components/DataTable";
 import { FormDialog } from "./_components/FormDialog";
 
 export default async function Page() {
-  const t = await getTranslations("transactions");
+  const t = await getTranslations("common");
+  const t2 = await getTranslations("transactions");
   const response = await transactionService.fetch();
 
   if (!response.success) {
@@ -17,7 +18,7 @@ export default async function Page() {
   return (
     <>
       <H2>{t("transactions")}</H2>
-      <Muted>{t("transactionsLegend")}</Muted>
+      <Muted>{t2("transactionsLegend")}</Muted>
       <div className="flex justify-end py-4">
         <FormDialog />
       </div>
