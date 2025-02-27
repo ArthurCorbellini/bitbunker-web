@@ -1,47 +1,47 @@
 "use client"
 
+import { zodResolver } from "@hookform/resolvers/zod";
 import { ChevronsRight } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import { ComboboxOptions } from "@/components/global/combobox";
+import { Combobox, ComboboxOptions } from "@/components/global/combobox";
 import { MyForm } from "@/components/global/my-form";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { DialogFooter } from "@/components/ui/dialog";
+import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { assetService } from "@/lib/api/assetService";
-import { zodResolver } from "@hookform/resolvers/zod";
-
 
 export const BuyAndSellForm = () => {
   const t = useTranslations("common");
-  const t2 = useTranslations("transaction");
+  const t2 = useTranslations("transactions");
   const tz = useTranslations("zodErrors");
 
   const TransactionSchema = z.object({
     assetId: z
       .string()
-      .nonempty(t("notEmpty")),
+      .nonempty(tz("notEmpty")),
     amount: z
       .string()
-      .nonempty(t("notEmpty"))
+      .nonempty(tz("notEmpty"))
       .transform((val) => Number(val))
       .refine((val) => val > 0, tz("mustBePositiveNumber")),
     unitPrice: z
       .string()
-      .nonempty(t("notEmpty"))
+      .nonempty(tz("notEmpty"))
       .transform((val) => Number(val))
       .refine((val) => val > 0, tz("mustBePositiveNumber")),
     totalValue: z
       .string()
-      .nonempty(t("notEmpty"))
+      .nonempty(tz("notEmpty"))
       .transform((val) => Number(val))
       .refine((val) => val > 0, tz("mustBePositiveNumber")),
     date: z
       .string()
-      .nonempty(t("notEmpty")),
+      .nonempty(tz("notEmpty")),
     notes: z
       .string()
       .max(255, tz("textLengthLessThan", { count: 255 })),
@@ -86,10 +86,9 @@ export const BuyAndSellForm = () => {
     setIsSubmitting(false);
   }
 
-  const [assetOptions, setAssetOptions] = useState<ComboboxOptions[]>();
-  const getAssetOptions = async () => {
+  const [assetOptions, setAssetOptions] = useState<ComboboxOptions[]>([]);
+  const loadAssetOptions = async () => {
     const response = await assetService.fetch();
-
     if (!response.success) {
       // to-do handle error
     }
@@ -104,6 +103,10 @@ export const BuyAndSellForm = () => {
     setAssetOptions(assets);
   }
 
+  useEffect(() => {
+    loadAssetOptions();
+  }, []);
+
   return (
     <MyForm form={form} onSubmit={onSubmit}>
       <div className="flex gap-2 items-center">
@@ -113,23 +116,22 @@ export const BuyAndSellForm = () => {
             <CardDescription>{t2("sourceDescription")}</CardDescription>
           </CardHeader>
           <CardContent>
-            {/* <FormField
+            <FormField
               control={form.control}
-              name="buy.assetId"
+              name="source.assetId"
               render={() => (
                 <FormItem>
                   <FormLabel>{t("asset")}</FormLabel>
                   <FormControl>
                     <Combobox
-                      onSelect={(v) => form.setValue("asset", v)}
+                      onSelect={(v) => form.setValue("source.assetId", v)}
                       options={assetOptions}
-                      placeholder="Selecione o ativo..."
-                      emptyMessage="Nenhum ativo encontrado" />
+                      placeholder={t2("selectAsset")}
+                      emptyMessage={t2("selectAssetEmpty")} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
-              )} /> */}
-
+              )} />
           </CardContent>
         </Card>
         <ChevronsRight className="text-muted-foreground/70" />

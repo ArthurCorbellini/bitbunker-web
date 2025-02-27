@@ -16,6 +16,11 @@ export const DataTable = ({ data }: { data: Transaction[] }) => {
 
   const columns: ColumnDef<Transaction>[] = [
     {
+      accessorKey: "date",
+      header: t("date"),
+      cell: ({ row }) => (stringUtil.formatDate(row.getValue("date")))
+    },
+    {
       accessorKey: "asset.symbol",
       header: t("asset"),
     },
@@ -47,15 +52,6 @@ export const DataTable = ({ data }: { data: Transaction[] }) => {
       cell: ({ row }) => (
         <div className="text-right">
           {stringUtil.convertCurrency(row.getValue("totalValue"), "USD")}
-        </div >
-      )
-    },
-    {
-      accessorKey: "date",
-      header: t("date"),
-      cell: ({ row }) => (
-        <div className="text-right">
-          {stringUtil.formatDate(row.getValue("date"))}
         </div >
       )
     },
