@@ -65,15 +65,13 @@ export const Combobox = ({
         <Command>
           <CommandInput placeholder={placeholder} className="h-9" />
           <CommandList>
-            {emptyMessage &&
-              <CommandEmpty>{emptyMessage}</CommandEmpty>
-            }
+            <CommandEmpty>{emptyMessage}</CommandEmpty>
             <CommandGroup>
               {options.map((opt) => (
                 <CommandItem
                   key={opt.value}
-                  value={opt.value}
-                  onSelect={onSelectHandle}>
+                  value={opt.label}
+                  onSelect={() => onSelectHandle(opt.value)}>
                   {opt.label}
                   <Check className={cn("ml-auto", value === opt.value ? "opacity-100" : "opacity-0")} />
                 </CommandItem>
