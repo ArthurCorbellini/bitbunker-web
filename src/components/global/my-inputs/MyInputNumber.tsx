@@ -14,11 +14,11 @@ interface StringProps {
 }
 
 type InputNumberProps =
-  | ({ inputType?: "number" } & NumberProps)
+  | ({ inputType: "number" } & NumberProps)
   | ({ inputType: "string" } & StringProps);
 
 export const MyInputNumber: React.FC<InputNumberProps> = ({
-  inputType = "number",
+  inputType,
   ...props
 }) => {
   if (inputType === "number")
