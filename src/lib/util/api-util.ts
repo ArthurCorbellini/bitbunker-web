@@ -1,5 +1,5 @@
 
-const root = process.env.API_URL;
+const root = process.env.NEXT_PUBLIC_API_URL;
 
 export interface ApiResponse<T> {
   success: boolean;
