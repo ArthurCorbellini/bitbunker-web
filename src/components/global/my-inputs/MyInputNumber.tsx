@@ -11,30 +11,31 @@ interface StringProps {
   value?: string;
   onChange?: (value?: string) => void;
   placeholder?: string;
+  emptyAllowed?: boolean;
 }
 
 type InputNumberProps =
-  | ({ inputType: "number" } & NumberProps)
-  | ({ inputType: "string" } & StringProps);
+  | ({ fieldType: "number" } & NumberProps)
+  | ({ fieldType: "string" } & StringProps);
 
 export const MyInputNumber: React.FC<InputNumberProps> = ({
-  inputType,
+  fieldType,
   ...props
 }) => {
-  if (inputType === "number")
+  if (fieldType === "number")
     return <MyInputTypeNumber {...(props as NumberProps)} />;
   return <MyInputTypeString {...(props as StringProps)} />;
 };
 
 const MyInputTypeString: React.FC<StringProps> = ({
-  value, onChange, placeholder,
+  value, onChange, placeholder, emptyAllowed = true
 }) => {
   const {
     formattedValue,
     handleChange,
     handleBlur,
     handleFocus
-  } = useNumberFormat(true, value ?? "");
+  } = useNumberFormat(emptyAllowed, value ?? "");
 
   const handleChangeThis = (e: ChangeEvent<HTMLInputElement>) => {
     const v = handleChange(e);
