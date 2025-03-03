@@ -14,8 +14,8 @@ export const MyInputNumber: React.FC<InputNumberProps> = ({
   value, onChange, placeholder, decimalPlaces,
 }) => {
   const { formatNumber } = useNumberFormat(decimalPlaces);
-  const { formattedValue } = formatNumber(value);
-  const [outputValue, setOutputValue] = useState(formattedValue);
+  const { formattedValue, numericValue } = formatNumber(value);
+  const [outputValue, setOutputValue] = useState(placeholder && !numericValue ? "" : formattedValue);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { formattedValue, numericValue } = formatNumber(e.target.value);
