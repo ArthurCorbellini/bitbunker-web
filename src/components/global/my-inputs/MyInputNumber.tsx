@@ -1,13 +1,18 @@
+import { ChangeEvent, useState } from "react";
+
 import { Input } from "@/components/ui/input";
-import { ChangeEvent } from "react";
 import { useNumberFormat } from "./hooks/useNumberFormat";
 
-interface NumberProps {
+interface CommonProps {
+  decimalPlaces?: number;
+}
+
+interface NumberProps extends CommonProps {
   value?: number;
   onChange?: (value?: number) => void;
 }
 
-interface StringProps {
+interface StringProps extends CommonProps {
   value?: string;
   onChange?: (value?: string) => void;
   placeholder?: string;
@@ -16,10 +21,10 @@ interface StringProps {
 
 type InputNumberProps =
   | ({ fieldType: "number" } & NumberProps)
-  | ({ fieldType: "string" } & StringProps);
+  | ({ fieldType?: "string" } & StringProps);
 
 export const MyInputNumber: React.FC<InputNumberProps> = ({
-  fieldType,
+  fieldType = "string",
   ...props
 }) => {
   if (fieldType === "number")
@@ -28,61 +33,60 @@ export const MyInputNumber: React.FC<InputNumberProps> = ({
 };
 
 const MyInputTypeString: React.FC<StringProps> = ({
-  value, onChange, placeholder, emptyAllowed = true
+  value,
+  onChange,
+  placeholder,
+  emptyAllowed = true,
+  decimalPlaces
 }) => {
-  const {
-    formattedValue,
-    handleChange,
-    handleBlur,
-    handleFocus
-  } = useNumberFormat(emptyAllowed, value ?? "");
+  const { formatNumber } = useNumberFormat(decimalPlaces);
+  const { formattedValue } = formatNumber(value ?? "");
+  const [outputValue, setOutputValue] = useState(formattedValue);
 
-  const handleChangeThis = (e: ChangeEvent<HTMLInputElement>) => {
-    const v = handleChange(e);
-    if (onChange) onChange(v);
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { formattedValue, numericValue } = formatNumber(e.target.value);
+
+    setOutputValue(emptyAllowed && !numericValue ? "" : formattedValue);
+
+    if (onChange)
+      onChange(numericValue + "");
   }
 
   return (
     <Input
       type="text"
-      value={formattedValue}
-      onChange={handleChangeThis}
-      onBlur={handleBlur}
-      onFocus={handleFocus}
+      value={outputValue}
+      onChange={handleChange}
       placeholder={placeholder}
       inputMode="decimal"
-      style={formattedValue ? { textAlign: "right" } : {}} />
+      className="text-right placeholder:text-left" />
   );
 };
 
 const MyInputTypeNumber: React.FC<NumberProps> = ({
-  value, onChange,
+  value,
+  onChange,
+  decimalPlaces
 }) => {
-  const {
-    formattedValue,
-    handleChange,
-    handleBlur,
-    handleFocus
-  } = useNumberFormat(false, value + "");
+  const { formatNumber } = useNumberFormat(decimalPlaces);
+  const { formattedValue } = formatNumber(value + "");
+  const [outputValue, setOutputValue] = useState(formattedValue);
 
-  const handleChangeThis = (e: ChangeEvent<HTMLInputElement>) => {
-    const v = handleChange(e);
-    if (!onChange) return;
-    if (!v) {
-      onChange(0);
-      return;
-    }
-    onChange(Number(v));
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { formattedValue, numericValue } = formatNumber(e.target.value);
+
+    setOutputValue(formattedValue);
+
+    if (onChange)
+      onChange(numericValue);
   }
 
   return (
     <Input
       type="text"
-      value={formattedValue}
-      onChange={handleChangeThis}
-      onBlur={handleBlur}
-      onFocus={handleFocus}
+      value={outputValue}
+      onChange={handleChange}
       inputMode="decimal"
-      style={formattedValue ? { textAlign: "right" } : {}} />
+      className="text-right" />
   );
 };
