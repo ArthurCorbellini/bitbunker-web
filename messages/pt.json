@@ -29,6 +29,9 @@
     "targetDescription": "Ativo creditado",
     "selectAsset": "Selecione o ativo...",
     "selectAssetEmpty": "Nenhum ativo encontrado.",
+    "amoutPlaceholder": "Total cedido...",
+    "unitPricePlaceholder": "Preço unitário do ativo...",
+    "totalValuePlaceholder": "Valor total investido...",
     "": ""
   },
   "globalComponents": {
