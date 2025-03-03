@@ -6,8 +6,8 @@ export const useNumberFormat = (
   const locale = useLocale();
   const divisor = Math.pow(10, decimalPlaces);
 
-  const formatNumber = (rawValue: string) => {
-    let input = rawValue.replace(/\D/g, "");
+  const formatNumber = (rawValue?: number | string) => {
+    let input = (rawValue + "").replace(/\D/g, "");
     if (!input)
       input = "0";
 
