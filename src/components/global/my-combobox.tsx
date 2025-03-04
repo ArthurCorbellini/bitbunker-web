@@ -31,7 +31,7 @@ export interface ComboboxOptions {
   value: string,
 }
 
-export const Combobox = ({
+export const MyCombobox = ({
   placeholder,
   emptyMessage,
   options,
