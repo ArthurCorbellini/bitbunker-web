@@ -35,7 +35,7 @@ export const FormDialog = () => {
           </DialogDescription>
         </DialogHeader>
         <Tabs>
-          <TabsList className="grid w-full grid-cols-3">
+          <TabsList className="grid w-full grid-cols-3 mb-4">
             <TabsTrigger value="buySell">{t("buySell")}</TabsTrigger>
             <TabsTrigger value="deposit">{t("deposit")}</TabsTrigger>
             <TabsTrigger value="withdrawal">{t("withdrawal")}</TabsTrigger>
