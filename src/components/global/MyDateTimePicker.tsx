@@ -1,6 +1,7 @@
 "use client";
 
-import { format } from "date-fns";
+import { CalendarIcon } from "lucide-react";
+import { useTranslations } from "next-intl";
 import * as React from "react";
 
 import { Button } from "@/components/ui/button";
@@ -8,49 +9,56 @@ import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger, } from "@/components/ui/popover";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
-import { CalendarIcon } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { useLocaleFormat } from "./hooks/useLocaleFormat";
 
-export function MyDateTimePicker() {
-  const [date, setDate] = React.useState<Date>();
-  const [isOpen, setIsOpen] = React.useState(false);
+interface Props {
+  value?: Date;
+  onChange?: (value?: Date) => void;
+  onBlur?: () => void;
+  name?: string;
+}
+
+export const MyDateTimePicker: React.FC<Props> = ({
+  value,
+  onChange,
+  onBlur,
+  name,
+  ...props
+}) => {
   const t = useTranslations("globalComponents.myDateTimePicker");
+  const { formatDateTime } = useLocaleFormat()
 
   const hours = Array.from({ length: 24 }, (_, i) => i);
-  const handleDateSelect = (selectedDate: Date | undefined) => {
-    if (selectedDate) {
-      setDate(selectedDate);
-    }
+
+  const handleDateSelect = (date: Date | undefined) => {
+    if (onChange) onChange(date);
   };
 
   const handleTimeChange = (
     type: "hour" | "minute",
-    value: string
+    input: string
   ) => {
-    if (date) {
-      const newDate = new Date(date);
-      if (type === "hour") {
-        newDate.setHours(parseInt(value));
-      } else if (type === "minute") {
-        newDate.setMinutes(parseInt(value));
-      }
-      setDate(newDate);
-    }
+    let newDate = value || new Date();
+    if (type === "hour")
+      newDate.setHours(parseInt(input, 10));
+    if (type === "minute")
+      newDate.setMinutes(parseInt(input, 10));
+    if (onChange) onChange(newDate);
   };
 
   return (
-    <Popover open={isOpen} onOpenChange={setIsOpen}>
+    <Popover>
       <PopoverTrigger asChild>
         <Button
           variant="outline"
           className={cn(
             "w-full justify-start text-left font-normal",
-            !date && "text-muted-foreground"
+            !value && "text-muted-foreground"
           )}
         >
           <CalendarIcon className="mr-2 h-4 w-4" />
-          {date ? (
-            format(date, "MM/dd/yyyy hh:mm")
+          {value ? (
+            formatDateTime(value)
           ) : (
             <span>{t("placeholder")}</span>
           )}
@@ -60,7 +68,7 @@ export function MyDateTimePicker() {
         <div className="sm:flex">
           <Calendar
             mode="single"
-            selected={date}
+            selected={value}
             onSelect={handleDateSelect}
             initialFocus
           />
@@ -71,7 +79,7 @@ export function MyDateTimePicker() {
                   <Button
                     key={hour}
                     size="icon"
-                    variant={date && date.getHours() === hour ? "default" : "ghost"}
+                    variant={value && value.getHours() === hour ? "default" : "ghost"}
                     className="sm:w-full shrink-0 aspect-square"
                     onClick={() => handleTimeChange("hour", hour.toString())}
                   >
@@ -87,7 +95,7 @@ export function MyDateTimePicker() {
                   <Button
                     key={minute}
                     size="icon"
-                    variant={date && date.getMinutes() === minute ? "default" : "ghost"}
+                    variant={value && value.getMinutes() === minute ? "default" : "ghost"}
                     className="sm:w-full shrink-0 aspect-square"
                     onClick={() => handleTimeChange("minute", minute.toString())}
                   >

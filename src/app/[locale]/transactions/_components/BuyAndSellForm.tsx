@@ -44,7 +44,7 @@ export const BuyAndSellForm = () => {
 
   const FormSchema = z.object({
     date: z
-      .string(),
+      .date(),
     // .nonempty(tz("notEmpty")),
     notes: z
       .string(),
@@ -58,7 +58,7 @@ export const BuyAndSellForm = () => {
   const form = useForm<BuyAndSellFormRequest>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      date: "",
+      date: new Date(), // todo corrigir data para multiplo de 5
       notes: "",
       source: {
         assetId: "",
@@ -97,7 +97,7 @@ export const BuyAndSellForm = () => {
                 <FormItem>
                   <FormLabel>{t2("dateHourTransaction")}</FormLabel>
                   <FormControl>
-                    <MyDateTimePicker />
+                    <MyDateTimePicker {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
