@@ -9,10 +9,12 @@ import { Popover, PopoverContent, PopoverTrigger, } from "@/components/ui/popove
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
 import { CalendarIcon } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 export function MyDateTimePicker() {
   const [date, setDate] = React.useState<Date>();
   const [isOpen, setIsOpen] = React.useState(false);
+  const t = useTranslations("globalComponents.myDateTimePicker");
 
   const hours = Array.from({ length: 24 }, (_, i) => i);
   const handleDateSelect = (selectedDate: Date | undefined) => {
@@ -50,7 +52,7 @@ export function MyDateTimePicker() {
           {date ? (
             format(date, "MM/dd/yyyy hh:mm")
           ) : (
-            <span>MM/DD/YYYY hh:mm</span>
+            <span>{t("placeholder")}</span>
           )}
         </Button>
       </PopoverTrigger>

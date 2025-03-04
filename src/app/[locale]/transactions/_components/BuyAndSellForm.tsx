@@ -7,8 +7,13 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { MyForm } from "@/components/global/my-form";
+import { MyDateTimePicker } from "@/components/global/MyDateTimePicker";
 import { Button } from "@/components/ui/button";
 import { DialogFooter } from "@/components/ui/dialog";
+import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Textarea } from "@/components/ui/textarea";
+import { Pen } from "lucide-react";
 import { BuyAndSellFormCard } from "./BuyAndSellFormCard";
 
 export const BuyAndSellForm = () => {
@@ -38,14 +43,14 @@ export const BuyAndSellForm = () => {
   });
 
   const FormSchema = z.object({
-    source: TransactionSchema,
-    target: TransactionSchema
-    // date: z
-    //   .string()
-    //   .nonempty(tz("notEmpty")),
-    // notes: z
-    //   .string()
+    date: z
+      .string(),
+    // .nonempty(tz("notEmpty")),
+    notes: z
+      .string(),
     //   .max(255, tz("textLengthLessThan", { count: 255 })),
+    source: TransactionSchema,
+    target: TransactionSchema,
   });
 
   type BuyAndSellFormRequest = z.infer<typeof FormSchema>;
@@ -53,6 +58,8 @@ export const BuyAndSellForm = () => {
   const form = useForm<BuyAndSellFormRequest>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
+      date: "",
+      notes: "",
       source: {
         assetId: "",
         amount: 0,
@@ -64,9 +71,7 @@ export const BuyAndSellForm = () => {
         amount: 0,
         unitPrice: 0,
         totalValue: 0,
-      }
-      // date: "",
-      // notes: "",
+      },
     }
   })
 
@@ -82,10 +87,53 @@ export const BuyAndSellForm = () => {
 
   return (
     <MyForm form={form} onSubmit={onSubmit}>
-      <div className="flex gap-4 items-center">
-        <BuyAndSellFormCard side="source" />
-        {/* <ChevronsRight className="text-muted-foreground/70" /> */}
-        <BuyAndSellFormCard side="target" />
+      <div className="flex flex-col gap-4">
+        <div className="flex gap-4 items-center">
+          <div className="w-1/4">
+            <FormField
+              control={form.control}
+              name="date"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>{t2("dateHourTransaction")}</FormLabel>
+                  <FormControl>
+                    <MyDateTimePicker />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )} />
+          </div>
+          <div className="w-3/4 ml-auto">
+            <FormField
+              control={form.control}
+              name="notes"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>{t2("notes")}</FormLabel>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <Button variant="outline" className="w-full">
+                        <Pen /> {t2("notesButton")}
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-[var(--radix-popover-trigger-width)] p-0">
+                      <FormControl>
+                        <Textarea
+                          {...field}
+                          placeholder={t2("notesPlaceholder")}
+                          className="h-32"
+                        />
+                      </FormControl>
+                    </PopoverContent>
+                  </Popover>
+                </FormItem>
+              )} />
+          </div>
+        </div>
+        <div className="flex gap-4 items-center">
+          <BuyAndSellFormCard side="source" />
+          <BuyAndSellFormCard side="target" />
+        </div>
       </div>
       <DialogFooter>
         <Button type="submit">{t2("save")}</Button>
