@@ -25,7 +25,7 @@ export const FormDialog = () => {
           <Plus /> {t("addTransactions")}
         </Button>
       </DialogTrigger>
-      <DialogContent className="min-w-[50%]">
+      <DialogContent className="min-w-[75%]">
         <DialogHeader>
           <DialogTitle>
             {t("title")}

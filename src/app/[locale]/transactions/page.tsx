@@ -23,9 +23,7 @@ export default async function Page() {
       <div className="flex justify-end py-4">
         <FormDialog />
       </div>
-      {response.data &&
-        <DataTable data={response.data} />
-      }
+      {response.data && <DataTable data={response.data} />}
     </TransactionProvider>
   );
 

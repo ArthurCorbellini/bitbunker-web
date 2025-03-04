@@ -1,6 +1,6 @@
 "use client"
 
-import { Combobox } from "@/components/global/my-combobox";
+import { MyCombobox } from "@/components/global/my-combobox";
 import { MyInputNumber } from "@/components/global/my-inputs/MyInputNumber";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
@@ -34,70 +34,84 @@ export const BuyAndSellFormCard = ({
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <FormField
-          control={control}
-          name={`${side}.assetId`}
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>{t("asset")}</FormLabel>
-              <FormControl>
-                <Combobox
-                  onSelect={field.onChange}
-                  options={assetComboboxOptions}
-                  placeholder={t2("selectAsset")}
-                  emptyMessage={t2("selectAssetEmpty")} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )} />
-        <FormField
-          control={control}
-          name={`${side}.amount`}
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>{t("amount")}</FormLabel>
-              <FormControl>
-                <MyInputNumber
-                  decimalPlaces={5}
-                  value={field.value}
-                  onChange={field.onChange} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )} />
-        <FormField
-          control={control}
-          name={`${side}.unitPrice`}
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>{t("unitPrice")}</FormLabel>
-              <FormControl>
-                <MyInputNumber
-                  decimalPlaces={5}
-                  value={field.value}
-                  onChange={field.onChange}
-                  placeholder={t2("unitPricePlaceholder")} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )} />
-        <FormField
-          control={control}
-          name={`${side}.totalValue`}
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>{t("totalValue")}</FormLabel>
-              <FormControl>
-                <MyInputNumber
-                  decimalPlaces={5}
-                  value={field.value}
-                  onChange={field.onChange}
-                  placeholder={t2("totalValuePlaceholder")} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )} />
+        <div className="flex flex-col gap-4">
+          <div className="flex gap-4">
+            <div className="w-2/3">
+              <FormField
+                control={control}
+                name={`${side}.assetId`}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t("asset")}</FormLabel>
+                    <FormControl>
+                      <MyCombobox
+                        onSelect={field.onChange}
+                        options={assetComboboxOptions}
+                        placeholder={t2("selectAsset")}
+                        emptyMessage={t2("selectAssetEmpty")} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )} />
+            </div>
+            <div className="w-1/3">
+              <FormField
+                control={control}
+                name={`${side}.amount`}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t("amount")}</FormLabel>
+                    <FormControl>
+                      <MyInputNumber
+                        decimalPlaces={7}
+                        value={field.value}
+                        onChange={field.onChange} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )} />
+            </div>
+          </div>
+          <div className="flex gap-4">
+            <div className="w-1/2">
+              <FormField
+                control={control}
+                name={`${side}.unitPrice`}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t("unitPrice")}</FormLabel>
+                    <FormControl>
+                      <MyInputNumber
+                        decimalPlaces={2}
+                        value={field.value}
+                        onChange={field.onChange}
+                        placeholder={t2("unitPricePlaceholder")} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )} />
+            </div>
+            <div className="w-1/2">
+              <FormField
+                control={control}
+                name={`${side}.totalValue`}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t("totalValue")}</FormLabel>
+                    <FormControl>
+                      <MyInputNumber
+                        decimalPlaces={2}
+                        value={field.value}
+                        onChange={field.onChange}
+                        placeholder={t2("totalValuePlaceholder")} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )} />
+            </div>
+          </div>
+        </div>
       </CardContent>
-    </Card>
+    </Card >
   );
 }

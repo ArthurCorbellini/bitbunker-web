@@ -1,7 +1,6 @@
 "use client"
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ChevronsRight } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -36,17 +35,17 @@ export const BuyAndSellForm = () => {
     //   .nonempty(tz("notEmpty"))
     //   .transform((val) => Number(val))
     //   .refine((val) => val > 0, tz("mustBePositiveNumber")),
+  });
+
+  const FormSchema = z.object({
+    source: TransactionSchema,
+    target: TransactionSchema
     // date: z
     //   .string()
     //   .nonempty(tz("notEmpty")),
     // notes: z
     //   .string()
     //   .max(255, tz("textLengthLessThan", { count: 255 })),
-  });
-
-  const FormSchema = z.object({
-    source: TransactionSchema,
-    target: TransactionSchema
   });
 
   type BuyAndSellFormRequest = z.infer<typeof FormSchema>;
@@ -59,17 +58,15 @@ export const BuyAndSellForm = () => {
         amount: 0,
         unitPrice: 0,
         totalValue: 0,
-        // date: "",
-        // notes: "",
       },
       target: {
         assetId: "",
         amount: 0,
         unitPrice: 0,
         totalValue: 0,
-        // date: "",
-        // notes: "",
       }
+      // date: "",
+      // notes: "",
     }
   })
 
@@ -85,9 +82,9 @@ export const BuyAndSellForm = () => {
 
   return (
     <MyForm form={form} onSubmit={onSubmit}>
-      <div className="flex gap-2 items-center">
+      <div className="flex gap-4 items-center">
         <BuyAndSellFormCard side="source" />
-        <ChevronsRight className="text-muted-foreground/70" />
+        {/* <ChevronsRight className="text-muted-foreground/70" /> */}
         <BuyAndSellFormCard side="target" />
       </div>
       <DialogFooter>
