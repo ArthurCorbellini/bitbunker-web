@@ -121,8 +121,7 @@ export const BuyAndSellForm = () => {
                         <Textarea
                           {...field}
                           placeholder={t2("notesPlaceholder")}
-                          className="h-32"
-                        />
+                          className="h-32" />
                       </FormControl>
                     </PopoverContent>
                   </Popover>

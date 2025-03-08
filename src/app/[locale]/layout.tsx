@@ -5,8 +5,6 @@ import { getMessages } from "next-intl/server";
 import { ThemeProvider } from "next-themes";
 import { notFound } from "next/navigation";
 
-import { Toast } from "@/components/legacy/toast";
-import { ToastContextProvider } from "@/lib/store/toast-context";
 import MainHeader from "./_components/main-header/main-header";
 import "./globals.css";
 
@@ -38,13 +36,10 @@ export default async function RootLayout({
             defaultTheme="system"
             enableSystem
             disableTransitionOnChange>
-            <ToastContextProvider>
-              <MainHeader />
-              <main className="p-8">
-                {children}
-              </main>
-              <Toast />
-            </ToastContextProvider>
+            <MainHeader />
+            <main className="p-8">
+              {children}
+            </main>
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>
