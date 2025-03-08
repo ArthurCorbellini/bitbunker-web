@@ -32,7 +32,7 @@ export const DataTable = ({ data }: { data: Asset[] }) => {
     },
     {
       accessorKey: "symbol",
-      header: t2("symbol"),
+      header: t("symbol"),
     },
     {
       accessorKey: "type",

@@ -23,6 +23,11 @@
     "addButton": "Adicionar Ativo",
     "addTitle": "Inserir Novo Ativo",
     "addDescription": "Insira novos ativos aqui. Clique em salvar quando terminar.",
+    "selectType": "Selecione o tipo...",
+    "selectTypeEmpty": "Nenhum tipo encontrado.",
+    "selectClassification": "Selecione a classificação...",
+    "selectClassificationEmpty": "Nenhuma classificação encontrada.",
+    "save": "Salvar Ativo",
     "": ""
   },
   "transactions": {
