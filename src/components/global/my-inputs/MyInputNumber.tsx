@@ -4,8 +4,8 @@ import { Input } from "@/components/ui/input";
 import { useNumberFormat } from "./hooks/useNumberFormat";
 
 interface InputNumberProps {
-  value?: number;
-  onChange?: (value?: number) => void;
+  value?: number | string;
+  onChange?: (value?: number | string) => void;
   placeholder?: string;
   decimalPlaces?: number;
 }
@@ -15,12 +15,12 @@ export const MyInputNumber: React.FC<InputNumberProps> = ({
 }) => {
   const { formatNumber } = useNumberFormat(decimalPlaces);
   const { formattedValue, numericValue } = formatNumber(value);
-  const [outputValue, setOutputValue] = useState(placeholder && !numericValue ? "" : formattedValue);
+  const [outputValue, setOutputValue] = useState(placeholder !== undefined && !numericValue ? "" : formattedValue);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { formattedValue, numericValue } = formatNumber(e.target.value);
 
-    setOutputValue(placeholder && !numericValue ? "" : formattedValue);
+    setOutputValue(placeholder !== undefined && !numericValue ? "" : formattedValue);
 
     if (onChange)
       onChange(numericValue);
