@@ -6,7 +6,7 @@ export const assetService = {
     return httpClient.post("/asset", data);
   },
 
-  fetch: async (): Promise<ApiResponse<Asset[]>> => {
+  fetchAll: async (): Promise<ApiResponse<Asset[]>> => {
     return httpClient.get("/asset");
   }
 }

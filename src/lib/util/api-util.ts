@@ -1,12 +1,12 @@
 
 const root = process.env.NEXT_PUBLIC_API_URL;
 
-export interface ApiResponse<T> {
+export interface ApiResponse<T = null> {
   success: boolean;
   apiPath: string;
   timestamp: string;
   error: ApiResponseError | null;
-  data: T;
+  data: T | null;
 }
 
 export interface ApiResponseError {

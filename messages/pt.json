@@ -12,6 +12,17 @@
     "actions": "Ações",
     "edit": "Editar",
     "delete": "Excluir",
+    "name": "Nome",
+    "symbol": "Símbolo",
+    "": ""
+  },
+  "assets": {
+    "legend": "Aqui você pode gerenciar seus ativos, criar, exportar e mais!",
+    "ucid": "UCID",
+    "classification": "Classificação",
+    "addButton": "Adicionar Ativo",
+    "addTitle": "Inserir Novo Ativo",
+    "addDescription": "Insira novos ativos aqui. Clique em salvar quando terminar.",
     "": ""
   },
   "transactions": {

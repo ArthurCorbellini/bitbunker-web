@@ -3,5 +3,6 @@ export interface Asset {
   ucid: number;
   name: string;
   symbol: string;
+  type: string;
   classification: string;
 }
