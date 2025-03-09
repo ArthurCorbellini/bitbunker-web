@@ -9,7 +9,7 @@ import { MyDataTable } from "@/components/global/my-data-table/MyDataTable";
 import { useDataTable } from "@/components/global/my-data-table/hooks/useDataTable";
 import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { stringUtil } from "@/utils/string-utils";
+import { convertCurrency, formatDate } from "@/utils/string-utils";
 
 export const DataTable = ({ data }: { data: Transaction[] }) => {
   const t = useTranslations("common");
@@ -18,7 +18,7 @@ export const DataTable = ({ data }: { data: Transaction[] }) => {
     {
       accessorKey: "date",
       header: t("date"),
-      cell: ({ row }) => (stringUtil.formatDate(row.getValue("date")))
+      cell: ({ row }) => (formatDate(row.getValue("date")))
     },
     {
       accessorKey: "asset.symbol",
@@ -42,7 +42,7 @@ export const DataTable = ({ data }: { data: Transaction[] }) => {
       header: () => <div className="text-right">{t("unitPrice")}</div>,
       cell: ({ row }) => (
         <div className="text-right">
-          {stringUtil.convertCurrency(row.getValue("unitPrice"), "USD")}
+          {convertCurrency(row.getValue("unitPrice"), "USD")}
         </div >
       )
     },
@@ -51,7 +51,7 @@ export const DataTable = ({ data }: { data: Transaction[] }) => {
       header: () => <div className="text-right">{t("totalValue")}</div>,
       cell: ({ row }) => (
         <div className="text-right">
-          {stringUtil.convertCurrency(row.getValue("totalValue"), "USD")}
+          {convertCurrency(row.getValue("totalValue"), "USD")}
         </div >
       )
     },
