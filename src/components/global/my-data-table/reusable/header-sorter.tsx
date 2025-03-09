@@ -10,7 +10,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { cn } from "@/lib/utils"
+import { cn } from "@/utils/shadcn-utils"
 
 interface Props<TData, TValue>
   extends React.HTMLAttributes<HTMLDivElement> {

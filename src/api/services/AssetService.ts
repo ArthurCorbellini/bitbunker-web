@@ -1,13 +1,13 @@
-import { Asset } from "../types/asset-type";
-import { ApiResponse, httpClient } from "../util/api-util";
+import { ApiResponse } from "../core/api-types";
+import { httpClient } from "../core/api-utils";
+import { Asset } from "../types/asset-types";
 
-export const assetService = {
-  create: async (data: Asset): Promise<ApiResponse<string>> => {
+export class AssetService {
+  static async create(data: Asset): Promise<ApiResponse<string>> {
     return httpClient.post("/asset", data);
-  },
+  }
 
-  fetchAll: async (): Promise<ApiResponse<Asset[]>> => {
-
+  static async fetchAll(): Promise<ApiResponse<Asset[]>> {
     const response: ApiResponse<Asset[]> = {
       success: true,
       apiPath: "",

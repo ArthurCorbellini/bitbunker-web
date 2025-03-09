@@ -4,6 +4,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { MoreHorizontal } from "lucide-react";
 import { useTranslations } from "next-intl";
 
+import { Asset } from "@/api/types/asset-types";
 import { MyDataTable } from "@/components/global/my-data-table/MyDataTable";
 import { useDataTable } from "@/components/global/my-data-table/hooks/useDataTable";
 import { Button } from "@/components/ui/button";
@@ -15,7 +16,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
-import { Asset } from "@/lib/types/asset-type";
 
 export const DataTable = ({ data }: { data: Asset[] }) => {
   const t = useTranslations("common");

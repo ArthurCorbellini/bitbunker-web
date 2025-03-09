@@ -1,7 +1,7 @@
 import { getTranslations } from "next-intl/server";
 
+import { AssetService } from "@/api/services/AssetService";
 import { H2, Muted } from "@/components/global/my-typography";
-import { assetService } from "@/lib/api/assetService";
 import { DataTable } from "./_components/DataTable";
 import { FormDialog } from "./_components/FormDialog";
 import { AssetProvider } from "./_hooks/useAsset";
@@ -9,7 +9,7 @@ import { AssetProvider } from "./_hooks/useAsset";
 export default async function Page() {
   const t = await getTranslations("common");
   const t2 = await getTranslations("assets");
-  const response = await assetService.fetchAll();
+  const response = await AssetService.fetchAll();
 
   if (!response.success) {
     //to-do notificação

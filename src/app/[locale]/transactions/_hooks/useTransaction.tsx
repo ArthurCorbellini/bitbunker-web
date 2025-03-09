@@ -1,7 +1,8 @@
 "use client"
 
+import { AssetService } from "@/api/services/AssetService"
 import { ComboboxOptions } from "@/components/global/my-combobox"
-import { assetService } from "@/lib/api/assetService"
+
 import { createContext, ReactNode, useContext, useEffect, useState } from "react"
 
 interface Props {
@@ -21,7 +22,7 @@ export const TransactionProvider = ({ children }: { children: ReactNode }) => {
   const [assetComboboxOptions, setAssetComboboxOptions] = useState<ComboboxOptions[]>([]);
 
   const loadAssetCombobox = async () => {
-    const response = await assetService.fetch();
+    const response = await AssetService.fetchAll();
     if (!response.success) {
       // to-do handle error
     }

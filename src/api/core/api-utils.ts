@@ -1,19 +1,6 @@
+import { ApiResponse } from "./api-types";
 
 const root = process.env.NEXT_PUBLIC_API_URL;
-
-export interface ApiResponse<T = null> {
-  success: boolean;
-  apiPath: string;
-  timestamp: string;
-  error: ApiResponseError | null;
-  data: T | null;
-}
-
-export interface ApiResponseError {
-  code: string;
-  message: string;
-  details?: Record<string, string[]> | string;
-}
 
 export enum ApiErrorCode {
   RESOURCE_VALIDATION_ERROR,
