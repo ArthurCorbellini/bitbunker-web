@@ -8,6 +8,7 @@ import { ComboboxOptions } from "@/components/global/my-combobox"
 import { createContext, ReactNode, useContext, useEffect, useState } from "react"
 
 interface Props {
+  isLoading: boolean,
   transactions: Transaction[],
   assetComboboxOptions: ComboboxOptions[],
 }
@@ -22,34 +23,40 @@ export const useTransaction = (): Props => {
 export const TransactionContext = createContext<Props | undefined>(undefined);
 
 export const TransactionProvider = ({ children }: { children: ReactNode }) => {
+  const [isLoading, setLoading] = useState(false);
   const [transactions, setTransactions] = useState<Transaction[]>([])
   const [assetComboboxOptions, setAssetComboboxOptions] = useState<ComboboxOptions[]>([]);
 
   const loadTransactions = async () => {
-    const response = await TransactionService.fetchAll();
-
-    if (!response.success) {
-      //to-do notificação
-      response.error
+    setLoading(true);
+    try {
+      const response = await TransactionService.fetchAll();
+      if (!response.success) {
+        //to-do notificação
+        response.error
+      }
+      setTransactions(response.data);
+    } finally {
+      setLoading(false);
     }
-
-    setTransactions(response.data);
   }
 
   const loadAssetCombobox = async () => {
-    const response = await AssetService.fetchAll();
-    if (!response.success) {
-      // to-do handle error
-    }
-
-    const assets = response.data.map(p => {
-      return {
-        label: `${p.symbol} - ${p.name}`,
-        value: p.id.toString()
+    setLoading(true);
+    try {
+      const response = await AssetService.fetchAll();
+      if (!response.success) {
+        // to-do handle error
       }
-    });
-
-    setAssetComboboxOptions(assets);
+      setAssetComboboxOptions(
+        response.data.map(p => ({
+          label: `${p.symbol} - ${p.name}`,
+          value: p.id.toString()
+        }))
+      );
+    } finally {
+      setLoading(false);
+    }
   }
 
   useEffect(() => {
@@ -58,10 +65,12 @@ export const TransactionProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   return (
-    <TransactionContext.Provider value={{
-      transactions,
-      assetComboboxOptions
-    }}>
+    <TransactionContext.Provider
+      value={{
+        isLoading,
+        transactions,
+        assetComboboxOptions
+      }}>
       {children}
     </TransactionContext.Provider>
   );

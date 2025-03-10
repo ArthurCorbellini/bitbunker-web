@@ -2,6 +2,8 @@
 
 import { Plus } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 
 import { MyCombobox } from "@/components/global/my-combobox";
 import { MyForm } from "@/components/global/my-form";
@@ -19,15 +21,12 @@ import {
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { useAsset } from "../_hooks/useAsset";
 
 export const FormDialog = () => {
   const t = useTranslations("common");
   const t2 = useTranslations("assets");
-  const { typeComboboxOptions, classificationComboboxOptions } = useAsset();
+  const { isLoading, typeComboboxOptions, classificationComboboxOptions } = useAsset();
 
   const FormSchema = z.object({
     ucid: z
@@ -55,14 +54,10 @@ export const FormDialog = () => {
     }
   })
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const onSubmit = async (values: FormRequest) => {
-    setIsSubmitting(true);
     // const response = await orderApi.createOrder(values);
     console.log(values)
     // to-do toast de sucesso ou erro 
-
-    setIsSubmitting(false);
   }
 
   return (

@@ -1,6 +1,6 @@
 import { ApiResponse } from "../core/api-types";
 import { httpClient } from "../core/api-utils";
-import { Asset } from "../types/asset-types";
+import { Asset, CreateAssetParams } from "../types/asset-types";
 
 export class AssetService {
   static async create(data: Asset): Promise<ApiResponse> {
@@ -13,27 +13,30 @@ export class AssetService {
       apiPath: "",
       timestamp: "",
       error: null,
-      data: [{
-        id: 1,
-        ucid: 1,
-        name: "Bitcoin",
-        symbol: "BTC",
-        type: "Crypto",
-        classification: "Tier S"
-      },
-      {
-        id: 2,
-        ucid: 2,
-        name: "Real",
-        symbol: "BRL",
-        type: "Fiat",
-        classification: "Caixa"
-      },
+      data: [
+        {
+          id: 1,
+          ucid: 1,
+          name: "Bitcoin",
+          symbol: "BTC",
+          type: "Crypto",
+          classification: "Tier S"
+        },
+        {
+          id: 2,
+          ucid: 2,
+          name: "Real",
+          symbol: "BRL",
+          type: "Fiat",
+          classification: "Caixa"
+        },
       ]
     }
 
     return response
-    // to-do
-    // return httpClient.get("/asset");
+  }
+
+  static async getCreateParams(): Promise<ApiResponse<CreateAssetParams>> {
+    return httpClient.get("/asset/create-params");
   }
 }

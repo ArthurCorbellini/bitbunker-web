@@ -1,7 +1,6 @@
 import { getTranslations } from "next-intl/server";
 
 import { H2, Muted } from "@/components/global/my-typography";
-
 import { DataTable } from "./_components/DataTable";
 import { FormDialog } from "./_components/FormDialog";
 import { TransactionProvider } from "./_hooks/useTransaction";
@@ -9,8 +8,6 @@ import { TransactionProvider } from "./_hooks/useTransaction";
 export default async function Page() {
   const t = await getTranslations("common");
   const t2 = await getTranslations("transactions");
-
-
 
   return (
     <TransactionProvider>
@@ -22,5 +19,4 @@ export default async function Page() {
       <DataTable />
     </TransactionProvider>
   );
-
 }

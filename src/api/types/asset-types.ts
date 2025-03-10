@@ -6,3 +6,14 @@ export interface Asset {
   type: string;
   classification: string;
 }
+
+export interface CreateAssetParams {
+  typeOptions: {
+    key: string,
+    value: string,
+  }[],
+  classificationOptions: {
+    key: string,
+    value: string,
+  }[],
+}
