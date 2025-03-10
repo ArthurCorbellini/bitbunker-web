@@ -7,6 +7,14 @@ export interface Asset {
   classification: string;
 }
 
+export interface CreateAsset {
+  ucid: number;
+  name: string;
+  symbol: string;
+  type: string;
+  classification: string;
+}
+
 export interface CreateAssetParams {
   typeOptions: {
     key: string,

@@ -1,9 +1,10 @@
 "use client"
 
-import { AssetService } from "@/api/services/AssetService";
-import { Asset } from "@/api/types/asset-types";
-import { ComboboxOptions } from "@/components/global/my-combobox";
 import { createContext, ReactNode, useContext, useEffect, useState } from "react";
+
+import { AssetService } from "@/api/services/AssetService";
+import { Asset, CreateAsset } from "@/api/types/asset-types";
+import { ComboboxOptions } from "@/components/global/my-combobox";
 
 const AssetContext = createContext<Props | undefined>(undefined);
 
@@ -12,6 +13,7 @@ interface Props {
   assets: Asset[],
   typeComboboxOptions: ComboboxOptions[],
   classificationComboboxOptions: ComboboxOptions[],
+  create: (asset: CreateAsset) => void,
 }
 
 export const useAsset = (): Props => {
@@ -26,6 +28,21 @@ export const AssetProvider = ({ children }: { children: ReactNode }) => {
   const [assets, setAssets] = useState<Asset[]>([])
   const [typeComboboxOptions, setTypeComboboxOptions] = useState<ComboboxOptions[]>([]);
   const [classificationComboboxOptions, setClassificationComboboxOptions] = useState<ComboboxOptions[]>([]);
+
+  const create = async (asset: CreateAsset) => {
+    setLoading(true);
+    try {
+      const response = await AssetService.create(asset);
+      if (!response.success) {
+        //to-do notificação
+        response.error
+      }
+
+      // to-do notificação sucesso
+    } finally {
+      setLoading(false);
+    }
+  }
 
   const loadAssets = async () => {
     setLoading(true);
@@ -66,9 +83,6 @@ export const AssetProvider = ({ children }: { children: ReactNode }) => {
     }
   }
 
-  // to-do se o back trocar os valores, acho que as listas vão permanecer inalteradas... validar
-  // uma opção é tirar o hook e retornar direto a consulta
-  // validar melhor abordagem, e ajustar nas transações também
   useEffect(() => {
     loadAssets();
     loadCreateParams();
@@ -80,7 +94,8 @@ export const AssetProvider = ({ children }: { children: ReactNode }) => {
         isLoading,
         assets,
         typeComboboxOptions,
-        classificationComboboxOptions
+        classificationComboboxOptions,
+        create,
       }}>
       {children}
     </AssetContext.Provider>

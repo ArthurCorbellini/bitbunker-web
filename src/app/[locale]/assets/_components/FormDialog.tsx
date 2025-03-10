@@ -26,7 +26,12 @@ import { useAsset } from "../_hooks/useAsset";
 export const FormDialog = () => {
   const t = useTranslations("common");
   const t2 = useTranslations("assets");
-  const { isLoading, typeComboboxOptions, classificationComboboxOptions } = useAsset();
+  const {
+    isLoading,
+    typeComboboxOptions,
+    classificationComboboxOptions,
+    create
+  } = useAsset();
 
   const FormSchema = z.object({
     ucid: z
@@ -54,10 +59,8 @@ export const FormDialog = () => {
     }
   })
 
-  const onSubmit = async (values: FormRequest) => {
-    // const response = await orderApi.createOrder(values);
-    console.log(values)
-    // to-do toast de sucesso ou erro 
+  const onSubmit = (values: FormRequest) => {
+    create(values);
   }
 
   return (
