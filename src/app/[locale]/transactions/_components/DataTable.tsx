@@ -10,9 +10,11 @@ import { useDataTable } from "@/components/global/my-data-table/hooks/useDataTab
 import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { convertCurrency, formatDate } from "@/utils/string-utils";
+import { useTransaction } from "../_hooks/useTransaction";
 
-export const DataTable = ({ data }: { data: Transaction[] }) => {
+export const DataTable = () => {
   const t = useTranslations("common");
+  const { transactions } = useTransaction();
 
   const columns: ColumnDef<Transaction>[] = [
     {
@@ -81,7 +83,7 @@ export const DataTable = ({ data }: { data: Transaction[] }) => {
     },
   ]
 
-  const { table } = useDataTable({ columns, data })
+  const { table } = useDataTable({ columns, data: transactions })
 
   return (
     <MyDataTable table={table} />

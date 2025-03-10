@@ -16,10 +16,12 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
+import { useAsset } from "../_hooks/useAsset";
 
-export const DataTable = ({ data }: { data: Asset[] }) => {
+export const DataTable = () => {
   const t = useTranslations("common");
   const t2 = useTranslations("assets");
+  const { assets } = useAsset();
 
   const columns: ColumnDef<Asset>[] = [
     {
@@ -68,7 +70,7 @@ export const DataTable = ({ data }: { data: Asset[] }) => {
     },
   ]
 
-  const { table } = useDataTable({ columns, data })
+  const { table } = useDataTable({ columns, data: assets })
 
   return (
     <MyDataTable table={table} />

@@ -1,13 +1,18 @@
-import { CreateRequest, CreateResponse, FetchResponse } from "../types/transaction-types";
+import { ApiResponse } from "../core/api-types";
+import { httpClient } from "../core/api-utils";
+import { CreateRequest, Transaction } from "../types/transaction-types";
 
 export class TransactionService {
-  static async create(payload: CreateRequest): Promise<CreateResponse> {
-    return { success: true, data: "success" };
+  static async create(payload: CreateRequest): Promise<ApiResponse> {
+    return httpClient.post("/transaction", payload);
   }
 
-  static async fetchAll(): Promise<FetchResponse> {
-    const response: FetchResponse = {
+  static async fetchAll(): Promise<ApiResponse<Transaction[]>> {
+    const response: ApiResponse<Transaction[]> = {
       success: true,
+      apiPath: "",
+      timestamp: "",
+      error: null,
       data: [
         {
           id: 1,
@@ -54,6 +59,6 @@ export class TransactionService {
       ]
     }
 
-    return { success: true, data: response.data };
+    return response;
   }
 }

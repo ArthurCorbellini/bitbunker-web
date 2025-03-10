@@ -3,7 +3,7 @@ import { httpClient } from "../core/api-utils";
 import { Asset } from "../types/asset-types";
 
 export class AssetService {
-  static async create(data: Asset): Promise<ApiResponse<string>> {
+  static async create(data: Asset): Promise<ApiResponse> {
     return httpClient.post("/asset", data);
   }
 

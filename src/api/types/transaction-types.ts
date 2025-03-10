@@ -14,12 +14,6 @@ export interface Transaction {
   notes: string,
 }
 
-export interface FetchResponse {
-  success: boolean;
-  data?: Transaction[];
-  error?: string;
-}
-
 export interface CreateRequest {
 
 }
