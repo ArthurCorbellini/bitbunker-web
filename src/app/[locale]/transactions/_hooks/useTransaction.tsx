@@ -44,7 +44,7 @@ export const TransactionProvider = ({ children }: { children: ReactNode }) => {
   const loadAssetCombobox = async () => {
     setLoading(true);
     try {
-      const response = await AssetService.fetchAll();
+      const response = await AssetService.fetchAllAssets();
       if (!response.success) {
         // to-do handle error
       }

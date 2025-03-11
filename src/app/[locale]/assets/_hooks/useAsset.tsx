@@ -32,13 +32,13 @@ export const AssetProvider = ({ children }: { children: ReactNode }) => {
   const create = async (asset: CreateAsset) => {
     setLoading(true);
     try {
-      const response = await AssetService.create(asset);
+      const response = await AssetService.createAsset(asset);
       if (!response.success) {
         //to-do notificação
         response.error
       }
 
-      // to-do notificação sucesso
+      loadAssets();
     } finally {
       setLoading(false);
     }
@@ -47,7 +47,7 @@ export const AssetProvider = ({ children }: { children: ReactNode }) => {
   const loadAssets = async () => {
     setLoading(true);
     try {
-      const response = await AssetService.fetchAll();
+      const response = await AssetService.fetchAllAssets();
       if (!response.success) {
         //to-do notificação
         response.error
@@ -61,21 +61,21 @@ export const AssetProvider = ({ children }: { children: ReactNode }) => {
   const loadCreateParams = async () => {
     setLoading(true);
     try {
-      const response = await AssetService.getCreateParams();
+      const response = await AssetService.getCreateAssetParams();
       if (!response.success) {
         //to-do notificação
         response.error
       }
       setTypeComboboxOptions(
         response.data.typeOptions.map(p => ({
-          label: `${p.key} - ${p.value}`,
-          value: p.key.toString()
+          label: p.value,
+          value: p.key,
         }))
       );
       setClassificationComboboxOptions(
         response.data.classificationOptions.map(p => ({
-          label: `${p.key} - ${p.value}`,
-          value: p.key.toString()
+          label: p.value,
+          value: p.key,
         }))
       );
     } finally {

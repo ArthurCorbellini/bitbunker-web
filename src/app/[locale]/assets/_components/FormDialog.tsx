@@ -47,9 +47,9 @@ export const FormDialog = () => {
       .string(),
   });
 
-  type FormRequest = z.infer<typeof FormSchema>;
+  type FormType = z.infer<typeof FormSchema>;
 
-  const form = useForm<FormRequest>({
+  const form = useForm<FormType>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
       ucid: undefined,
@@ -60,7 +60,7 @@ export const FormDialog = () => {
     }
   })
 
-  const onSubmit = (values: FormRequest) => {
+  const onSubmit = (values: FormType) => {
     create(values as CreateAsset);
   }
 

@@ -3,15 +3,15 @@ import { httpClient } from "../core/api-utils";
 import { Asset, CreateAsset, CreateAssetParams } from "../types/asset-types";
 
 export class AssetService {
-  static async fetchAll(): Promise<ApiResponse<Asset[]>> {
+  static async fetchAllAssets(): Promise<ApiResponse<Asset[]>> {
     return httpClient.get("/asset");
   }
 
-  static async create(data: CreateAsset): Promise<ApiResponse> {
+  static async createAsset(data: CreateAsset): Promise<ApiResponse> {
     return httpClient.post("/asset", data);
   }
 
-  static async getCreateParams(): Promise<ApiResponse<CreateAssetParams>> {
+  static async getCreateAssetParams(): Promise<ApiResponse<CreateAssetParams>> {
     return httpClient.get("/asset/create-params");
   }
 }
