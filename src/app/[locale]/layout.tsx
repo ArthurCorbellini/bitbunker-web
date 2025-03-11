@@ -5,6 +5,7 @@ import { getMessages } from "next-intl/server";
 import { ThemeProvider } from "next-themes";
 import { notFound } from "next/navigation";
 
+import { Toaster } from "@/components/ui/sonner";
 import MainHeader from "./_components/main-header/main-header";
 import "./globals.css";
 
@@ -40,6 +41,7 @@ export default async function RootLayout({
             <main className="p-8">
               {children}
             </main>
+            <Toaster />
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>
