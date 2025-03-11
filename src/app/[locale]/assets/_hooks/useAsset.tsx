@@ -4,7 +4,9 @@ import { createContext, ReactNode, useContext, useEffect, useState } from "react
 
 import { AssetService } from "@/api/services/AssetService";
 import { Asset, CreateAsset } from "@/api/types/asset-types";
+import { useToast } from "@/components/global/hooks/useToast";
 import { ComboboxOptions } from "@/components/global/my-combobox";
+import { useTranslations } from "next-intl";
 
 const AssetContext = createContext<Props | undefined>(undefined);
 
@@ -24,20 +26,23 @@ export const useAsset = (): Props => {
 }
 
 export const AssetProvider = ({ children }: { children: ReactNode }) => {
+  const t2 = useTranslations("assets");
   const [isLoading, setLoading] = useState(false);
   const [assets, setAssets] = useState<Asset[]>([])
   const [typeComboboxOptions, setTypeComboboxOptions] = useState<ComboboxOptions[]>([]);
   const [classificationComboboxOptions, setClassificationComboboxOptions] = useState<ComboboxOptions[]>([]);
+  const { successToast, errorToast } = useToast();
 
   const create = async (asset: CreateAsset) => {
     setLoading(true);
     try {
       const response = await AssetService.createAsset(asset);
       if (!response.success) {
-        //to-do notificação
-        response.error
+        errorToast(); // to-do o erro pode ser tratado melhor
+        return;
       }
 
+      successToast(t2("createToastDescription"));
       loadAssets();
     } finally {
       setLoading(false);
@@ -49,8 +54,8 @@ export const AssetProvider = ({ children }: { children: ReactNode }) => {
     try {
       const response = await AssetService.fetchAllAssets();
       if (!response.success) {
-        //to-do notificação
-        response.error
+        errorToast(); // to-do o erro pode ser tratado melhor
+        return;
       }
       setAssets(response.data);
     } finally {
@@ -63,8 +68,8 @@ export const AssetProvider = ({ children }: { children: ReactNode }) => {
     try {
       const response = await AssetService.getCreateAssetParams();
       if (!response.success) {
-        //to-do notificação
-        response.error
+        errorToast(); // to-do o erro pode ser tratado melhor
+        return;
       }
       setTypeComboboxOptions(
         response.data.typeOptions.map(p => ({

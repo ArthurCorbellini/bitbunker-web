@@ -28,6 +28,7 @@
     "selectClassification": "Selecione a classificação...",
     "selectClassificationEmpty": "Nenhuma classificação encontrada.",
     "save": "Salvar Ativo",
+    "createToastDescription": "Ativo inserido com sucesso!",
     "": ""
   },
   "transactions": {
@@ -73,6 +74,15 @@
     },
     "myDateTimePicker": {
       "placeholder": "Selecionar data e hora..."
+    },
+    "toast": {
+      "success": "Operação concluída!",
+      "error": "Falha na operação!",
+      "warning": "Atenção!",
+      "info": "Importante!",
+      "loading": "Carregando...",
+      "defaultErrorMessage": "Favor contatar o time de desenvolvimento.",
+      "": ""
     }
   },
   "zodErrors": {
