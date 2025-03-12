@@ -1,5 +1,6 @@
 import { ApiResponseError } from "@/api/core/api-types";
 import { useTranslations } from "next-intl";
+import { ReactNode } from "react";
 import { toast } from "sonner";
 
 export const useToast = () => {
@@ -7,28 +8,36 @@ export const useToast = () => {
 
   const handleApiErrorToast = (apiError: ApiResponseError | null) => {
     if (apiError?.display)
-      apiError.messages.forEach(e => errorToast(e));
+      errorToast(
+        apiError.messages.length > 1 ? (
+          apiError.messages.map((p, index) => (
+            <p key={index}>• {p}</p>
+          ))
+        ) : (
+          <p>{apiError.messages[0]}</p>
+        )
+      );
     else
       errorToast(t("defaultErrorMessage"));
   }
 
-  const successToast = (description: string) => {
+  const successToast = (description: ReactNode) => {
     toast.success(t("success"), { description })
   }
 
-  const errorToast = (description: string) => {
+  const errorToast = (description: ReactNode) => {
     toast.error(t("error"), { description })
   }
 
-  const warningToast = (description: string) => {
+  const warningToast = (description: ReactNode) => {
     toast.warning(t("warning"), { description })
   }
 
-  const infoToast = (description: string) => {
+  const infoToast = (description: ReactNode) => {
     toast.info(t("info"), { description })
   }
 
-  const loadingToast = (description: string) => {
+  const loadingToast = (description: ReactNode) => {
     toast.loading(t("loading"), { description })
   }
 
