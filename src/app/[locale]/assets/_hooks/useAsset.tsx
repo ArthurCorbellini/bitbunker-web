@@ -31,17 +31,16 @@ export const AssetProvider = ({ children }: { children: ReactNode }) => {
   const [assets, setAssets] = useState<Asset[]>([])
   const [typeComboboxOptions, setTypeComboboxOptions] = useState<ComboboxOptions[]>([]);
   const [classificationComboboxOptions, setClassificationComboboxOptions] = useState<ComboboxOptions[]>([]);
-  const { successToast, errorToast } = useToast();
+  const { successToast, handleApiErrorToast } = useToast();
 
   const create = async (asset: CreateAsset) => {
     setLoading(true);
     try {
       const response = await AssetService.createAsset(asset);
       if (!response.success) {
-        errorToast(); // to-do o erro pode ser tratado melhor
+        handleApiErrorToast(response.error);
         return;
       }
-
       successToast(t2("createToastDescription"));
       loadAssets();
     } finally {
@@ -54,7 +53,7 @@ export const AssetProvider = ({ children }: { children: ReactNode }) => {
     try {
       const response = await AssetService.fetchAllAssets();
       if (!response.success) {
-        errorToast(); // to-do o erro pode ser tratado melhor
+        handleApiErrorToast(response.error);
         return;
       }
       setAssets(response.data);
@@ -68,7 +67,7 @@ export const AssetProvider = ({ children }: { children: ReactNode }) => {
     try {
       const response = await AssetService.getCreateAssetParams();
       if (!response.success) {
-        errorToast(); // to-do o erro pode ser tratado melhor
+        handleApiErrorToast(response.error);
         return;
       }
       setTypeComboboxOptions(

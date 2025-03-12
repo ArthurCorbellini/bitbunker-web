@@ -8,6 +8,6 @@ export interface ApiResponse<T = null> {
 
 export interface ApiResponseError {
   code: string;
-  message: string;
-  details?: Record<string, string[]> | string;
+  messages: string[];
+  display: boolean;
 }

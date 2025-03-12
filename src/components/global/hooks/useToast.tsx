@@ -1,37 +1,35 @@
+import { ApiResponseError } from "@/api/core/api-types";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 
 export const useToast = () => {
   const t = useTranslations("globalComponents.toast");
 
-  const successToast = (description: string) => {
-    toast.success(t("success"), {
-      description,
-    })
+  const handleApiErrorToast = (apiError: ApiResponseError | null) => {
+    if (apiError?.display)
+      apiError.messages.forEach(e => errorToast(e));
+    else
+      errorToast(t("defaultErrorMessage"));
   }
 
-  const errorToast = (description?: string) => {
-    toast.error(t("error"), {
-      description: description ?? t("defaultErrorMessage")
-    })
+  const successToast = (description: string) => {
+    toast.success(t("success"), { description })
+  }
+
+  const errorToast = (description: string) => {
+    toast.error(t("error"), { description })
   }
 
   const warningToast = (description: string) => {
-    toast.warning(t("warning"), {
-      description,
-    })
+    toast.warning(t("warning"), { description })
   }
 
   const infoToast = (description: string) => {
-    toast.info(t("info"), {
-      description,
-    })
+    toast.info(t("info"), { description })
   }
 
   const loadingToast = (description: string) => {
-    toast.loading(t("loading"), {
-      description,
-    })
+    toast.loading(t("loading"), { description })
   }
 
   return {
@@ -40,5 +38,6 @@ export const useToast = () => {
     warningToast,
     infoToast,
     loadingToast,
+    handleApiErrorToast,
   };
 }
