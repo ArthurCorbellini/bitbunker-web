@@ -5,6 +5,7 @@ import { createContext, ReactNode, useContext, useEffect, useState } from "react
 import { AssetService } from "@/api/services/AssetService"
 import { TransactionService } from "@/api/services/TransactionService"
 import { Transaction } from "@/api/types/transaction-types"
+import { useToast } from "@/components/global/hooks/useToast"
 import { ComboboxOptions } from "@/components/global/my-combobox"
 
 interface Props {
@@ -26,14 +27,15 @@ export const TransactionProvider = ({ children }: { children: ReactNode }) => {
   const [isLoading, setLoading] = useState(false);
   const [transactions, setTransactions] = useState<Transaction[]>([])
   const [assetComboboxOptions, setAssetComboboxOptions] = useState<ComboboxOptions[]>([]);
+  const { handleApiErrorToast } = useToast();
 
   const loadTransactions = async () => {
     setLoading(true);
     try {
       const response = await TransactionService.fetchAll();
       if (!response.success) {
-        //to-do notificação
-        response.error
+        handleApiErrorToast(response.error);
+        return;
       }
       setTransactions(response.data);
     } finally {
@@ -46,7 +48,8 @@ export const TransactionProvider = ({ children }: { children: ReactNode }) => {
     try {
       const response = await AssetService.fetchAllAssets();
       if (!response.success) {
-        // to-do handle error
+        handleApiErrorToast(response.error);
+        return;
       }
       setAssetComboboxOptions(
         response.data.map(p => ({
