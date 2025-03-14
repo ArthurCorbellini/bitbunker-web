@@ -87,8 +87,6 @@
   },
   "zodErrors": {
     "notEmpty": "Não pode ser vazio.",
-    "mustBeNumber": "Precisa ser um número.",
-    "mustBePositiveNumber": "Precisa ser um número positivo.",
     "textLengthLessThan": "Texto não pode ser inferior a {count} caracteres."
   }
 }

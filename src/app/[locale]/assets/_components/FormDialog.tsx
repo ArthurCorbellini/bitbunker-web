@@ -1,5 +1,6 @@
 "use client"
 
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Plus } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
@@ -21,12 +22,12 @@ import {
 } from "@/components/ui/dialog";
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { useAsset } from "../_hooks/useAsset";
 
 export const FormDialog = () => {
   const t = useTranslations("common");
   const t2 = useTranslations("assets");
+  const tz = useTranslations("zodErrors");
   const {
     isLoading,
     typeComboboxOptions,
@@ -35,16 +36,11 @@ export const FormDialog = () => {
   } = useAsset();
 
   const FormSchema = z.object({
-    ucid: z
-      .number(),
-    name: z
-      .string(),
-    symbol: z
-      .string(),
-    type: z
-      .string(),
-    classification: z
-      .string(),
+    ucid: z.string().min(1, tz("notEmpty")),
+    name: z.string().min(1, tz("notEmpty")),
+    symbol: z.string().min(1, tz("notEmpty")),
+    type: z.string().min(1, tz("notEmpty")),
+    classification: z.string().min(1, tz("notEmpty")),
   });
 
   type FormType = z.infer<typeof FormSchema>;
@@ -92,8 +88,8 @@ export const FormDialog = () => {
                       <FormLabel>{t2("ucid")}</FormLabel>
                       <FormControl>
                         <MyInputNumber
+                          type="string"
                           decimalPlaces={0}
-                          placeholder=""
                           value={field.value}
                           onChange={field.onChange} />
                       </FormControl>

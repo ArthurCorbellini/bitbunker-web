@@ -8,7 +8,7 @@ export interface Asset {
 }
 
 export interface CreateAsset {
-  ucid: number;
+  ucid: string;
   name: string;
   symbol: string;
   type: string;
