@@ -48,7 +48,7 @@ export const FormDialog = () => {
   const form = useForm<FormType>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      ucid: undefined,
+      ucid: "",
       name: "",
       symbol: "",
       type: "",
