@@ -1,6 +1,6 @@
 import { ApiResponse } from "../core/api-types";
 import { httpClient } from "../core/api-utils";
-import { Asset, CreateAsset, CreateAssetParams } from "../types/asset-types";
+import { Asset, CreateAsset, CreateAssetParams } from "../types/asset";
 
 export class AssetService {
   static async fetchAllAssets(): Promise<ApiResponse<Asset[]>> {

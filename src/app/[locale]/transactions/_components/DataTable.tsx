@@ -4,7 +4,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { MoreHorizontal } from "lucide-react";
 import { useTranslations } from "next-intl";
 
-import { Transaction } from "@/api/types/transaction-types";
+import { Transaction } from "@/api/types/transaction";
 import { MyDataTable } from "@/components/global/my-data-table/MyDataTable";
 import { useDataTable } from "@/components/global/my-data-table/hooks/useDataTable";
 import { Button } from "@/components/ui/button";

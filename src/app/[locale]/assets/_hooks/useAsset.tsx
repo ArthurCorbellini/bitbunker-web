@@ -3,7 +3,7 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 
 import { AssetService } from "@/api/services/AssetService";
-import { Asset, CreateAsset } from "@/api/types/asset-types";
+import { Asset, CreateAsset } from "@/api/types/asset";
 import { useToast } from "@/components/global/hooks/useToast";
 import { ComboboxOptions } from "@/components/global/my-combobox";
 import { useTranslations } from "next-intl";

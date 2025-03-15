@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import { CreateAsset } from "@/api/types/asset-types";
+import { CreateAsset } from "@/api/types/asset";
 import { MyCombobox } from "@/components/global/my-combobox";
 import { MyForm } from "@/components/global/my-form";
 import { MyInputNumber } from "@/components/global/my-inputs/MyInputNumber";
