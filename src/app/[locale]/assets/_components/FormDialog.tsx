@@ -7,9 +7,9 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { CreateAsset } from "@/api/types/asset";
-import { MyCombobox } from "@/components/global/my-combobox";
-import { MyForm } from "@/components/global/my-form";
-import { MyInputNumber } from "@/components/global/my-inputs/MyInputNumber";
+import { MyCombobox } from "@/components/generic/my-combobox";
+import { MyForm } from "@/components/generic/my-form";
+import { MyInputNumber } from "@/components/generic/my-inputs/MyInputNumber";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,

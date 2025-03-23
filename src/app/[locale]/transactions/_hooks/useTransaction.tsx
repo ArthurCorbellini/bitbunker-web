@@ -5,8 +5,8 @@ import { createContext, ReactNode, useContext, useEffect, useState } from "react
 import { AssetService } from "@/api/services/AssetService"
 import { TransactionService } from "@/api/services/TransactionService"
 import { Transaction } from "@/api/types/transaction"
-import { useToast } from "@/components/global/hooks/useToast"
-import { ComboboxOptions } from "@/components/global/my-combobox"
+import { useToast } from "@/components/generic/hooks/useToast"
+import { ComboboxOptions } from "@/components/generic/my-combobox"
 
 interface Props {
   isLoading: boolean,

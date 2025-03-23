@@ -1,6 +1,6 @@
 import { getTranslations } from "next-intl/server";
 
-import { H2, Muted } from "@/components/global/my-typography";
+import { H2, Muted } from "@/components/generic/my-typography";
 import { DataTable } from "./_components/DataTable";
 import { FormDialog } from "./_components/FormDialog";
 import { TransactionProvider } from "./_hooks/useTransaction";
