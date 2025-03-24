@@ -70,7 +70,7 @@ export const DataTable = () => {
     },
   ]
 
-  const { table } = useDataTable({ columns, data: assets })
+  const { table } = useDataTable({ columns, data: assets.data })
 
   return (
     <MyDataTable table={table} />

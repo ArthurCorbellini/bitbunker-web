@@ -10,8 +10,7 @@ import { useTranslations } from "next-intl";
 const AssetContext = createContext<Props | undefined>(undefined);
 
 interface Props {
-  isLoading: boolean,
-  assets: Asset[],
+  assets: { data: Asset[], isLoading: boolean },
   create: (asset: CreateAsset) => void,
 }
 
@@ -24,12 +23,18 @@ export const useAsset = (): Props => {
 
 export const AssetProvider = ({ children }: { children: ReactNode }) => {
   const t2 = useTranslations("assets");
-  const [isLoading, setLoading] = useState(false);
-  const [assets, setAssets] = useState<Asset[]>([])
   const { successToast, handleApiErrorToast } = useToast();
 
+  const [assets, setAssets] = useState<{
+    isLoading: boolean,
+    data: Asset[]
+  }>({
+    isLoading: true,
+    data: []
+  });
+
   const create = async (asset: CreateAsset) => {
-    setLoading(true);
+    setAssets(prev => ({ ...prev, isLoading: true }));
     try {
       const response = await AssetService.createAsset(asset);
       if (!response.success) {
@@ -39,21 +44,21 @@ export const AssetProvider = ({ children }: { children: ReactNode }) => {
       successToast(t2("createToastDescription"));
       loadAssets();
     } finally {
-      setLoading(false);
+      setAssets(prev => ({ ...prev, isLoading: false }));
     }
   }
 
   const loadAssets = async () => {
-    setLoading(true);
+    setAssets(prev => ({ ...prev, isLoading: true }));
     try {
       const response = await AssetService.fetchAllAssets();
       if (!response.success) {
         handleApiErrorToast(response.error);
         return;
       }
-      setAssets(response.data);
+      setAssets({ data: response.data, isLoading: false });
     } finally {
-      setLoading(false);
+      setAssets(prev => ({ ...prev, isLoading: false }));
     }
   }
 
@@ -64,7 +69,6 @@ export const AssetProvider = ({ children }: { children: ReactNode }) => {
   return (
     <AssetContext.Provider
       value={{
-        isLoading,
         assets,
         create,
       }}>
