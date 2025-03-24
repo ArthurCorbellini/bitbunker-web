@@ -3,6 +3,7 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { MoreHorizontal } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { useEffect } from "react";
 
 import { Asset } from "@/api/types/asset";
 import { MyDataTable } from "@/components/generic/my-data-table/MyDataTable";
@@ -21,7 +22,7 @@ import { useAsset } from "../_hooks/useAsset";
 export const DataTable = () => {
   const t = useTranslations("common");
   const t2 = useTranslations("assets");
-  const { assets } = useAsset();
+  const { assets, loadAssets } = useAsset();
 
   const columns: ColumnDef<Asset>[] = [
     {
@@ -71,6 +72,10 @@ export const DataTable = () => {
   ]
 
   const { table } = useDataTable({ columns, data: assets.data })
+
+  useEffect(() => {
+    loadAssets()
+  }, [])
 
   return (
     <MyDataTable table={table} />

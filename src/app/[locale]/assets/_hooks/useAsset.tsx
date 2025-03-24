@@ -1,6 +1,6 @@
 "use client"
 
-import { createContext, ReactNode, useContext, useEffect, useState } from "react";
+import { createContext, ReactNode, useContext, useState } from "react";
 
 import { AssetService } from "@/api/services/AssetService";
 import { Asset, CreateAsset } from "@/api/types/asset";
@@ -12,6 +12,7 @@ const AssetContext = createContext<Props | undefined>(undefined);
 interface Props {
   assets: { data: Asset[], isLoading: boolean },
   create: (asset: CreateAsset) => void,
+  loadAssets: () => void,
 }
 
 export const useAsset = (): Props => {
@@ -62,15 +63,12 @@ export const AssetProvider = ({ children }: { children: ReactNode }) => {
     }
   }
 
-  useEffect(() => {
-    loadAssets();
-  }, []);
-
   return (
     <AssetContext.Provider
       value={{
         assets,
         create,
+        loadAssets
       }}>
       {children}
     </AssetContext.Provider>
