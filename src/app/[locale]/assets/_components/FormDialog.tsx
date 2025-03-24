@@ -7,7 +7,8 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { CreateAsset } from "@/api/types/asset";
-import { MyCombobox } from "@/components/generic/my-combobox";
+import { MyAssetClassificationCombobox } from "@/components/api-custom/MyAssetClassificationCombobox";
+import { MyAssetTypeCombobox } from "@/components/api-custom/MyAssetTypeCombobox";
 import { MyForm } from "@/components/generic/my-form";
 import { MyInputNumber } from "@/components/generic/my-inputs/MyInputNumber";
 import { Button } from "@/components/ui/button";
@@ -28,12 +29,7 @@ export const FormDialog = () => {
   const t = useTranslations("common");
   const t2 = useTranslations("assets");
   const tz = useTranslations("zodErrors");
-  const {
-    isLoading,
-    typeComboboxOptions,
-    classificationComboboxOptions,
-    create
-  } = useAsset();
+  const { create } = useAsset();
 
   const FormSchema = z.object({
     ucid: z.string().min(1, tz("notEmpty")),
@@ -134,11 +130,7 @@ export const FormDialog = () => {
                   <FormItem>
                     <FormLabel>{t("type")}</FormLabel>
                     <FormControl>
-                      <MyCombobox
-                        onSelect={field.onChange}
-                        options={typeComboboxOptions}
-                        placeholder={t2("selectType")}
-                        emptyMessage={t2("selectTypeEmpty")} />
+                      <MyAssetTypeCombobox onSelect={field.onChange} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -152,11 +144,7 @@ export const FormDialog = () => {
                   <FormItem>
                     <FormLabel>{t2("classification")}</FormLabel>
                     <FormControl>
-                      <MyCombobox
-                        onSelect={field.onChange}
-                        options={classificationComboboxOptions}
-                        placeholder={t2("selectClassification")}
-                        emptyMessage={t2("selectClassificationEmpty")} />
+                      <MyAssetClassificationCombobox onSelect={field.onChange} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

@@ -1,17 +1,21 @@
 import { ApiResponse } from "../core/api-types";
-import { httpClient } from "../core/api-utils";
-import { Asset, CreateAsset, CreateAssetParams } from "../types/asset";
+import { Asset, ClassificationOption, CreateAsset, TypeOption } from "../types/asset";
+import { BaseService } from "./base/BaseService";
 
-export class AssetService {
+export class AssetService extends BaseService {
   static async fetchAllAssets(): Promise<ApiResponse<Asset[]>> {
-    return httpClient.get("/asset");
+    return this.get("/asset");
   }
 
   static async createAsset(data: CreateAsset): Promise<ApiResponse> {
-    return httpClient.post("/asset", data);
+    return this.post("/asset", data);
   }
 
-  static async getCreateAssetParams(): Promise<ApiResponse<CreateAssetParams>> {
-    return httpClient.get("/asset/create-params");
+  static async getAssetTypeOptions(): Promise<ApiResponse<TypeOption[]>> {
+    return this.get("/asset/type-options");
+  }
+
+  static async getAssetClassificationOptions(): Promise<ApiResponse<ClassificationOption[]>> {
+    return this.get("/asset/classification-options");
   }
 }

@@ -1,14 +1,12 @@
 import { ApiResponse } from "./api-types";
 
-const root = process.env.NEXT_PUBLIC_API_URL;
-
 export enum ApiErrorCode {
   RESOURCE_VALIDATION_ERROR,
   RESOURCE_ALREADY_EXISTS,
   RESOURCE_NOT_FOUND,
   INTERNAL_SERVER_ERROR,
 
-  UNMAPPED_ERROR,
+  UNKNOWN_ERROR,
 }
 
 export const convertResponseError = <T>(response: ApiResponse<T>) => {
@@ -22,30 +20,6 @@ export const convertResponseError = <T>(response: ApiResponse<T>) => {
     case "INTERNAL_SERVER_ERROR":
       return ApiErrorCode.INTERNAL_SERVER_ERROR;
     default:
-      return ApiErrorCode.UNMAPPED_ERROR;
+      return ApiErrorCode.UNKNOWN_ERROR;
   }
-}
-
-export const httpClient = {
-  get: async <T>(
-    url: string
-  ): Promise<ApiResponse<T>> => {
-    const response = await fetch(root + url);
-    return response.json();
-  },
-  post: async <D, T>(
-    url: string,
-    payload: D
-  ): Promise<ApiResponse<T>> => {
-    const response = await fetch(root + url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(payload),
-    });
-    return response.json();
-  },
-  put: () => { },
-  delete: () => { },
 }

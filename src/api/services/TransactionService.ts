@@ -1,13 +1,13 @@
 import { ApiResponse } from "../core/api-types";
-import { httpClient } from "../core/api-utils";
 import { CreateRequest, Transaction } from "../types/transaction";
+import { BaseService } from "./base/BaseService";
 
-export class TransactionService {
+export class TransactionService extends BaseService {
   static async fetchAll(): Promise<ApiResponse<Transaction[]>> {
-    return httpClient.get("/transaction");
+    return this.get("/transaction");
   }
 
   static async create(payload: CreateRequest): Promise<ApiResponse> {
-    return httpClient.post("/transaction", payload);
+    return this.post("/transaction", payload);
   }
 }

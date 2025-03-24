@@ -15,13 +15,12 @@ export interface CreateAsset {
   classification: string;
 }
 
-export interface CreateAssetParams {
-  typeOptions: {
-    key: string,
-    value: string,
-  }[],
-  classificationOptions: {
-    key: string,
-    value: string,
-  }[],
+export interface TypeOption {
+  id: string,
+  label: string,
+}
+
+export interface ClassificationOption {
+  id: string,
+  label: string,
 }

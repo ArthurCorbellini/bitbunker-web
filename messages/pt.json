@@ -23,10 +23,6 @@
     "addButton": "Adicionar Ativo",
     "addTitle": "Inserir Novo Ativo",
     "addDescription": "Insira novos ativos aqui. Clique em salvar quando terminar.",
-    "selectType": "Selecione o tipo...",
-    "selectTypeEmpty": "Nenhum tipo encontrado.",
-    "selectClassification": "Selecione a classificação...",
-    "selectClassificationEmpty": "Nenhuma classificação encontrada.",
     "save": "Salvar Ativo",
     "createToastDescription": "Ativo inserido com sucesso!",
     "": ""
@@ -83,6 +79,14 @@
       "loading": "Carregando...",
       "defaultErrorMessage": "Favor contatar o time de desenvolvimento.",
       "": ""
+    },
+    "myAssetCombobox": {
+      "placeholder": "Selecione o tipo...",
+      "emptyMessage": "Nenhum tipo encontrado."
+    },
+    "myAssetClassificationCombobox": {
+      "placeholder": "Selecione a classificação...",
+      "emptyMessage": "Nenhuma classificação encontrada."
     }
   },
   "zodErrors": {
