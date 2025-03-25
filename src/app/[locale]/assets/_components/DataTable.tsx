@@ -42,8 +42,8 @@ export const DataTable = () => {
       header: t("type"),
     },
     {
-      accessorKey: "classification",
-      header: t2("classification"),
+      accessorKey: "tier",
+      header: t2("tier"),
     },
     {
       id: "actions",

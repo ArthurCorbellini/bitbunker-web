@@ -19,7 +19,7 @@
   "assets": {
     "legend": "Aqui você pode gerenciar seus ativos, criar, exportar e mais!",
     "ucid": "UCID",
-    "classification": "Classificação",
+    "tier": "Classificação",
     "addButton": "Adicionar Ativo",
     "addTitle": "Inserir Novo Ativo",
     "addDescription": "Insira novos ativos aqui. Clique em salvar quando terminar.",
@@ -80,11 +80,11 @@
       "defaultErrorMessage": "Favor contatar o time de desenvolvimento.",
       "": ""
     },
-    "myAssetCombobox": {
+    "myAssetTypeCombobox": {
       "placeholder": "Selecione o tipo...",
       "emptyMessage": "Nenhum tipo encontrado."
     },
-    "myAssetClassificationCombobox": {
+    "myAssetTierCombobox": {
       "placeholder": "Selecione a classificação...",
       "emptyMessage": "Nenhuma classificação encontrada."
     }

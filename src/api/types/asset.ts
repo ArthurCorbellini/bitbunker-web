@@ -4,7 +4,7 @@ export interface Asset {
   name: string;
   symbol: string;
   type: string;
-  classification: string;
+  tier: string;
 }
 
 export interface CreateAsset {
@@ -12,7 +12,7 @@ export interface CreateAsset {
   name: string;
   symbol: string;
   type: string;
-  classification: string;
+  tier: string;
 }
 
 export interface TypeOption {
@@ -20,7 +20,7 @@ export interface TypeOption {
   label: string,
 }
 
-export interface ClassificationOption {
+export interface TierOption {
   id: string,
   label: string,
 }

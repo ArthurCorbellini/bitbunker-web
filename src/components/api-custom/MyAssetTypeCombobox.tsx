@@ -14,7 +14,7 @@ type MyAssetTypeComboboxProps = Omit<ComponentProps<typeof MyCombobox>,
 >;
 
 export const MyAssetTypeCombobox = ({ ...props }: MyAssetTypeComboboxProps) => {
-  const t = useTranslations("globalComponents.myAssetCombobox");
+  const t = useTranslations("globalComponents.myAssetTypeCombobox");
   const { handleApiErrorToast } = useToast();
   const [isLoading, setLoading] = useState(false);
   const [typeOptions, setTypeOptions] = useState<ComboboxOptions[]>([]);

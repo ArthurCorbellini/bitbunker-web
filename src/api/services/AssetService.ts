@@ -1,5 +1,5 @@
 import { ApiResponse } from "../core/api-types";
-import { Asset, ClassificationOption, CreateAsset, TypeOption } from "../types/asset";
+import { Asset, CreateAsset, TierOption, TypeOption } from "../types/asset";
 import { BaseService } from "./base/BaseService";
 
 export class AssetService extends BaseService {
@@ -15,7 +15,7 @@ export class AssetService extends BaseService {
     return this.get("/asset/type-options");
   }
 
-  static async getAssetClassificationOptions(): Promise<ApiResponse<ClassificationOption[]>> {
-    return this.get("/asset/classification-options");
+  static async getAssetTierOptions(): Promise<ApiResponse<TierOption[]>> {
+    return this.get("/asset/tier-options");
   }
 }

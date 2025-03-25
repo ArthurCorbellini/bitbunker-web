@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { CreateAsset } from "@/api/types/asset";
-import { MyAssetClassificationCombobox } from "@/components/api-custom/MyAssetClassificationCombobox";
+import { MyAssetTierCombobox } from "@/components/api-custom/MyAssetTierCombobox";
 import { MyAssetTypeCombobox } from "@/components/api-custom/MyAssetTypeCombobox";
 import { MyForm } from "@/components/generic/my-form";
 import { MyInputNumber } from "@/components/generic/my-inputs/MyInputNumber";
@@ -36,7 +36,7 @@ export const FormDialog = () => {
     name: z.string().min(1, tz("notEmpty")),
     symbol: z.string().min(1, tz("notEmpty")),
     type: z.string().min(1, tz("notEmpty")),
-    classification: z.string().min(1, tz("notEmpty")),
+    tier: z.string().min(1, tz("notEmpty")),
   });
 
   type FormType = z.infer<typeof FormSchema>;
@@ -48,7 +48,7 @@ export const FormDialog = () => {
       name: "",
       symbol: "",
       type: "",
-      classification: "",
+      tier: "",
     }
   })
 
@@ -139,12 +139,12 @@ export const FormDialog = () => {
             <div className="w-full">
               <FormField
                 control={form.control}
-                name="classification"
+                name="tier"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{t2("classification")}</FormLabel>
+                    <FormLabel>{t2("tier")}</FormLabel>
                     <FormControl>
-                      <MyAssetClassificationCombobox onSelect={field.onChange} />
+                      <MyAssetTierCombobox onSelect={field.onChange} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

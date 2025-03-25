@@ -5,7 +5,7 @@ import { AssetService } from "@/api/services/AssetService";
 import { useToast } from "../generic/hooks/useToast";
 import { ComboboxOptions, MyCombobox } from "../generic/my-combobox";
 
-type MyAssetClassificationComboboxProps = Omit<ComponentProps<typeof MyCombobox>,
+type MyAssetTierComboboxProps = Omit<ComponentProps<typeof MyCombobox>,
   | "options"
   | "placeholder"
   | "emptyMessage"
@@ -13,8 +13,8 @@ type MyAssetClassificationComboboxProps = Omit<ComponentProps<typeof MyCombobox>
   | "isLoading"
 >;
 
-export const MyAssetClassificationCombobox = ({ ...props }: MyAssetClassificationComboboxProps) => {
-  const t = useTranslations("globalComponents.myAssetClassificationCombobox");
+export const MyAssetTierCombobox = ({ ...props }: MyAssetTierComboboxProps) => {
+  const t = useTranslations("globalComponents.myAssetTierCombobox");
   const { handleApiErrorToast } = useToast();
   const [isLoading, setLoading] = useState(false);
   const [typeOptions, setTypeOptions] = useState<ComboboxOptions[]>([]);
@@ -22,7 +22,7 @@ export const MyAssetClassificationCombobox = ({ ...props }: MyAssetClassificatio
   const loadOptions = async () => {
     setLoading(true);
     try {
-      const response = await AssetService.getAssetClassificationOptions();
+      const response = await AssetService.getAssetTierOptions();
       if (!response.success) {
         handleApiErrorToast(response.error);
         return;
