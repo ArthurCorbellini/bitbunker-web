@@ -22,33 +22,15 @@ export const BuyAndSellForm = () => {
   const tz = useTranslations("zodErrors");
 
   const TransactionSchema = z.object({
-    assetId: z
-      .string(),
-    // .nonempty(tz("notEmpty")),
-    amount: z
-      .number(),
-    // .nonempty(tz("notEmpty"))
-    // .transform((val) => Number(val))
-    // .refine((val) => val > 0, tz("mustBePositiveNumber")),
-    unitPrice: z
-      .number(),
-    //   .nonempty(tz("notEmpty"))
-    //   .transform((val) => Number(val))
-    //   .refine((val) => val > 0, tz("mustBePositiveNumber")),
-    totalValue: z
-      .number()
-    //   .nonempty(tz("notEmpty"))
-    //   .transform((val) => Number(val))
-    //   .refine((val) => val > 0, tz("mustBePositiveNumber")),
+    assetId: z.string().min(1, tz("notEmpty")),
+    amount: z.number().nonnegative(tz("mustBePositiveValue")),
+    unitPrice: z.number().nonnegative(tz("mustBePositiveValue")),
+    totalValue: z.number().nonnegative(tz("mustBePositiveValue"))
   });
 
   const FormSchema = z.object({
-    date: z
-      .date(),
-    // .nonempty(tz("notEmpty")),
-    notes: z
-      .string(),
-    //   .max(255, tz("textLengthLessThan", { count: 255 })),
+    date: z.date(),
+    notes: z.string(),
     source: TransactionSchema,
     target: TransactionSchema,
   });

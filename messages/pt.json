@@ -41,8 +41,6 @@
     "target": "Entrada",
     "targetDescription": "Ativo creditado",
     "amoutPlaceholder": "Total cedido...",
-    "unitPricePlaceholder": "Preço unitário do ativo...",
-    "totalValuePlaceholder": "Valor total investido...",
     "dateHourTransaction": "Data e hora da transação",
     "notes": "Observações",
     "notesButton": "Inserir observação...",
@@ -93,6 +91,7 @@
   },
   "zodErrors": {
     "notEmpty": "Não pode ser vazio.",
-    "textLengthLessThan": "Texto não pode ser inferior a {count} caracteres."
+    "textLengthLessThan": "Texto não pode ser inferior a {count} caracteres.",
+    "mustBePositiveValue": "Precisa ser um valor positivo."
   }
 }

@@ -57,6 +57,7 @@ export const BuyAndSellFormCard = ({
                     <FormLabel>{t("amount")}</FormLabel>
                     <FormControl>
                       <MyInputNumber
+                        type="number"
                         decimalPlaces={7}
                         value={field.value}
                         onChange={field.onChange} />
@@ -76,10 +77,10 @@ export const BuyAndSellFormCard = ({
                     <FormLabel>{t("unitPrice")}</FormLabel>
                     <FormControl>
                       <MyInputNumber
+                        type="number"
                         decimalPlaces={2}
                         value={field.value}
-                        onChange={field.onChange}
-                        placeholder={t2("unitPricePlaceholder")} />
+                        onChange={field.onChange} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -94,10 +95,10 @@ export const BuyAndSellFormCard = ({
                     <FormLabel>{t("totalValue")}</FormLabel>
                     <FormControl>
                       <MyInputNumber
+                        type="number"
                         decimalPlaces={2}
                         value={field.value}
-                        onChange={field.onChange}
-                        placeholder={t2("totalValuePlaceholder")} />
+                        onChange={field.onChange} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -106,6 +107,6 @@ export const BuyAndSellFormCard = ({
           </div>
         </div>
       </CardContent>
-    </Card >
+    </Card>
   );
 }
