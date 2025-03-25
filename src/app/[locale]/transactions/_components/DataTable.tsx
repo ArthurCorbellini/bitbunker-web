@@ -3,18 +3,26 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { MoreHorizontal } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { useEffect } from "react";
 
 import { Transaction } from "@/api/types/transaction";
 import { MyDataTable } from "@/components/generic/my-data-table/MyDataTable";
 import { useDataTable } from "@/components/generic/my-data-table/hooks/useDataTable";
 import { Button } from "@/components/ui/button";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger
+} from "@/components/ui/dropdown-menu";
 import { convertCurrency, formatDate } from "@/utils/string-utils";
 import { useTransaction } from "../_hooks/useTransaction";
 
 export const DataTable = () => {
   const t = useTranslations("common");
-  const { transactions } = useTransaction();
+  const { transactions, loadTransactions } = useTransaction();
 
   const columns: ColumnDef<Transaction>[] = [
     {
@@ -83,7 +91,11 @@ export const DataTable = () => {
     },
   ]
 
-  const { table } = useDataTable({ columns, data: transactions })
+  const { table } = useDataTable({ columns, data: transactions.data })
+
+  useEffect(() => {
+    loadTransactions();
+  }, []);
 
   return (
     <MyDataTable table={table} />

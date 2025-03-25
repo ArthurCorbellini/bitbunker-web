@@ -3,11 +3,10 @@
 import { useTranslations } from "next-intl";
 import { useFormContext } from "react-hook-form";
 
-import { MyCombobox } from "@/components/generic/my-combobox";
+import { MyAssetCombobox } from "@/components/api-custom/MyAssetCombobox";
 import { MyInputNumber } from "@/components/generic/my-inputs/MyInputNumber";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { useTransaction } from "../_hooks/useTransaction";
 
 interface Props {
   side: "source" | "target",
@@ -18,9 +17,7 @@ export const BuyAndSellFormCard = ({
 }: Props) => {
   const t = useTranslations("common");
   const t2 = useTranslations("transactions");
-
   const { control } = useFormContext();
-  const { assetComboboxOptions } = useTransaction();
 
   const isSourceSide = side === "source";
 
@@ -45,11 +42,7 @@ export const BuyAndSellFormCard = ({
                   <FormItem>
                     <FormLabel>{t("asset")}</FormLabel>
                     <FormControl>
-                      <MyCombobox
-                        onSelect={field.onChange}
-                        options={assetComboboxOptions}
-                        placeholder={t2("selectAsset")}
-                        emptyMessage={t2("selectAssetEmpty")} />
+                      <MyAssetCombobox onSelect={field.onChange} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

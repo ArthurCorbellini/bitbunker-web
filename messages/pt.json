@@ -40,8 +40,6 @@
     "sourceDescription": "Ativo debitado",
     "target": "Entrada",
     "targetDescription": "Ativo creditado",
-    "selectAsset": "Selecione o ativo...",
-    "selectAssetEmpty": "Nenhum ativo encontrado.",
     "amoutPlaceholder": "Total cedido...",
     "unitPricePlaceholder": "Preço unitário do ativo...",
     "totalValuePlaceholder": "Valor total investido...",
@@ -87,6 +85,10 @@
     "myAssetTierCombobox": {
       "placeholder": "Selecione a classificação...",
       "emptyMessage": "Nenhuma classificação encontrada."
+    },
+    "myAssetCombobox": {
+      "placeholder": "Selecione o ativo...",
+      "emptyMessage": "Nenhum ativo encontrado."
     }
   },
   "zodErrors": {

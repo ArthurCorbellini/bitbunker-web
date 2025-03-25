@@ -3,11 +3,11 @@ import { CreateRequest, Transaction } from "../types/transaction";
 import { BaseService } from "./base/BaseService";
 
 export class TransactionService extends BaseService {
-  static async fetchAll(): Promise<ApiResponse<Transaction[]>> {
+  static async fetchTransactions(): Promise<ApiResponse<Transaction[]>> {
     return this.get("/transaction");
   }
 
-  static async create(payload: CreateRequest): Promise<ApiResponse> {
+  static async createTransaction(payload: CreateRequest): Promise<ApiResponse> {
     return this.post("/transaction", payload);
   }
 }

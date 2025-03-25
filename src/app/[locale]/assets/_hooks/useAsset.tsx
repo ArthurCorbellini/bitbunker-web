@@ -11,8 +11,8 @@ const AssetContext = createContext<Props | undefined>(undefined);
 
 interface Props {
   assets: { data: Asset[], isLoading: boolean },
-  create: (asset: CreateAsset) => void,
   loadAssets: () => void,
+  create: (asset: CreateAsset) => void,
 }
 
 export const useAsset = (): Props => {
@@ -52,7 +52,7 @@ export const AssetProvider = ({ children }: { children: ReactNode }) => {
   const loadAssets = async () => {
     setAssets(prev => ({ ...prev, isLoading: true }));
     try {
-      const response = await AssetService.fetchAllAssets();
+      const response = await AssetService.fetchAssets();
       if (!response.success) {
         handleApiErrorToast(response.error);
         return;

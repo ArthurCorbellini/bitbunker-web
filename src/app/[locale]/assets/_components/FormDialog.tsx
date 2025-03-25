@@ -156,6 +156,6 @@ export const FormDialog = () => {
           </DialogFooter>
         </MyForm>
       </DialogContent>
-    </Dialog >
+    </Dialog>
   )
 }
