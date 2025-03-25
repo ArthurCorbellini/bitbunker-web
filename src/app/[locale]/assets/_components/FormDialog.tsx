@@ -29,7 +29,7 @@ export const FormDialog = () => {
   const t = useTranslations("common");
   const t2 = useTranslations("assets");
   const tz = useTranslations("zodErrors");
-  const { create } = useAsset();
+  const { createAsset } = useAsset();
 
   const FormSchema = z.object({
     ucid: z.string().min(1, tz("notEmpty")),
@@ -53,7 +53,7 @@ export const FormDialog = () => {
   })
 
   const onSubmit = (values: FormType) => {
-    create(values as CreateAsset);
+    createAsset(values as CreateAsset);
   }
 
   return (

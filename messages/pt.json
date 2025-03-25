@@ -45,6 +45,7 @@
     "notes": "Observações",
     "notesButton": "Inserir observação...",
     "notesPlaceholder": "Rebalanceamento de carteira...",
+    "createToastDescription": "Transação inserida com sucesso!",
     "": ""
   },
   "globalComponents": {

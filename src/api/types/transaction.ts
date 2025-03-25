@@ -14,10 +14,16 @@ export interface Transaction {
   notes: string,
 }
 
-export interface CreateRequest {
-
+export interface CreateTransaction {
+  date?: Date,
+  notes?: string,
+  source: SourceTargetTransaction,
+  target: SourceTargetTransaction,
 }
 
-export interface CreateResponse {
-
+export interface SourceTargetTransaction {
+  assetId: string,
+  amount: number,
+  unitPrice: number,
+  totalValue: number,
 }

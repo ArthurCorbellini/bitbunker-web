@@ -3,10 +3,10 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Pen } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
+import { CreateTransaction } from "@/api/types/transaction";
 import { MyForm } from "@/components/generic/my-form";
 import { MyDateTimePicker } from "@/components/generic/MyDateTimePicker";
 import { Button } from "@/components/ui/button";
@@ -14,14 +14,15 @@ import { DialogFooter } from "@/components/ui/dialog";
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Textarea } from "@/components/ui/textarea";
+import { useTransaction } from "../_hooks/useTransaction";
 import { BuyAndSellFormCard } from "./BuyAndSellFormCard";
 
 export const BuyAndSellForm = () => {
-  const t = useTranslations("common");
   const t2 = useTranslations("transactions");
   const tz = useTranslations("zodErrors");
+  const { createTransaction } = useTransaction();
 
-  const TransactionSchema = z.object({
+  const SourceTargetSchema = z.object({
     assetId: z.string().min(1, tz("notEmpty")),
     amount: z.number().nonnegative(tz("mustBePositiveValue")),
     unitPrice: z.number().nonnegative(tz("mustBePositiveValue")),
@@ -31,16 +32,16 @@ export const BuyAndSellForm = () => {
   const FormSchema = z.object({
     date: z.date(),
     notes: z.string(),
-    source: TransactionSchema,
-    target: TransactionSchema,
+    source: SourceTargetSchema,
+    target: SourceTargetSchema,
   });
 
-  type BuyAndSellFormRequest = z.infer<typeof FormSchema>;
+  type FormType = z.infer<typeof FormSchema>;
 
-  const form = useForm<BuyAndSellFormRequest>({
+  const form = useForm<FormType>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      date: new Date(), // todo corrigir data para multiplo de 5
+      date: new Date(),
       notes: "",
       source: {
         assetId: "",
@@ -57,14 +58,8 @@ export const BuyAndSellForm = () => {
     }
   })
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const onSubmit = async (values: BuyAndSellFormRequest) => {
-    setIsSubmitting(true);
-    // const response = await orderApi.createOrder(values);
-    console.log(values)
-    // to-do toast de sucesso ou erro 
-
-    setIsSubmitting(false);
+  const onSubmit = async (values: FormType) => {
+    createTransaction(values as CreateTransaction);
   }
 
   return (

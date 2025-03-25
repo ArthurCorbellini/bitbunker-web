@@ -12,7 +12,7 @@ const AssetContext = createContext<Props | undefined>(undefined);
 interface Props {
   assets: { data: Asset[], isLoading: boolean },
   loadAssets: () => void,
-  create: (asset: CreateAsset) => void,
+  createAsset: (asset: CreateAsset) => void,
 }
 
 export const useAsset = (): Props => {
@@ -34,40 +34,34 @@ export const AssetProvider = ({ children }: { children: ReactNode }) => {
     data: []
   });
 
-  const create = async (asset: CreateAsset) => {
-    setAssets(prev => ({ ...prev, isLoading: true }));
-    try {
-      const response = await AssetService.createAsset(asset);
-      if (!response.success) {
-        handleApiErrorToast(response.error);
-        return;
-      }
-      successToast(t2("createToastDescription"));
-      loadAssets();
-    } finally {
-      setAssets(prev => ({ ...prev, isLoading: false }));
+  const createAsset = async (asset: CreateAsset) => {
+    const response = await AssetService.createAsset(asset);
+    if (!response.success) {
+      handleApiErrorToast(response.error);
+      return;
     }
+    successToast(t2("createToastDescription"));
+    loadAssets();
   }
 
   const loadAssets = async () => {
     setAssets(prev => ({ ...prev, isLoading: true }));
-    try {
-      const response = await AssetService.fetchAssets();
-      if (!response.success) {
-        handleApiErrorToast(response.error);
-        return;
-      }
-      setAssets({ data: response.data, isLoading: false });
-    } finally {
+
+    const response = await AssetService.fetchAssets();
+    if (!response.success) {
+      handleApiErrorToast(response.error);
       setAssets(prev => ({ ...prev, isLoading: false }));
+      return;
     }
+
+    setAssets({ data: response.data, isLoading: false });
   }
 
   return (
     <AssetContext.Provider
       value={{
         assets,
-        create,
+        createAsset,
         loadAssets
       }}>
       {children}

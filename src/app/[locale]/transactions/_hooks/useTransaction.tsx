@@ -3,12 +3,14 @@
 import { createContext, ReactNode, useContext, useState } from "react"
 
 import { TransactionService } from "@/api/services/TransactionService"
-import { Transaction } from "@/api/types/transaction"
+import { CreateTransaction, Transaction } from "@/api/types/transaction"
 import { useToast } from "@/components/generic/hooks/useToast"
+import { useTranslations } from "next-intl"
 
 interface Props {
   transactions: { data: Transaction[], isLoading: boolean },
   loadTransactions: () => void,
+  createTransaction: (transaction: CreateTransaction) => void,
 }
 
 export const useTransaction = (): Props => {
@@ -21,7 +23,8 @@ export const useTransaction = (): Props => {
 export const TransactionContext = createContext<Props | undefined>(undefined);
 
 export const TransactionProvider = ({ children }: { children: ReactNode }) => {
-  const { handleApiErrorToast } = useToast();
+  const t2 = useTranslations("transactions");
+  const { successToast, handleApiErrorToast } = useToast();
 
   const [transactions, setTransactions] = useState<{
     isLoading: boolean,
@@ -31,25 +34,35 @@ export const TransactionProvider = ({ children }: { children: ReactNode }) => {
     data: []
   });
 
+  const createTransaction = async (transaction: CreateTransaction) => {
+    const response = await TransactionService.createTransaction(transaction);
+    if (!response.success) {
+      handleApiErrorToast(response.error);
+      return;
+    }
+    successToast(t2("createToastDescription"));
+    loadTransactions();
+  }
+
   const loadTransactions = async () => {
     setTransactions(prev => ({ ...prev, isLoading: true }));
-    try {
-      const response = await TransactionService.fetchTransactions();
-      if (!response.success) {
-        handleApiErrorToast(response.error);
-        return;
-      }
-      setTransactions({ data: response.data, isLoading: false });
-    } finally {
+
+    const response = await TransactionService.fetchTransactions();
+    if (!response.success) {
+      handleApiErrorToast(response.error);
       setTransactions(prev => ({ ...prev, isLoading: false }));
+      return;
     }
+
+    setTransactions({ data: response.data, isLoading: false });
   }
 
   return (
     <TransactionContext.Provider
       value={{
         transactions,
-        loadTransactions
+        loadTransactions,
+        createTransaction
       }}>
       {children}
     </TransactionContext.Provider>
