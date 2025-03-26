@@ -1,5 +1,5 @@
 import { ApiResponse } from "../core/types";
-import { CreateTransaction, Transaction } from "../types/transaction";
+import { CreateBuyAndSellTransactions, Transaction } from "../types/transaction";
 import { BaseService } from "./base/BaseService";
 
 export class TransactionService extends BaseService {
@@ -7,7 +7,9 @@ export class TransactionService extends BaseService {
     return this.get("/transaction");
   }
 
-  static async createTransaction(payload: CreateTransaction): Promise<ApiResponse> {
-    return this.post("/transaction", payload);
+  static async createBuyAndSellTransactions(
+    payload: CreateBuyAndSellTransactions
+  ): Promise<ApiResponse> {
+    return this.post("/transaction/buy-and-sell", payload);
   }
 }

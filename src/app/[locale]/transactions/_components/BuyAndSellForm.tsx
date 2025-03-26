@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import { CreateTransaction } from "@/api/types/transaction";
+import { CreateBuyAndSellTransactions } from "@/api/types/transaction";
 import { MyForm } from "@/components/generic/my-form";
 import { MyDateTimePicker } from "@/components/generic/MyDateTimePicker";
 import { Button } from "@/components/ui/button";
@@ -59,7 +59,7 @@ export const BuyAndSellForm = () => {
   })
 
   const onSubmit = async (values: FormType) => {
-    createTransaction(values as CreateTransaction);
+    createTransaction(values as CreateBuyAndSellTransactions);
   }
 
   return (
