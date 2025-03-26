@@ -1,4 +1,4 @@
-import { ApiResponse } from "../core/api-types";
+import { ApiResponse } from "../core/types";
 import { CreateTransaction, Transaction } from "../types/transaction";
 import { BaseService } from "./base/BaseService";
 

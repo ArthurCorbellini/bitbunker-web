@@ -26,7 +26,7 @@ export const useNumberFormat = (
   }
 
   const formatStringNumber = (rawValue?: string) => {
-    let input = (rawValue + "").replace(/\D/g, "");
+    const input = (rawValue + "").replace(/\D/g, "");
     if (input === "")
       return { formattedValue: "", numericValue: "" }
 

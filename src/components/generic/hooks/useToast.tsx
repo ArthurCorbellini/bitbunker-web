@@ -1,4 +1,4 @@
-import { ApiResponseError } from "@/api/core/api-types";
+import { ApiResponseError } from "@/api/core/types";
 import { useTranslations } from "next-intl";
 import { ReactNode } from "react";
 import { toast } from "sonner";

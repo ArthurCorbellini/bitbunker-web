@@ -1,5 +1,4 @@
-import { ApiResponse } from "@/api/core/api-types";
-import { ApiErrorCode } from "@/api/core/api-utils";
+import { ApiErrorCode, ApiResponse } from "@/api/core/types";
 
 const root = process.env.NEXT_PUBLIC_API_URL;
 
@@ -23,7 +22,7 @@ export class BaseService {
     try {
       const response = await fetch(root + url);
       return response.json();
-    } catch (error) {
+    } catch {
       return this.buildUnknownErrorResponse<T>(url);
     }
   }
@@ -38,7 +37,7 @@ export class BaseService {
         body: JSON.stringify(payload),
       });
       return response.json();
-    } catch (error) {
+    } catch {
       return this.buildUnknownErrorResponse<T>(url);
     }
   }

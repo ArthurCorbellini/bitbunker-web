@@ -14,16 +14,11 @@ import { useLocaleFormat } from "./hooks/useLocaleFormat";
 interface Props {
   value?: Date;
   onChange?: (value?: Date) => void;
-  onBlur?: () => void;
-  name?: string;
 }
 
 export const MyDateTimePicker: React.FC<Props> = ({
   value,
   onChange,
-  onBlur,
-  name,
-  ...props
 }) => {
   const t = useTranslations("globalComponents.myDateTimePicker");
   const { formatDateTime } = useLocaleFormat()
@@ -38,7 +33,7 @@ export const MyDateTimePicker: React.FC<Props> = ({
     type: "hour" | "minute",
     input: string
   ) => {
-    let newDate = value || new Date();
+    const newDate = value || new Date();
     if (type === "hour")
       newDate.setHours(parseInt(input, 10));
     if (type === "minute")

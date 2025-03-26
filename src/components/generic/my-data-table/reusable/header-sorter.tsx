@@ -23,11 +23,11 @@ export function HeaderSorter<TData, TValue>({
   title,
   className,
 }: Props<TData, TValue>) {
+  const t = useTranslations("globalComponents.dataTable");
+
   if (!column.getCanSort()) {
     return <div className={cn(className)}>{title}</div>
   }
-
-  const t = useTranslations("globalComponents.dataTable");
 
   return (
     <div className={cn("flex items-center space-x-2", className)}>
