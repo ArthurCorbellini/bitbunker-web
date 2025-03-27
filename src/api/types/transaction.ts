@@ -10,12 +10,12 @@ export interface Transaction {
   amount: number,
   unitPrice: number,
   totalValue: number,
-  date: string,
+  dateTime: string,
   notes: string,
 }
 
 export interface CreateBuyAndSellTransactions {
-  date?: Date,
+  dateTime?: Date,
   notes?: string,
   source: SourceTargetTransaction,
   target: SourceTargetTransaction,

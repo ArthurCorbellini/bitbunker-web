@@ -26,9 +26,9 @@ export const DataTable = () => {
 
   const columns: ColumnDef<Transaction>[] = [
     {
-      accessorKey: "date",
+      accessorKey: "dateTime",
       header: t("date"),
-      cell: ({ row }) => (formatDate(row.getValue("date")))
+      cell: ({ row }) => (formatDate(row.getValue("dateTime")))
     },
     {
       accessorKey: "asset.symbol",
