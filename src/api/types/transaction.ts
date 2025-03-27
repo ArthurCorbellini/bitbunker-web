@@ -17,8 +17,8 @@ export interface Transaction {
 export interface CreateBuyAndSellTransactions {
   dateTime?: Date,
   notes?: string,
-  source: SourceTargetTransaction,
-  target: SourceTargetTransaction,
+  buy: SourceTargetTransaction,
+  sell: SourceTargetTransaction,
 }
 
 export interface SourceTargetTransaction {

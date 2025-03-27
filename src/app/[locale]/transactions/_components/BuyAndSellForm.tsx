@@ -32,8 +32,8 @@ export const BuyAndSellForm = () => {
   const FormSchema = z.object({
     date: z.date(),
     notes: z.string(),
-    source: SourceTargetSchema,
-    target: SourceTargetSchema,
+    buy: SourceTargetSchema,
+    sell: SourceTargetSchema,
   });
 
   type FormType = z.infer<typeof FormSchema>;
@@ -43,13 +43,13 @@ export const BuyAndSellForm = () => {
     defaultValues: {
       date: new Date(),
       notes: "",
-      source: {
+      buy: {
         assetId: "",
         amount: 0,
         unitPrice: 0,
         totalValue: 0,
       },
-      target: {
+      sell: {
         assetId: "",
         amount: 0,
         unitPrice: 0,
@@ -107,8 +107,8 @@ export const BuyAndSellForm = () => {
           </div>
         </div>
         <div className="flex gap-4 items-center">
-          <BuyAndSellFormCard side="source" />
-          <BuyAndSellFormCard side="target" />
+          <BuyAndSellFormCard side="buy" />
+          <BuyAndSellFormCard side="sell" />
         </div>
       </div>
       <DialogFooter>

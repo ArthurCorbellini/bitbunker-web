@@ -9,7 +9,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 
 interface Props {
-  side: "source" | "target",
+  side: "buy" | "sell",
 }
 
 export const BuyAndSellFormCard = ({
@@ -19,7 +19,7 @@ export const BuyAndSellFormCard = ({
   const t2 = useTranslations("transactions");
   const { control } = useFormContext();
 
-  const isSourceSide = side === "source";
+  const isSourceSide = side === "buy";
 
   return (
     <Card className="w-full">
