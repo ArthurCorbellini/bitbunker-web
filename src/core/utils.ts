@@ -1,4 +1,4 @@
-import { ApiErrorCode, ApiResponse } from "./types";
+import { ApiErrorCode, ApiResponse } from "./types/api";
 
 export const convertResponseError = <T>(response: ApiResponse<T>) => {
   switch (response.error?.code) {

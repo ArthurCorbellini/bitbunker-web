@@ -6,7 +6,6 @@ import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import { CreateBuyAndSellTransactions } from "@/api/types/transaction";
 import { MyForm } from "@/components/generic/my-form";
 import { MyDateTimePicker } from "@/components/generic/MyDateTimePicker";
 import { Button } from "@/components/ui/button";
@@ -14,6 +13,7 @@ import { DialogFooter } from "@/components/ui/dialog";
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Textarea } from "@/components/ui/textarea";
+import { CreateBuyAndSellTransactions } from "@/core/types/transaction";
 import { useTransaction } from "../_hooks/useTransaction";
 import { BuyAndSellFormCard } from "./BuyAndSellFormCard";
 

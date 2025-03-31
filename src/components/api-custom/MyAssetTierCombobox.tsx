@@ -1,7 +1,7 @@
 import { useTranslations } from "next-intl";
 import { ComponentProps, useState } from "react";
 
-import { AssetService } from "@/api/services/AssetService";
+import { AssetService } from "@/core/services/AssetService";
 import { useToast } from "../generic/hooks/useToast";
 import { ComboboxOptions, MyCombobox } from "../generic/my-combobox";
 

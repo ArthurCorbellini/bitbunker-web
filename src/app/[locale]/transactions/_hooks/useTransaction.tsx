@@ -2,9 +2,9 @@
 
 import { createContext, ReactNode, useContext, useState } from "react"
 
-import { TransactionService } from "@/api/services/TransactionService"
-import { CreateBuyAndSellTransactions, Transaction } from "@/api/types/transaction"
 import { useToast } from "@/components/generic/hooks/useToast"
+import { TransactionService } from "@/core/services/TransactionService"
+import { CreateBuyAndSellTransactions, Transaction } from "@/core/types/transaction"
 import { useTranslations } from "next-intl"
 
 interface Props {

@@ -1,4 +1,4 @@
-import { ApiResponse } from "../core/types";
+import { ApiResponse } from "../types/api";
 import { CreateBuyAndSellTransactions, Transaction } from "../types/transaction";
 import { BaseService } from "./base/BaseService";
 

@@ -2,9 +2,9 @@
 
 import { createContext, ReactNode, useContext, useState } from "react";
 
-import { AssetService } from "@/api/services/AssetService";
-import { Asset, CreateAsset } from "@/api/types/asset";
 import { useToast } from "@/components/generic/hooks/useToast";
+import { AssetService } from "@/core/services/AssetService";
+import { Asset, CreateAsset } from "@/core/types/asset";
 import { useTranslations } from "next-intl";
 
 const AssetContext = createContext<Props | undefined>(undefined);

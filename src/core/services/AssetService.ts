@@ -1,4 +1,4 @@
-import { ApiResponse } from "../core/types";
+import { ApiResponse } from "../types/api";
 import { Asset, CreateAsset, TierOption, TypeOption } from "../types/asset";
 import { BaseService } from "./base/BaseService";
 

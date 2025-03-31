@@ -6,7 +6,6 @@ import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import { CreateAsset } from "@/api/types/asset";
 import { MyAssetTierCombobox } from "@/components/api-custom/MyAssetTierCombobox";
 import { MyAssetTypeCombobox } from "@/components/api-custom/MyAssetTypeCombobox";
 import { MyForm } from "@/components/generic/my-form";
@@ -23,6 +22,7 @@ import {
 } from "@/components/ui/dialog";
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { CreateAsset } from "@/core/types/asset";
 import { useAsset } from "../_hooks/useAsset";
 
 export const FormDialog = () => {

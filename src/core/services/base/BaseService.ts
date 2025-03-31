@@ -1,4 +1,4 @@
-import { ApiErrorCode, ApiResponse } from "@/api/core/types";
+import { ApiErrorCode, ApiResponse } from "@/core/types/api";
 
 const root = process.env.NEXT_PUBLIC_API_URL;
 

@@ -5,7 +5,6 @@ import { MoreHorizontal } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useEffect } from "react";
 
-import { Asset } from "@/api/types/asset";
 import { MyDataTable } from "@/components/generic/my-data-table/MyDataTable";
 import { useDataTable } from "@/components/generic/my-data-table/hooks/useDataTable";
 import { Button } from "@/components/ui/button";
@@ -17,6 +16,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
+import { Asset } from "@/core/types/asset";
 import { useAsset } from "../_hooks/useAsset";
 
 export const DataTable = () => {
