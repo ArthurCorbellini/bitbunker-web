@@ -4,13 +4,14 @@ import { createContext, ReactNode, useContext, useState } from "react"
 
 import { useToast } from "@/components/generic/hooks/useToast"
 import { TransactionService } from "@/core/services/TransactionService"
-import { CreateBuyAndSellTransactions, Transaction } from "@/core/types/transaction"
+import { Transaction } from "@/core/types/transaction"
 import { useTranslations } from "next-intl"
+import { BuyAndSellFormType } from "./useSchema"
 
 interface Props {
   transactions: { data: Transaction[], isLoading: boolean },
   loadTransactions: () => void,
-  createBuyAndSellTransactions: (transaction: CreateBuyAndSellTransactions) => void,
+  createBuyAndSellTransactions: (transaction: BuyAndSellFormType) => void,
 }
 
 export const useTransaction = (): Props => {
@@ -34,7 +35,7 @@ export const TransactionProvider = ({ children }: { children: ReactNode }) => {
     data: []
   });
 
-  const createBuyAndSellTransactions = async (transaction: CreateBuyAndSellTransactions) => {
+  const createBuyAndSellTransactions = async (transaction: BuyAndSellFormType) => {
     const response = await TransactionService.createBuyAndSellTransactions(transaction);
     if (!response.success) {
       handleApiErrorToast(response.error);

@@ -4,15 +4,16 @@ import { createContext, ReactNode, useContext, useState } from "react";
 
 import { useToast } from "@/components/generic/hooks/useToast";
 import { AssetService } from "@/core/services/AssetService";
-import { Asset, CreateAsset } from "@/core/types/asset";
+import { Asset } from "@/core/types/asset";
 import { useTranslations } from "next-intl";
+import { CreateAssetFormType } from "./useSchema";
 
 const AssetContext = createContext<Props | undefined>(undefined);
 
 interface Props {
   assets: { data: Asset[], isLoading: boolean },
   loadAssets: () => void,
-  createAsset: (asset: CreateAsset) => void,
+  createAsset: (asset: CreateAssetFormType) => void,
 }
 
 export const useAsset = (): Props => {
@@ -34,7 +35,7 @@ export const AssetProvider = ({ children }: { children: ReactNode }) => {
     data: []
   });
 
-  const createAsset = async (asset: CreateAsset) => {
+  const createAsset = async (asset: CreateAssetFormType) => {
     const response = await AssetService.createAsset(asset);
     if (!response.success) {
       handleApiErrorToast(response.error);

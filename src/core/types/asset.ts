@@ -1,4 +1,4 @@
-import { FormType } from "@/app/[locale]/assets/_hooks/useSchema";
+import { CreateAssetFormType } from "@/app/[locale]/assets/_hooks/useSchema";
 
 export interface Asset {
   id: number;
@@ -9,7 +9,7 @@ export interface Asset {
   tier: string;
 }
 
-export interface CreateAsset extends FormType { };
+export interface CreateAsset extends CreateAssetFormType { };
 
 export interface TypeOption {
   id: string,

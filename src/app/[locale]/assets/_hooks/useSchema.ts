@@ -4,7 +4,7 @@ import { z } from "zod";
 export const useSchema = () => {
   const tz = useTranslations("zodErrors");
 
-  const FormSchema = z.object({
+  const CreateAssetFormSchema = z.object({
     ucid: z.string().min(1, tz("notEmpty")),
     name: z.string().min(1, tz("notEmpty")),
     symbol: z.string().min(1, tz("notEmpty")),
@@ -13,8 +13,8 @@ export const useSchema = () => {
   });
 
   return {
-    FormSchema
+    CreateAssetFormSchema
   };
 }
 
-export type FormType = z.infer<ReturnType<typeof useSchema>["FormSchema"]>;
+export type CreateAssetFormType = z.infer<ReturnType<typeof useSchema>["CreateAssetFormSchema"]>;

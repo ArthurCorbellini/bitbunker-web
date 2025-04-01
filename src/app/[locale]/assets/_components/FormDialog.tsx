@@ -5,7 +5,7 @@ import { Plus } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 
-import { FormType, useSchema } from "@/app/[locale]/assets/_hooks/useSchema";
+import { CreateAssetFormType, useSchema } from "@/app/[locale]/assets/_hooks/useSchema";
 import { MyAssetTierCombobox } from "@/components/api-custom/MyAssetTierCombobox";
 import { MyAssetTypeCombobox } from "@/components/api-custom/MyAssetTypeCombobox";
 import { MyForm } from "@/components/generic/my-form";
@@ -29,10 +29,10 @@ export const FormDialog = () => {
   const t2 = useTranslations("assets");
 
   const { createAsset } = useAsset();
-  const { FormSchema } = useSchema();
+  const { CreateAssetFormSchema } = useSchema();
 
-  const form = useForm<FormType>({
-    resolver: zodResolver(FormSchema),
+  const form = useForm<CreateAssetFormType>({
+    resolver: zodResolver(CreateAssetFormSchema),
     defaultValues: {
       ucid: "",
       name: "",
@@ -42,7 +42,7 @@ export const FormDialog = () => {
     }
   })
 
-  const onSubmit = (values: FormType) => {
+  const onSubmit = (values: CreateAssetFormType) => {
     createAsset(values);
   }
 
