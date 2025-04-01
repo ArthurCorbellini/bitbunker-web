@@ -4,7 +4,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Plus } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 
 import { MyAssetTierCombobox } from "@/components/api-custom/MyAssetTierCombobox";
 import { MyAssetTypeCombobox } from "@/components/api-custom/MyAssetTypeCombobox";
@@ -22,24 +21,15 @@ import {
 } from "@/components/ui/dialog";
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { CreateAsset } from "@/core/types/asset";
+import { FormType, useSchema } from "@/core/schemas/asset";
 import { useAsset } from "../_hooks/useAsset";
 
 export const FormDialog = () => {
   const t = useTranslations("common");
   const t2 = useTranslations("assets");
-  const tz = useTranslations("zodErrors");
+
   const { createAsset } = useAsset();
-
-  const FormSchema = z.object({
-    ucid: z.string().min(1, tz("notEmpty")),
-    name: z.string().min(1, tz("notEmpty")),
-    symbol: z.string().min(1, tz("notEmpty")),
-    type: z.string().min(1, tz("notEmpty")),
-    tier: z.string().min(1, tz("notEmpty")),
-  });
-
-  type FormType = z.infer<typeof FormSchema>;
+  const { FormSchema } = useSchema();
 
   const form = useForm<FormType>({
     resolver: zodResolver(FormSchema),
@@ -53,7 +43,7 @@ export const FormDialog = () => {
   })
 
   const onSubmit = (values: FormType) => {
-    createAsset(values as CreateAsset);
+    createAsset(values);
   }
 
   return (

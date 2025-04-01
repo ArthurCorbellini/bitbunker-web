@@ -1,3 +1,5 @@
+import { FormType } from "../schemas/asset";
+
 export interface Asset {
   id: number;
   ucid: number;
@@ -7,13 +9,7 @@ export interface Asset {
   tier: string;
 }
 
-export interface CreateAsset {
-  ucid: string;
-  name: string;
-  symbol: string;
-  type: string;
-  tier: string;
-}
+export interface CreateAsset extends FormType { };
 
 export interface TypeOption {
   id: string,
