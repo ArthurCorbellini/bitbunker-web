@@ -10,7 +10,7 @@ import { useTranslations } from "next-intl"
 interface Props {
   transactions: { data: Transaction[], isLoading: boolean },
   loadTransactions: () => void,
-  createTransaction: (transaction: CreateBuyAndSellTransactions) => void,
+  createBuyAndSellTransactions: (transaction: CreateBuyAndSellTransactions) => void,
 }
 
 export const useTransaction = (): Props => {
@@ -34,7 +34,7 @@ export const TransactionProvider = ({ children }: { children: ReactNode }) => {
     data: []
   });
 
-  const createTransaction = async (transaction: CreateBuyAndSellTransactions) => {
+  const createBuyAndSellTransactions = async (transaction: CreateBuyAndSellTransactions) => {
     const response = await TransactionService.createBuyAndSellTransactions(transaction);
     if (!response.success) {
       handleApiErrorToast(response.error);
@@ -62,7 +62,7 @@ export const TransactionProvider = ({ children }: { children: ReactNode }) => {
       value={{
         transactions,
         loadTransactions,
-        createTransaction
+        createBuyAndSellTransactions
       }}>
       {children}
     </TransactionContext.Provider>

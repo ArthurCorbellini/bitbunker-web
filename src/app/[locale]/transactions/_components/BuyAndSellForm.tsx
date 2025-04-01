@@ -4,7 +4,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Pen } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 
 import { MyForm } from "@/components/generic/my-form";
 import { MyDateTimePicker } from "@/components/generic/MyDateTimePicker";
@@ -13,35 +12,19 @@ import { DialogFooter } from "@/components/ui/dialog";
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Textarea } from "@/components/ui/textarea";
-import { CreateBuyAndSellTransactions } from "@/core/types/transaction";
+import { BuyAndSellFormType, useSchema } from "@/core/schemas/transaction";
 import { useTransaction } from "../_hooks/useTransaction";
 import { BuyAndSellFormCard } from "./BuyAndSellFormCard";
 
 export const BuyAndSellForm = () => {
   const t2 = useTranslations("transactions");
-  const tz = useTranslations("zodErrors");
-  const { createTransaction } = useTransaction();
+  const { createBuyAndSellTransactions } = useTransaction();
+  const { BuyAndSellFormSchema } = useSchema();
 
-  const SourceTargetSchema = z.object({
-    assetId: z.string().min(1, tz("notEmpty")),
-    amount: z.number().nonnegative(tz("mustBePositiveValue")),
-    unitPrice: z.number().nonnegative(tz("mustBePositiveValue")),
-    totalValue: z.number().nonnegative(tz("mustBePositiveValue"))
-  });
-
-  const FormSchema = z.object({
-    date: z.date(),
-    notes: z.string(),
-    buy: SourceTargetSchema,
-    sell: SourceTargetSchema,
-  });
-
-  type FormType = z.infer<typeof FormSchema>;
-
-  const form = useForm<FormType>({
-    resolver: zodResolver(FormSchema),
+  const form = useForm<BuyAndSellFormType>({
+    resolver: zodResolver(BuyAndSellFormSchema),
     defaultValues: {
-      date: new Date(),
+      dateTime: new Date(),
       notes: "",
       buy: {
         assetId: "",
@@ -58,8 +41,8 @@ export const BuyAndSellForm = () => {
     }
   })
 
-  const onSubmit = async (values: FormType) => {
-    createTransaction(values as CreateBuyAndSellTransactions);
+  const onSubmit = async (values: BuyAndSellFormType) => {
+    createBuyAndSellTransactions(values);
   }
 
   return (
@@ -69,7 +52,7 @@ export const BuyAndSellForm = () => {
           <div className="w-1/4">
             <FormField
               control={form.control}
-              name="date"
+              name="dateTime"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>{t2("dateHourTransaction")}</FormLabel>

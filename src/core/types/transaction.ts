@@ -1,3 +1,4 @@
+import { BuyAndSellFormType } from "../schemas/transaction";
 
 export interface Transaction {
   id: number,
@@ -14,16 +15,4 @@ export interface Transaction {
   notes: string,
 }
 
-export interface CreateBuyAndSellTransactions {
-  dateTime?: Date,
-  notes?: string,
-  buy: SourceTargetTransaction,
-  sell: SourceTargetTransaction,
-}
-
-export interface SourceTargetTransaction {
-  assetId: string,
-  amount: number,
-  unitPrice: number,
-  totalValue: number,
-}
+export interface CreateBuyAndSellTransactions extends BuyAndSellFormType { };
