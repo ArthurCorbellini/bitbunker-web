@@ -1,4 +1,4 @@
-import { BuyAndSellFormType } from "../schemas/transaction";
+import { BuyAndSellFormType } from "@/app/[locale]/transactions/_hooks/useSchema";
 
 export interface Transaction {
   id: number,

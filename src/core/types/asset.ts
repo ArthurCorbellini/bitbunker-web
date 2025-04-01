@@ -1,4 +1,4 @@
-import { FormType } from "../schemas/asset";
+import { FormType } from "@/app/[locale]/assets/_hooks/useSchema";
 
 export interface Asset {
   id: number;

@@ -5,6 +5,7 @@ import { Pen } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 
+import { BuyAndSellFormType, useSchema } from "@/app/[locale]/transactions/_hooks/useSchema";
 import { MyForm } from "@/components/generic/my-form";
 import { MyDateTimePicker } from "@/components/generic/MyDateTimePicker";
 import { Button } from "@/components/ui/button";
@@ -12,7 +13,6 @@ import { DialogFooter } from "@/components/ui/dialog";
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Textarea } from "@/components/ui/textarea";
-import { BuyAndSellFormType, useSchema } from "@/core/schemas/transaction";
 import { useTransaction } from "../_hooks/useTransaction";
 import { BuyAndSellFormCard } from "./BuyAndSellFormCard";
 
