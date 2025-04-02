@@ -75,6 +75,7 @@ export const DataTable = () => {
 
   useEffect(() => {
     loadAssets()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (

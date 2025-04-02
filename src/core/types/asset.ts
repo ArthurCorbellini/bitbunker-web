@@ -9,6 +9,7 @@ export interface Asset {
   tier: string;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface CreateAsset extends CreateAssetFormType { };
 
 export interface TypeOption {

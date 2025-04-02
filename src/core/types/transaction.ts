@@ -15,6 +15,7 @@ export interface Transaction {
   notes: string,
 }
 
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface CreateBuyAndSellTransactions extends BuyAndSellFormType { }
 
 export interface CreateTransaction extends TransactionFormType {
