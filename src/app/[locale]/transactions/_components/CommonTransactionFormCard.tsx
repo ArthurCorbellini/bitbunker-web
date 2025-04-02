@@ -9,26 +9,25 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 
 interface Props {
-  side: "buy" | "sell",
+  formField?: "buy" | "sell",
+  title: string,
+  description: string,
 }
 
-export const BuyAndSellFormCard = ({
-  side
+export const CommonTransactionFormCard = ({
+  formField, title, description
 }: Props) => {
   const t = useTranslations("common");
-  const t2 = useTranslations("transactions");
   const { control } = useFormContext();
-
-  const isSourceSide = side === "buy";
 
   return (
     <Card className="w-full">
       <CardHeader>
         <CardTitle>
-          {isSourceSide ? t2("source") : t2("target")}
+          {title}
         </CardTitle>
         <CardDescription>
-          {isSourceSide ? t2("sourceDescription") : t2("targetDescription")}
+          {description}
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -37,7 +36,7 @@ export const BuyAndSellFormCard = ({
             <div className="w-2/3">
               <FormField
                 control={control}
-                name={`${side}.assetId`}
+                name={formField ? `${formField}.assetId` : "assetId"}
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>{t("asset")}</FormLabel>
@@ -51,7 +50,7 @@ export const BuyAndSellFormCard = ({
             <div className="w-1/3">
               <FormField
                 control={control}
-                name={`${side}.amount`}
+                name={formField ? `${formField}.amount` : "amount"}
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>{t("amount")}</FormLabel>
@@ -71,7 +70,7 @@ export const BuyAndSellFormCard = ({
             <div className="w-1/2">
               <FormField
                 control={control}
-                name={`${side}.unitPrice`}
+                name={formField ? `${formField}.unitPrice` : "unitPrice"}
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>{t("unitPrice")}</FormLabel>
@@ -89,7 +88,7 @@ export const BuyAndSellFormCard = ({
             <div className="w-1/2">
               <FormField
                 control={control}
-                name={`${side}.totalValue`}
+                name={formField ? `${formField}.totalValue` : "totalValue"}
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>{t("totalValue")}</FormLabel>

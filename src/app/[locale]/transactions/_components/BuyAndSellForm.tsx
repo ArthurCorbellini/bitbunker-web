@@ -1,20 +1,16 @@
 "use client"
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Pen } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 
-import { BuyAndSellFormType, useSchema } from "@/app/[locale]/transactions/_hooks/useSchema";
 import { MyForm } from "@/components/generic/my-form";
-import { MyDateTimePicker } from "@/components/generic/MyDateTimePicker";
 import { Button } from "@/components/ui/button";
 import { DialogFooter } from "@/components/ui/dialog";
-import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { Textarea } from "@/components/ui/textarea";
+import { BuyAndSellFormType, useSchema } from "../_hooks/useSchema";
 import { useTransaction } from "../_hooks/useTransaction";
-import { BuyAndSellFormCard } from "./BuyAndSellFormCard";
+import { CommonTransactionFormCard } from "./CommonTransactionFormCard";
+import { CommonTransactionFormFields } from "./CommonTransactionFormFields";
 
 export const BuyAndSellForm = () => {
   const t2 = useTranslations("transactions");
@@ -49,50 +45,16 @@ export const BuyAndSellForm = () => {
   return (
     <MyForm form={form} onSubmit={onSubmit}>
       <div className="flex flex-col gap-4">
+        <CommonTransactionFormFields />
         <div className="flex gap-4 items-center">
-          <div className="w-1/4">
-            <FormField
-              control={form.control}
-              name="dateTime"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>{t2("dateHourTransaction")}</FormLabel>
-                  <FormControl>
-                    <MyDateTimePicker {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )} />
-          </div>
-          <div className="w-3/4 ml-auto">
-            <FormField
-              control={form.control}
-              name="notes"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>{t2("notes")}</FormLabel>
-                  <Popover>
-                    <PopoverTrigger asChild>
-                      <Button variant="outline" className="w-full">
-                        <Pen /> {t2("notesButton")}
-                      </Button>
-                    </PopoverTrigger>
-                    <PopoverContent className="w-[var(--radix-popover-trigger-width)] p-0">
-                      <FormControl>
-                        <Textarea
-                          {...field}
-                          placeholder={t2("notesPlaceholder")}
-                          className="h-32" />
-                      </FormControl>
-                    </PopoverContent>
-                  </Popover>
-                </FormItem>
-              )} />
-          </div>
-        </div>
-        <div className="flex gap-4 items-center">
-          <BuyAndSellFormCard side="buy" />
-          <BuyAndSellFormCard side="sell" />
+          <CommonTransactionFormCard
+            formField="buy"
+            title={t2("source")}
+            description={t2("sourceDescription")} />
+          <CommonTransactionFormCard
+            formField="sell"
+            title={t2("target")}
+            description={t2("targetDescription")} />
         </div>
       </div>
       <DialogFooter>

@@ -1,17 +1,18 @@
 "use client"
 
+import { useTranslations } from "next-intl"
 import { createContext, ReactNode, useContext, useState } from "react"
 
 import { useToast } from "@/components/generic/hooks/useToast"
 import { TransactionService } from "@/core/services/TransactionService"
 import { Transaction } from "@/core/types/transaction"
-import { useTranslations } from "next-intl"
-import { BuyAndSellFormType } from "./useSchema"
+import { BuyAndSellFormType, TransactionFormType } from "./useSchema"
 
 interface Props {
   transactions: { data: Transaction[], isLoading: boolean },
   loadTransactions: () => void,
   createBuyAndSellTransactions: (transaction: BuyAndSellFormType) => void,
+  createTransaction: (transaction: TransactionFormType, type: "deposit" | "withdrawal") => void,
 }
 
 export const useTransaction = (): Props => {
@@ -45,6 +46,19 @@ export const TransactionProvider = ({ children }: { children: ReactNode }) => {
     loadTransactions();
   }
 
+  const createTransaction = async (
+    transaction: TransactionFormType,
+    type: "deposit" | "withdrawal",
+  ) => {
+    const response = await TransactionService.createTransaction({ type, ...transaction });
+    if (!response.success) {
+      handleApiErrorToast(response.error);
+      return;
+    }
+    successToast(t2("createToastDescription"));
+    loadTransactions();
+  }
+
   const loadTransactions = async () => {
     setTransactions(prev => ({ ...prev, isLoading: true }));
 
@@ -63,7 +77,8 @@ export const TransactionProvider = ({ children }: { children: ReactNode }) => {
       value={{
         transactions,
         loadTransactions,
-        createBuyAndSellTransactions
+        createBuyAndSellTransactions,
+        createTransaction,
       }}>
       {children}
     </TransactionContext.Provider>

@@ -1,4 +1,4 @@
-import { BuyAndSellFormType } from "@/app/[locale]/transactions/_hooks/useSchema";
+import { BuyAndSellFormType, TransactionFormType } from "@/app/[locale]/transactions/_hooks/useSchema";
 
 export interface Transaction {
   id: number,
@@ -15,4 +15,8 @@ export interface Transaction {
   notes: string,
 }
 
-export interface CreateBuyAndSellTransactions extends BuyAndSellFormType { };
+export interface CreateBuyAndSellTransactions extends BuyAndSellFormType { }
+
+export interface CreateTransaction extends TransactionFormType {
+  type: "deposit" | "withdrawal"
+}

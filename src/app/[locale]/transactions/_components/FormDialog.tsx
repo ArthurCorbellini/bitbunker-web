@@ -14,9 +14,11 @@ import {
 } from "@/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { BuyAndSellForm } from "./BuyAndSellForm";
+import { TransactionForm } from "./TransactionForm";
 
 export const FormDialog = () => {
   const t = useTranslations("transactions");
+  const t2 = useTranslations("transactions");
 
   return (
     <Dialog>
@@ -44,10 +46,16 @@ export const FormDialog = () => {
             <BuyAndSellForm />
           </TabsContent>
           <TabsContent value="deposit">
-            to-do
+            <TransactionForm
+              type="deposit"
+              title={t2("deposit")}
+              description={t2("depositDescription")} />
           </TabsContent>
           <TabsContent value="withdrawal">
-            to-do
+            <TransactionForm
+              type="withdrawal"
+              title={t2("withdrawal")}
+              description={t2("withdrawalDescription")} />
           </TabsContent>
         </Tabs>
       </DialogContent>

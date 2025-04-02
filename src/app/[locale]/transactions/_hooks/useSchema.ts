@@ -4,7 +4,7 @@ import { z } from "zod";
 export const useSchema = () => {
   const tz = useTranslations("zodErrors");
 
-  const SourceTargetSchema = z.object({
+  const DefaultTransactionSchema = z.object({
     assetId: z.string().min(1, tz("notEmpty")),
     amount: z.number().nonnegative(tz("mustBePositiveValue")),
     unitPrice: z.number().nonnegative(tz("mustBePositiveValue")),
@@ -14,14 +14,20 @@ export const useSchema = () => {
   const BuyAndSellFormSchema = z.object({
     dateTime: z.date(),
     notes: z.string(),
-    buy: SourceTargetSchema,
-    sell: SourceTargetSchema,
+    buy: DefaultTransactionSchema,
+    sell: DefaultTransactionSchema,
   });
 
+  const TransactionFormSchema = z.object({
+    dateTime: z.date(),
+    notes: z.string(),
+  }).merge(DefaultTransactionSchema);
+
   return {
-    SourceTargetSchema,
+    TransactionFormSchema,
     BuyAndSellFormSchema,
   };
 }
 
 export type BuyAndSellFormType = z.infer<ReturnType<typeof useSchema>["BuyAndSellFormSchema"]>;
+export type TransactionFormType = z.infer<ReturnType<typeof useSchema>["TransactionFormSchema"]>;
