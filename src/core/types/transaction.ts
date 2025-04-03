@@ -19,5 +19,5 @@ export interface Transaction {
 export interface CreateBuyAndSellTransactions extends BuyAndSellFormType { }
 
 export interface CreateTransaction extends TransactionFormType {
-  type: "deposit" | "withdrawal"
+  type: "DEPOSIT" | "WITHDRAWAL"
 }

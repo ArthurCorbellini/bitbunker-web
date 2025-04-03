@@ -50,7 +50,8 @@ export const TransactionProvider = ({ children }: { children: ReactNode }) => {
     transaction: TransactionFormType,
     type: "deposit" | "withdrawal",
   ) => {
-    const response = await TransactionService.createTransaction({ type, ...transaction });
+    const upperType = type.toUpperCase() as Uppercase<typeof type>;
+    const response = await TransactionService.createTransaction({ type: upperType, ...transaction });
     if (!response.success) {
       handleApiErrorToast(response.error);
       return;
