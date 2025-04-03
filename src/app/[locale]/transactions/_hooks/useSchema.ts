@@ -6,9 +6,9 @@ export const useSchema = () => {
 
   const DefaultTransactionSchema = z.object({
     assetId: z.string().min(1, tz("notEmpty")),
-    amount: z.number().nonnegative(tz("mustBePositiveValue")),
-    unitPrice: z.number().nonnegative(tz("mustBePositiveValue")),
-    totalValue: z.number().nonnegative(tz("mustBePositiveValue"))
+    amount: z.number().gt(0, tz("mustBePositiveValue")),
+    unitPrice: z.number().gt(0, tz("mustBePositiveValue")),
+    totalValue: z.number().gt(0, tz("mustBePositiveValue"))
   });
 
   const BuyAndSellFormSchema = z.object({
