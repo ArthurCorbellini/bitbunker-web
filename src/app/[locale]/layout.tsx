@@ -5,8 +5,10 @@ import { getMessages } from "next-intl/server";
 import { ThemeProvider } from "next-themes";
 import { notFound } from "next/navigation";
 
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { Toaster } from "@/components/ui/sonner";
-import MainHeader from "./_components/main-header/main-header";
+import { AppHeader } from "./_components/AppHeader";
+import { AppSidebar } from "./_components/AppSidebar";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -37,10 +39,15 @@ export default async function RootLayout({
             defaultTheme="system"
             enableSystem
             disableTransitionOnChange>
-            <MainHeader />
-            <main className="p-8">
-              {children}
-            </main>
+            <SidebarProvider>
+              <AppSidebar />
+              <SidebarInset>
+                <AppHeader />
+                <div className="p-4">
+                  {children}
+                </div>
+              </SidebarInset>
+            </SidebarProvider>
             <Toaster />
           </ThemeProvider>
         </NextIntlClientProvider>

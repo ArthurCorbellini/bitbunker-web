@@ -13,8 +13,18 @@
     "edit": "Editar",
     "delete": "Excluir",
     "name": "Nome",
-    "symbol": "Símbolo",
-    "": ""
+    "symbol": "Símbolo"
+  },
+  "sidebar": {
+    "general": "Geral",
+    "dashboard": "Dashboard",
+    "transactions": "Transações",
+    "assets": "Ativos",
+    "tools": "Ferramentas",
+    "dataImport": "Importar dados",
+    "reports": "Relatórios",
+    "settings": "Configurações",
+    "getHelp": "Ajuda"
   },
   "assets": {
     "legend": "Aqui você pode gerenciar seus ativos, criar, exportar e mais!",
@@ -24,8 +34,7 @@
     "addTitle": "Inserir Novo Ativo",
     "addDescription": "Insira novos ativos aqui. Clique em salvar quando terminar.",
     "save": "Salvar Ativo",
-    "createToastDescription": "Ativo inserido com sucesso!",
-    "": ""
+    "createToastDescription": "Ativo inserido com sucesso!"
   },
   "transactions": {
     "transactionsLegend": "Aqui você pode gerenciar suas transações, criar novas, exportar e mais!",
@@ -47,8 +56,7 @@
     "notes": "Observações",
     "notesButton": "Inserir observação...",
     "notesPlaceholder": "Rebalanceamento de carteira...",
-    "createToastDescription": "Transação inserida com sucesso!",
-    "": ""
+    "createToastDescription": "Transação inserida com sucesso!"
   },
   "globalComponents": {
     "myDataTable": {
@@ -76,8 +84,7 @@
       "warning": "Atenção!",
       "info": "Importante!",
       "loading": "Carregando...",
-      "defaultErrorMessage": "Favor contatar o time de desenvolvimento.",
-      "": ""
+      "defaultErrorMessage": "Favor contatar o time de desenvolvimento."
     },
     "myAssetTypeCombobox": {
       "placeholder": "Selecione o tipo...",
