@@ -15,10 +15,10 @@ export const SimpleNav = ({
     icon: LucideIcon
   }[]
 } & React.ComponentPropsWithoutRef<typeof SidebarGroup>) => {
-  const { startsWith } = usePathname();
+  const pathName = usePathname();
 
   const isActive = (url: string) => {
-    return startsWith(url);
+    return pathName === url
   }
 
   return (
