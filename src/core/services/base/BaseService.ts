@@ -19,7 +19,6 @@ export class BaseService {
         messages: [],
         display: false,
       },
-      data: null as T,
     };
   }
 

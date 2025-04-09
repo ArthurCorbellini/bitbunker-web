@@ -27,6 +27,7 @@ interface Props {
   isLoading?: boolean,
   onSelect?: (value: string) => void,
   onFocus?: () => void,
+  value?: string,
 }
 
 export interface ComboboxOptions {
@@ -41,14 +42,12 @@ export const MyCombobox = ({
   isLoading,
   onSelect,
   onFocus,
+  value,
 }: Props) => {
   const [open, setOpen] = useState(false)
-  const [value, setValue] = useState("")
 
   const onSelectHandle = (currentValue: string) => {
     if (onSelect) onSelect(currentValue);
-
-    setValue(currentValue === value ? "" : currentValue)
     setOpen(false)
   }
 

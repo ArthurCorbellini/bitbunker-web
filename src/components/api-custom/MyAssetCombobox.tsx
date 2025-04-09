@@ -29,10 +29,12 @@ export const MyAssetCombobox = ({ ...props }: MyAssetComboboxProps) => {
       }
 
       setOptions(
-        response.data.map(p => ({
-          value: p.id.toString(),
-          label: `${p.symbol} - ${p.name}`,
-        }))
+        response.data ?
+          response.data.map(p => ({
+            value: p.id.toString(),
+            label: `${p.symbol} - ${p.name}`,
+          }))
+          : []
       );
     } finally {
       setLoading(false);

@@ -28,7 +28,7 @@ export const MyAssetTypeCombobox = ({ ...props }: MyAssetTypeComboboxProps) => {
         return;
       }
 
-      setTypeOptions(response.data.map(p => ({ value: p.id, label: p.label })));
+      setTypeOptions(response.data ? response.data.map(p => ({ value: p.id, label: p.label })) : []);
     } finally {
       setLoading(false);
     }

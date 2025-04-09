@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 
 import { Input } from "@/components/ui/input";
 import { useNumberFormat } from "./hooks/useNumberFormat";
@@ -35,6 +35,11 @@ const InputNumber: React.FC<InputNumberProps> = ({
     if (onChange) onChange(numericValue);
   }
 
+  useEffect(() => {
+    const { formattedValue } = formatNumber(value);
+    setOutputValue(formattedValue);
+  }, [value]);
+
   return (
     <Input
       type="text"
@@ -60,6 +65,11 @@ const InputString: React.FC<InputStringProps> = ({
     setOutputValue(formattedValue);
     if (onChange) onChange(numericValue);
   }
+
+  useEffect(() => {
+    const { formattedValue } = formatStringNumber(value);
+    setOutputValue(formattedValue);
+  }, [value]);
 
   return (
     <Input

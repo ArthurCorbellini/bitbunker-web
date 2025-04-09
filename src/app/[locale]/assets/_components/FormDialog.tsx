@@ -131,7 +131,9 @@ export const FormDialog = () => {
                   <FormItem>
                     <FormLabel>{t("type")}</FormLabel>
                     <FormControl>
-                      <MyAssetTypeCombobox onSelect={field.onChange} />
+                      <MyAssetTypeCombobox
+                        value={field.value}
+                        onSelect={field.onChange} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -145,7 +147,9 @@ export const FormDialog = () => {
                   <FormItem>
                     <FormLabel>{t2("tier")}</FormLabel>
                     <FormControl>
-                      <MyAssetTierCombobox onSelect={field.onChange} />
+                      <MyAssetTierCombobox
+                        value={field.value}
+                        onSelect={field.onChange} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
