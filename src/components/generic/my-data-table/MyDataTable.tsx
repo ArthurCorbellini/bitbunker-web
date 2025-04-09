@@ -8,6 +8,7 @@ import { DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
 import { flexRender, Table as TanstackTable } from "@tanstack/react-table";
 import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, Settings2 } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { useEffect, useState } from "react";
 
 interface DataTableProps<TData> {
   table: TanstackTable<TData>,
@@ -21,8 +22,13 @@ interface GeneralProps<TData> {
 export function MyDataTable<TData>({ table, }: DataTableProps<TData>) {
   const t = useTranslations("globalComponents.myDataTable");
 
-  const rowsSelected = table.getFilteredSelectedRowModel().rows.length;
-  const numberOfRows = table.getFilteredRowModel().rows.length;
+  const [rowsSelected, setRowsSelected] = useState(0);
+  const [numberOfRows, setNumberOfRows] = useState(0);
+
+  useEffect(() => {
+    setRowsSelected(table.getFilteredSelectedRowModel().rows.length);
+    setNumberOfRows(table.getFilteredRowModel().rows.length);
+  }, [table]);
 
   return (
     <div>
