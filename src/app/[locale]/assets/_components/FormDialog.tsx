@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import { CreateAssetFormType, useSchema } from "@/app/[locale]/assets/_hooks/useSchema";
 import { MyAssetTierCombobox } from "@/components/api-custom/MyAssetTierCombobox";
 import { MyAssetTypeCombobox } from "@/components/api-custom/MyAssetTypeCombobox";
+import { useToast } from "@/components/generic/hooks/useToast";
 import { MyForm } from "@/components/generic/my-form";
 import { MyInputNumber } from "@/components/generic/my-inputs/MyInputNumber";
 import { Button } from "@/components/ui/button";
@@ -22,14 +23,16 @@ import {
 } from "@/components/ui/dialog";
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { useAsset } from "../_hooks/useAsset";
+import { useTransition } from "react";
+import { createAsset } from "../_actions/createAsset";
 
 export const FormDialog = () => {
   const t = useTranslations("common");
   const t2 = useTranslations("assets");
 
-  const { createAsset } = useAsset();
   const { CreateAssetFormSchema } = useSchema();
+  const { successToast, handleApiErrorToast } = useToast();
+  const [isPending, startTransition] = useTransition();
 
   const form = useForm<CreateAssetFormType>({
     resolver: zodResolver(CreateAssetFormSchema),
@@ -43,13 +46,21 @@ export const FormDialog = () => {
   })
 
   const onSubmit = (values: CreateAssetFormType) => {
-    createAsset(values);
+    startTransition(() => {
+      createAsset(values).then((res) => {
+        if (res.success) {
+          successToast(t2("createToastDescription"));
+          form.reset();
+        } else
+          handleApiErrorToast(res.error);
+      });
+    })
   }
 
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button>
+        <Button onClick={() => form.reset()}>
           <Plus /> {t2("addButton")}
         </Button>
       </DialogTrigger>
@@ -142,7 +153,9 @@ export const FormDialog = () => {
             </div>
           </div>
           <DialogFooter>
-            <Button type="submit">{t2("save")}</Button>
+            <Button type="submit" disabled={isPending}>
+              {isPending ? t2("saving") : t2("save")}
+            </Button>
           </DialogFooter>
         </MyForm>
       </DialogContent>

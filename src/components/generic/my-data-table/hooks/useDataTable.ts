@@ -14,7 +14,7 @@ import { useState } from "react";
 
 interface Props<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
-  data: TData[]
+  data?: TData[]
 }
 
 export const useDataTable = <TData, TValue>({
@@ -29,7 +29,7 @@ export const useDataTable = <TData, TValue>({
   const [rowSelection, setRowSelection] = useState({})
 
   const table = useReactTable({
-    data,
+    data: data ?? [],
     columns,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),

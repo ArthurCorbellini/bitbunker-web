@@ -3,10 +3,10 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { MoreHorizontal } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { useEffect } from "react";
 
-import { MyDataTable } from "@/components/generic/my-data-table/MyDataTable";
+import { useToast } from "@/components/generic/hooks/useToast";
 import { useDataTable } from "@/components/generic/my-data-table/hooks/useDataTable";
+import { MyDataTable } from "@/components/generic/my-data-table/MyDataTable";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -16,13 +16,16 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
+import { ApiResponse } from "@/core/types/api";
 import { Asset } from "@/core/types/asset";
-import { useAsset } from "../_hooks/useAsset";
+import { useEffect } from "react";
 
-export const DataTable = () => {
+export const DataTable = ({ response }: {
+  response: ApiResponse<Asset[]>
+}) => {
   const t = useTranslations("common");
   const t2 = useTranslations("assets");
-  const { assets, loadAssets } = useAsset();
+  const { handleApiErrorToast } = useToast();
 
   const columns: ColumnDef<Asset>[] = [
     {
@@ -71,12 +74,13 @@ export const DataTable = () => {
     },
   ]
 
-  const { table } = useDataTable({ columns, data: assets.data })
+  const { table } = useDataTable({ columns, data: response.data })
 
   useEffect(() => {
-    loadAssets()
+    if (response.error)
+      handleApiErrorToast(response.error);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [response.error])
 
   return (
     <MyDataTable table={table} />

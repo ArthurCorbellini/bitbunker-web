@@ -1,10 +1,10 @@
 import { ApiResponse } from "../types/api";
 import { Asset, CreateAsset, TierOption, TypeOption } from "../types/asset";
-import { BaseService } from "./base/BaseService";
+import { BaseService, NextFetchOptions } from "./base/BaseService";
 
 export class AssetService extends BaseService {
-  static async fetchAssets(): Promise<ApiResponse<Asset[]>> {
-    return this.get("/asset");
+  static async fetchAssets(next?: NextFetchOptions): Promise<ApiResponse<Asset[]>> {
+    return this.get("/asset", next);
   }
 
   static async createAsset(data: CreateAsset): Promise<ApiResponse> {

@@ -3,7 +3,7 @@ export interface ApiResponse<T = null> {
   apiPath: string;
   timestamp: string;
   error: ApiResponseError | null;
-  data: T;
+  data?: T;
 }
 
 export interface ApiResponseError {
