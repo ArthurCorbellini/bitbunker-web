@@ -43,6 +43,7 @@
     "title": "Criar Nova Transação",
     "description": "Crie novas transações aqui. Clique em salvar quando terminar.",
     "save": "Salvar Transação",
+    "saving": "Salvando...",
     "buySell": "Compra & Venda",
     "deposit": "Depósito",
     "depositDescription": "Informe o ativo depositado.",

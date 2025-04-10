@@ -5,6 +5,7 @@ import { MoreHorizontal } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useEffect } from "react";
 
+import { useToast } from "@/components/generic/hooks/useToast";
 import { MyDataTable } from "@/components/generic/my-data-table/MyDataTable";
 import { useDataTable } from "@/components/generic/my-data-table/hooks/useDataTable";
 import { Button } from "@/components/ui/button";
@@ -16,13 +17,15 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
+import { ApiResponse } from "@/core/types/api";
 import { Transaction } from "@/core/types/transaction";
 import { convertCurrency, formatDate } from "@/utils/string-utils";
-import { useTransaction } from "../_hooks/useTransaction";
 
-export const DataTable = () => {
+export const DataTable = ({ response }: {
+  response: ApiResponse<Transaction[]>
+}) => {
   const t = useTranslations("common");
-  const { transactions, loadTransactions } = useTransaction();
+  const { handleApiErrorToast } = useToast();
 
   const columns: ColumnDef<Transaction>[] = [
     {
@@ -91,12 +94,13 @@ export const DataTable = () => {
     },
   ]
 
-  const { table } = useDataTable({ columns, data: transactions.data })
+  const { table } = useDataTable({ columns, data: response.data })
 
   useEffect(() => {
-    loadTransactions();
+    if (response.error)
+      handleApiErrorToast(response.error);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [response.error])
 
   return (
     <MyDataTable table={table} />

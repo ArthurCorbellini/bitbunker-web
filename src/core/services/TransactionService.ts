@@ -1,17 +1,24 @@
 import { ApiResponse } from "../types/api";
 import { CreateBuyAndSellTransactions, CreateTransaction, Transaction } from "../types/transaction";
-import { BaseService } from "./base/BaseService";
+import { BaseService, NextFetchOptions } from "./base/BaseService";
 
 export class TransactionService extends BaseService {
-  static async fetchTransactions(): Promise<ApiResponse<Transaction[]>> {
-    return this.get("/transaction");
+
+  static async fetchTransactions(
+    next?: NextFetchOptions
+  ): Promise<ApiResponse<Transaction[]>> {
+    return this.get("/transaction", next);
   }
 
-  static async createBuyAndSellTransactions(payload: CreateBuyAndSellTransactions): Promise<ApiResponse> {
+  static async createBuyAndSellTransactions(
+    payload: CreateBuyAndSellTransactions
+  ): Promise<ApiResponse> {
     return this.post("/transaction/buy-and-sell", payload);
   }
 
-  static async createTransaction(payload: CreateTransaction): Promise<ApiResponse> {
+  static async createTransaction(
+    payload: CreateTransaction
+  ): Promise<ApiResponse> {
     return this.post("/transaction", payload);
   }
 }

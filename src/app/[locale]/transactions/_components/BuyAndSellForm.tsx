@@ -2,21 +2,24 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
+import { useTransition } from "react";
 import { useForm } from "react-hook-form";
 
+import { useToast } from "@/components/generic/hooks/useToast";
 import { MyForm } from "@/components/generic/my-form";
 import { Button } from "@/components/ui/button";
 import { DialogFooter } from "@/components/ui/dialog";
+import { createBuyAndSellTransactions } from "../_actions/createBuyAndSellTransactions";
 import { BuyAndSellFormType, useSchema } from "../_hooks/useSchema";
-import { useTransaction } from "../_hooks/useTransaction";
 import { CommonTransactionFormCard } from "./CommonTransactionFormCard";
 import { CommonTransactionFormFields } from "./CommonTransactionFormFields";
 
 export const BuyAndSellForm = () => {
-  const t2 = useTranslations("transactions");
+  const t = useTranslations("transactions");
 
-  const { createBuyAndSellTransactions } = useTransaction();
   const { BuyAndSellFormSchema } = useSchema();
+  const { successToast, handleApiErrorToast } = useToast();
+  const [isPending, startTransition] = useTransition();
 
   const form = useForm<BuyAndSellFormType>({
     resolver: zodResolver(BuyAndSellFormSchema),
@@ -39,7 +42,15 @@ export const BuyAndSellForm = () => {
   })
 
   const onSubmit = async (values: BuyAndSellFormType) => {
-    createBuyAndSellTransactions(values);
+    startTransition(() => {
+      createBuyAndSellTransactions(values).then((res) => {
+        if (res.success) {
+          successToast(t("createToastDescription"));
+          form.reset();
+        } else
+          handleApiErrorToast(res.error);
+      });
+    })
   }
 
   return (
@@ -49,16 +60,18 @@ export const BuyAndSellForm = () => {
         <div className="flex gap-4 items-center">
           <CommonTransactionFormCard
             formField="buy"
-            title={t2("source")}
-            description={t2("sourceDescription")} />
+            title={t("source")}
+            description={t("sourceDescription")} />
           <CommonTransactionFormCard
             formField="sell"
-            title={t2("target")}
-            description={t2("targetDescription")} />
+            title={t("target")}
+            description={t("targetDescription")} />
         </div>
       </div>
       <DialogFooter>
-        <Button type="submit">{t2("save")}</Button>
+        <Button type="submit" disabled={isPending}>
+          {isPending ? t("saving") : t("save")}
+        </Button>
       </DialogFooter>
     </MyForm>
   );

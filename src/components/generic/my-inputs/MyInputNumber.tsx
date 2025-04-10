@@ -32,7 +32,7 @@ const InputNumber: React.FC<InputNumberProps> = ({
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { formattedValue, numericValue } = formatNumber(e.target.value);
     setOutputValue(formattedValue);
-    if (onChange) onChange(numericValue);
+    onChange?.(numericValue);
   }
 
   useEffect(() => {
@@ -63,7 +63,7 @@ const InputString: React.FC<InputStringProps> = ({
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { formattedValue, numericValue } = formatStringNumber(e.target.value);
     setOutputValue(formattedValue);
-    if (onChange) onChange(numericValue);
+    onChange?.(numericValue);
   }
 
   useEffect(() => {
