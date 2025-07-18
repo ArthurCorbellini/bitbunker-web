@@ -1,41 +1,47 @@
 {
-  "shared": {
+  "common": {
+    "asset": "Ativo",
+    "assets": "Ativos",
     "dashboard": "Dashboard",
-    "assets": "Assets",
-    "asset": "Asset",
-    "orders": "Orders",
-    "ucid": "UCID",
-    "name": "Name",
-    "symbol": "Symbol",
-    "classification": "Classification",
-    "actions": "Actions",
-    "saving": "Saving",
-    "save": "Save",
-    "type": "Type",
-    "quantity": "Quantity",
+    "transactions": "Transações",
+    "type": "Tipo",
+    "amount": "Quantidade",
+    "unitPrice": "Preço unitário",
+    "totalValue": "Valor total",
+    "date": "Data",
+    "actions": "Ações",
+    "edit": "Editar",
+    "delete": "Excluir",
     "": ""
   },
-  "errors": {
-    "notEmpty": "Can not be empty",
-    "mustBeNumber": "Must be a number",
-    "mustBePositiveNumber": "Must be a positive number",
-    "lengthLessThan": "Length should be less than",
-    "internalServerErrorMessage": "Internal server error. Please try again later.",
-    "": ""
+  "transactions": {
+    "transactionsLegend": "Aqui você pode gerenciar suas transações, criar novas, exportar e mais!",
+    "form": {
+      "addTransactions": "Adicionar Transação",
+      "title": "Criar Nova Transação",
+      "description": "Crie novas transações aqui. Clique em salvar quando terminar.",
+      "save": "Salvar Transação",
+      "buySell": "Comprar & Vender",
+      "deposit": "Depósito",
+      "withdrawal": "Saque"
+    }
   },
-  "CreateAsset": {
-    "title": "Create new Asset",
-    "description": "Form to create asset",
-    "assetSavedSuccessfully": "Asset saved successfully!",
-    "assetAlreadyExists": "Asset already exists with the given UCID.",
-    "": ""
-  },
-  "OrderList": {
-    "brlQuantity": "BRL",
-    "notes": "Notes"
-  },
-  "OrderForm": {
-    "title": "Create new Order",
-    "description": "Form to create order"
+  "globalComponents": {
+    "myDataTable": {
+      "view": "Visualização",
+      "toggleColumns": "Alternar colunas",
+      "noResults": "Nenhum resultado",
+      "of": "de",
+      "rowsSelected": "linha(s) selecionada(s)",
+      "rowsPerPage": "Linhas por página",
+      "page": "Página",
+      "goFirstPage": "Ir para a primeira página",
+      "goPreviousPage": "Ir para a página anterior",
+      "goNextPage": "Ir para a próxima página",
+      "goLastPage": "Ir para a última página",
+      "asc": "Ascendente",
+      "desc": "Descendente",
+      "hide": "Ocultar"
+    }
   }
 }

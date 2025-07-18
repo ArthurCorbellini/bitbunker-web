@@ -1,41 +1,109 @@
 {
-  "shared": {
-    "dashboard": "Dashboard",
-    "assets": "Ativos",
+  "common": {
     "asset": "Ativo",
-    "orders": "Ordens",
-    "ucid": "UCID",
-    "name": "Nome",
-    "symbol": "Símbolo",
-    "classification": "Classificação",
-    "actions": "Ações",
-    "saving": "Salvando",
-    "save": "Salvar",
+    "assets": "Ativos",
+    "dashboard": "Dashboard",
+    "transactions": "Transações",
     "type": "Tipo",
-    "quantity": "Quantidade",
-    "": ""
+    "amount": "Quantidade",
+    "unitPrice": "Preço unitário",
+    "totalValue": "Valor total",
+    "date": "Data",
+    "actions": "Ações",
+    "edit": "Editar",
+    "delete": "Excluir",
+    "name": "Nome",
+    "symbol": "Símbolo"
   },
-  "errors": {
-    "notEmpty": "Não pode ser vazio",
-    "mustBeNumber": "Precisa ser um número",
-    "mustBePositiveNumber": "Precisa ser um número positivo",
-    "lengthLessThan": "O tamanho precisa ser menor que",
-    "internalServerErrorMessage": "Erro interno. Por favor, tente novamente mais tarde",
-    "": ""
+  "sidebar": {
+    "general": "Geral",
+    "dashboard": "Dashboard",
+    "transactions": "Transações",
+    "assets": "Ativos",
+    "tools": "Ferramentas",
+    "dataImport": "Importar dados",
+    "reports": "Relatórios",
+    "settings": "Configurações",
+    "getHelp": "Ajuda"
   },
-  "CreateAsset": {
-    "title": "Criar novo Ativo",
-    "description": "Formulário para criar um novo ativo",
-    "assetSavedSuccessfully": "Ativo salvo com sucesso!",
-    "assetAlreadyExists": "Já existe um Ativo cadastrado com o UCID informado.",
-    "": ""
+  "assets": {
+    "legend": "Aqui você pode gerenciar seus ativos, criar, exportar e mais!",
+    "ucid": "UCID",
+    "tier": "Classificação",
+    "addButton": "Adicionar Ativo",
+    "addTitle": "Inserir Novo Ativo",
+    "addDescription": "Insira novos ativos aqui. Clique em salvar quando terminar.",
+    "save": "Salvar Ativo",
+    "saving": "Salvando...",
+    "createToastDescription": "Ativo inserido com sucesso!"
   },
-  "OrderList": {
-    "brlQuantity": "BRL",
-    "notes": "Observações"
+  "transactions": {
+    "transactionsLegend": "Aqui você pode gerenciar suas transações, criar novas, exportar e mais!",
+    "addTransactions": "Adicionar Transação",
+    "title": "Criar Nova Transação",
+    "description": "Crie novas transações aqui. Clique em salvar quando terminar.",
+    "save": "Salvar Transação",
+    "saving": "Salvando...",
+    "buySell": "Compra & Venda",
+    "deposit": "Depósito",
+    "depositDescription": "Informe o ativo depositado.",
+    "withdrawal": "Saque",
+    "withdrawalDescription": "Informe o ativo sacado.",
+    "source": "Saída",
+    "sourceDescription": "Ativo debitado",
+    "target": "Entrada",
+    "targetDescription": "Ativo creditado",
+    "amoutPlaceholder": "Total cedido...",
+    "dateHourTransaction": "Data e hora da transação",
+    "notes": "Observações",
+    "notesButton": "Inserir observação...",
+    "notesPlaceholder": "Rebalanceamento de carteira...",
+    "createToastDescription": "Transação inserida com sucesso!"
   },
-  "OrderForm": {
-    "title": "Criar nova Ordem",
-    "description": "Formulário para criar uma nova ordem"
+  "globalComponents": {
+    "myDataTable": {
+      "view": "Visualização",
+      "toggleColumns": "Alternar colunas",
+      "noResults": "Nenhum resultado",
+      "of": "de",
+      "rowsSelected": "linha(s) selecionada(s)",
+      "rowsPerPage": "Linhas por página",
+      "page": "Página",
+      "goFirstPage": "Ir para a primeira página",
+      "goPreviousPage": "Ir para a página anterior",
+      "goNextPage": "Ir para a próxima página",
+      "goLastPage": "Ir para a última página",
+      "asc": "Ascendente",
+      "desc": "Descendente",
+      "hide": "Ocultar"
+    },
+    "myDateTimePicker": {
+      "placeholder": "Selecionar data e hora..."
+    },
+    "toast": {
+      "success": "Operação concluída!",
+      "error": "Falha na operação!",
+      "warning": "Atenção!",
+      "info": "Importante!",
+      "loading": "Carregando...",
+      "defaultErrorMessage": "Favor contatar o time de desenvolvimento."
+    },
+    "myAssetTypeCombobox": {
+      "placeholder": "Selecione o tipo...",
+      "emptyMessage": "Nenhum tipo encontrado."
+    },
+    "myAssetTierCombobox": {
+      "placeholder": "Selecione a classificação...",
+      "emptyMessage": "Nenhuma classificação encontrada."
+    },
+    "myAssetCombobox": {
+      "placeholder": "Selecione o ativo...",
+      "emptyMessage": "Nenhum ativo encontrado."
+    }
+  },
+  "zodErrors": {
+    "notEmpty": "Não pode ser vazio.",
+    "textLengthLessThan": "Texto não pode ser inferior a {count} caracteres.",
+    "mustBePositiveValue": "Precisa ser um valor positivo."
   }
 }
