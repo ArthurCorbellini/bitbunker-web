@@ -1,6 +1,5 @@
 export interface ApiResponse<T = null> {
   success: boolean;
-  apiPath: string;
   timestamp: string;
   error: ApiResponseError | null;
   data?: T;
