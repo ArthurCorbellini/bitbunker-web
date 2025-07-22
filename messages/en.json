@@ -2,7 +2,7 @@
   "common": {
     "asset": "Ativo",
     "assets": "Ativos",
-    "dashboard": "Dashboard",
+    "overview": "Overview",
     "transactions": "Transações",
     "type": "Tipo",
     "amount": "Quantidade",

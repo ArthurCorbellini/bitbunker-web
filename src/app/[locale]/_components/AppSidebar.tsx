@@ -17,8 +17,8 @@ export const AppSidebar = ({ ...props }: React.ComponentProps<typeof Sidebar>) =
 
   const generalMenu = [
     {
-      label: t("dashboard"),
-      url: "/dashboard",
+      label: t("overview"),
+      url: "/overview",
       icon: LayoutDashboardIcon,
     },
     {
