@@ -1,11 +1,11 @@
 {
-  "common": {
+  "literals": {
     "asset": "Ativo",
     "assets": "Ativos",
     "overview": "Overview",
     "transactions": "Transações",
     "type": "Tipo",
-    "amount": "Quantidade",
+    "quantity": "Quantidade",
     "unitPrice": "Preço unitário",
     "totalValue": "Valor total",
     "date": "Data",
@@ -13,7 +13,8 @@
     "edit": "Editar",
     "delete": "Excluir",
     "name": "Nome",
-    "symbol": "Símbolo"
+    "symbol": "Símbolo",
+    "ucid": "UCID"
   },
   "sidebar": {
     "general": "Geral",
@@ -27,8 +28,8 @@
     "getHelp": "Ajuda"
   },
   "assets": {
+    "title": "Ativos",
     "legend": "Aqui você pode gerenciar seus ativos, criar, exportar e mais!",
-    "ucid": "UCID",
     "tier": "Classificação",
     "addButton": "Adicionar Ativo",
     "addTitle": "Inserir Novo Ativo",

@@ -26,7 +26,7 @@ import { Input } from "@/components/ui/input";
 import { useTransition } from "react";
 import { createAsset } from "../_actions/createAsset";
 
-export const FormDialog = () => {
+export const AssetFormDialog = () => {
   const t = useTranslations("common");
   const t2 = useTranslations("assets");
 

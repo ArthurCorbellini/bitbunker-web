@@ -20,17 +20,17 @@ import { ApiResponse } from "@/core/types/api";
 import { Asset } from "@/core/types/asset";
 import { useEffect } from "react";
 
-export const DataTable = ({ response }: {
+export const AssetDataTable = ({ response }: {
   response: ApiResponse<Asset[]>
 }) => {
-  const t = useTranslations("common");
+  const t = useTranslations("literals");
   const t2 = useTranslations("assets");
   const { handleApiErrorToast } = useToast();
 
   const columns: ColumnDef<Asset>[] = [
     {
       accessorKey: "ucid",
-      header: t2("ucid"),
+      header: t("ucid"),
     },
     {
       accessorKey: "name",
