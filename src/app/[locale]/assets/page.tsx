@@ -18,7 +18,7 @@ export default async function Page() {
       <div className="flex justify-end py-4">
         <AssetFormDialog />
       </div>
-      <AssetDataTable response={assetApiResponse} />
+      <AssetDataTable data={assetApiResponse.data} />
     </>
   );
 }
