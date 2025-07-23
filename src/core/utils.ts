@@ -1,6 +1,6 @@
-import { ApiErrorCode, ApiResponse } from "./types/api";
+import { ApiErrorCode, ApiPayload } from "./types/api";
 
-export const convertResponseError = <T>(response: ApiResponse<T>) => {
+export const convertResponseError = <T>(response: ApiPayload<T>) => {
   switch (response.error?.code) {
     case "VALIDATION_ERROR":
       return ApiErrorCode.RESOURCE_VALIDATION_ERROR;

@@ -17,12 +17,12 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
-import { ApiResponse } from "@/core/types/api";
+import { ApiPayload } from "@/core/types/api";
 import { Transaction } from "@/core/types/transaction";
 import { convertCurrency, formatDate } from "@/utils/string-utils";
 
 export const DataTable = ({ response }: {
-  response: ApiResponse<Transaction[]>
+  response: ApiPayload<Transaction[]>
 }) => {
   const t = useTranslations("common");
   const { handleApiErrorToast } = useToast();

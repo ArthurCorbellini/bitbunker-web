@@ -1,11 +1,11 @@
 "use client"
 
 import { useToast } from "@/components/generic/hooks/useToast";
-import { ApiResponseError } from "@/core/types/api";
+import { ApiError } from "@/core/types/api";
 import { useEffect } from "react";
 
 export const ApiErrorToast = ({ error }: {
-  error?: ApiResponseError
+  error?: ApiError
 }) => {
   const { handleApiErrorToast } = useToast();
 

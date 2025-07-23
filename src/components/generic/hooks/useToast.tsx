@@ -1,4 +1,4 @@
-import { ApiResponseError } from "@/core/types/api";
+import { ApiError } from "@/core/types/api";
 import { useTranslations } from "next-intl";
 import { ReactNode } from "react";
 import { toast } from "sonner";
@@ -6,7 +6,7 @@ import { toast } from "sonner";
 export const useToast = () => {
   const t = useTranslations("globalComponents.toast");
 
-  const handleApiErrorToast = (apiError: ApiResponseError | null) => {
+  const handleApiErrorToast = (apiError: ApiError | null) => {
     if (apiError?.display)
       errorToast(
         apiError.messages.length > 1 ? (

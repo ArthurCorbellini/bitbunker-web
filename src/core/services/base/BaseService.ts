@@ -9,10 +9,9 @@ export interface NextFetchOptions {
 
 export class BaseService {
 
-  private static async buildUnknownErrorResponse<T>(url: string) {
+  private static async buildUnknownErrorResponse<T>(): ApiResponse<T> {
     return {
       success: false,
-      apiPath: url,
       timestamp: new Date().toISOString(),
       error: {
         code: ApiErrorCode.UNKNOWN_ERROR.toString(),
@@ -25,17 +24,17 @@ export class BaseService {
   protected static async get<T>(
     url: string,
     next?: NextFetchOptions,
-  ): Promise<ApiResponse<T>> {
+  ): ApiResponse<T> {
     try {
       const response = await fetch(root + url, { next });
 
       return response.json();
     } catch {
-      return this.buildUnknownErrorResponse<T>(url);
+      return this.buildUnknownErrorResponse<T>();
     }
   }
 
-  protected static async post<D, T>(url: string, payload: D): Promise<ApiResponse<T>> {
+  protected static async post<D, T>(url: string, payload: D): ApiResponse<T> {
     try {
       const response = await fetch(root + url, {
         method: 'POST',
@@ -46,7 +45,7 @@ export class BaseService {
       });
       return response.json();
     } catch {
-      return this.buildUnknownErrorResponse<T>(url);
+      return this.buildUnknownErrorResponse<T>();
     }
   }
 }
