@@ -14,7 +14,8 @@
     "delete": "Excluir",
     "name": "Nome",
     "symbol": "Símbolo",
-    "ucid": "UCID"
+    "ucid": "UCID",
+    "categories": "Categorias"
   },
   "sidebar": {
     "general": "Geral",
@@ -28,7 +29,7 @@
     "getHelp": "Ajuda"
   },
   "assets": {
-    "title": "Ativos",
+    "title": "Controle de Ativos",
     "legend": "Aqui você pode gerenciar seus ativos, criar, exportar e mais!",
     "tier": "Classificação",
     "addButton": "Adicionar Ativo",
@@ -37,6 +38,12 @@
     "save": "Salvar Ativo",
     "saving": "Salvando...",
     "createToastDescription": "Ativo inserido com sucesso!"
+  },
+  "categoryMenu": {
+    "title": "Categorias de ativos",
+    "overview": "Visão geral",
+    "dataCardLegend": "Alocação por ativo",
+    "addButtonLabel": "Criar categoria"
   },
   "transactions": {
     "transactionsLegend": "Aqui você pode gerenciar suas transações, criar novas, exportar e mais!",
