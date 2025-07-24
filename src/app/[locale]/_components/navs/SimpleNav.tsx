@@ -18,7 +18,7 @@ export const SimpleNav = ({
   const pathName = usePathname();
 
   const isActive = (url: string) => {
-    return pathName === url
+    return pathName.startsWith(url);
   }
 
   return (
