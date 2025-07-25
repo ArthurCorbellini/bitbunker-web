@@ -1,5 +1,5 @@
 import { ApiResponse } from "../types/api";
-import { AssetCategory } from "../types/asset-category";
+import { AssetCategory, CreateAssetCategory } from "../types/asset-category";
 import { BaseService, NextFetchOptions } from "./base/BaseService";
 
 export class AssetCategoryService extends BaseService {
@@ -24,4 +24,9 @@ export class AssetCategoryService extends BaseService {
     }
     return dummie;
   }
+
+  static async createAssetCategory(data: CreateAssetCategory): ApiResponse {
+    return this.post("/asset-categories", data);
+  }
+
 }

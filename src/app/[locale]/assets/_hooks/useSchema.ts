@@ -12,9 +12,16 @@ export const useSchema = () => {
     tier: z.string().min(1, tz("notEmpty")),
   });
 
+  const CreateAssetCategoryFormSchema = z.object({
+    name: z.string().min(1, tz("notEmpty")),
+    recommendedPercentage: z.number(),
+  });
+
   return {
-    CreateAssetFormSchema
+    CreateAssetFormSchema,
+    CreateAssetCategoryFormSchema,
   };
 }
 
 export type CreateAssetFormType = z.infer<ReturnType<typeof useSchema>["CreateAssetFormSchema"]>;
+export type CreateAssetCategoryFormType = z.infer<ReturnType<typeof useSchema>["CreateAssetCategoryFormSchema"]>;

@@ -6,6 +6,7 @@ import { Link, usePathname } from "@/i18n/routing";
 import { cn } from "@/utils/shadcn-utils";
 import { toPercent } from "@/utils/string-utils";
 import { useTranslations } from "next-intl";
+import { CategoryFormModal } from "./CategoryFormModal";
 
 export const CategoryMenuClient = ({ data }: {
   data?: AssetCategory[]
@@ -27,7 +28,7 @@ export const CategoryMenuClient = ({ data }: {
         </article>
       </Link>
 
-      <H4>{t("title")}</H4>
+      <H4 className="py-2">{t("title")}</H4>
 
       {data?.map((c) => {
         const href = `/assets/categories/${c.id}`;
@@ -48,6 +49,8 @@ export const CategoryMenuClient = ({ data }: {
           </Link>
         )
       })}
+
+      <CategoryFormModal />
     </div>
   );
 }
