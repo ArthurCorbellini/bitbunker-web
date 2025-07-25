@@ -6,7 +6,7 @@ import { toast } from "sonner";
 export const useToast = () => {
   const t = useTranslations("globalComponents.toast");
 
-  const handleApiErrorToast = (apiError: ApiError | null) => {
+  const handleApiErrorToast = (apiError?: ApiError) => {
     if (apiError?.display)
       errorToast(
         apiError.messages.length > 1 ? (

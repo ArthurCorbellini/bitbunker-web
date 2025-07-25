@@ -1,4 +1,4 @@
-export interface ApiPayload<T = null> {
+export interface ApiPayload<T = undefined> {
   success: boolean;
   timestamp: string;
   data?: T;
@@ -11,7 +11,7 @@ export interface ApiError {
   display: boolean;
 }
 
-export type ApiResponse<T> = Promise<ApiPayload<T>>
+export type ApiResponse<T = undefined> = Promise<ApiPayload<T>>
 
 export enum ApiErrorCode {
   RESOURCE_VALIDATION_ERROR,
