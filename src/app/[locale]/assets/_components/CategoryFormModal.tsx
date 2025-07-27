@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 
 import { useToast } from "@/components/generic/hooks/useToast";
 import { MyForm } from "@/components/generic/my-form";
+import { MyInputNumber } from "@/components/generic/my-inputs/MyInputNumber";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -68,7 +69,7 @@ export const CategoryFormModal = () => {
         <MyForm form={form} onSubmit={onSubmit}>
           <div className="flex flex-col gap-4">
             <div className="flex gap-4">
-              <div className="w-1/3">
+              <div className="w-full">
                 <FormField
                   control={form.control}
                   name="name"
@@ -82,6 +83,24 @@ export const CategoryFormModal = () => {
                     </FormItem>
                   )} />
               </div>
+            </div>
+            <div className="w-full">
+              <FormField
+                control={form.control}
+                name={"recommendedPercentage"}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t("recommendedPercentage")}</FormLabel>
+                    <FormControl>
+                      <MyInputNumber
+                        type="number"
+                        decimalPlaces={2}
+                        value={field.value}
+                        onChange={field.onChange} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )} />
             </div>
           </div>
           <DialogFooter>

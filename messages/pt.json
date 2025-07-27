@@ -45,8 +45,12 @@
     "dataCardLegend": "Alocação por ativo",
     "addButton": "Criar categoria",
     "createToastDescription": "Categoria criada com sucesso!",
-    "addTitle": "Inserir nova categoria",
-    "addDescription": "Insira novos ativos aqui. Clique em salvar quando terminar."
+    "addTitle": "Nova categoria",
+    "addDescription": "Crie novas categorias aqui. Clique em salvar quando terminar.",
+    "name": "Nome da categoria",
+    "recommendedPercentage": "Percentual recomendado",
+    "save": "Salvar categoria",
+    "saving": "Salvando..."
   },
   "transactions": {
     "transactionsLegend": "Aqui você pode gerenciar suas transações, criar novas, exportar e mais!",
