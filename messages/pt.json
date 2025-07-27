@@ -112,8 +112,8 @@
       "emptyMessage": "Nenhum ativo encontrado."
     }
   },
-  "zodErrors": {
-    "notEmpty": "Não pode ser vazio.",
+  "formErrors": {
+    "too_small": "Mínimo {minimum} {minimum, plural, one {caractere} other {caracteres}}",
     "textLengthLessThan": "Texto não pode ser inferior a {count} caracteres.",
     "mustBePositiveValue": "Precisa ser um valor positivo."
   }
