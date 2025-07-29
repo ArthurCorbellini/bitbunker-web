@@ -1,18 +1,19 @@
 "use client"
 
+import { useTranslations } from "next-intl";
+
 import { H4, Muted, P } from "@/components/generic/my-typography";
 import { AssetCategory } from "@/core/types/asset-category";
 import { useNumberFormat } from "@/hooks/use-number-format";
 import { Link, usePathname } from "@/i18n/routing";
 import { cn } from "@/utils/shadcn-utils";
-import { useTranslations } from "next-intl";
 import { CategoryFormModal } from "./CategoryFormModal";
 
 export const CategoryMenuClient = ({ data }: {
   data?: AssetCategory[]
 }) => {
   const t = useTranslations("categoryMenu");
-  const { formatPercent } = useNumberFormat(2, "BRL");
+  const { formatPercent } = useNumberFormat();
   const pathname = usePathname();
 
   return (

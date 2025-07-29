@@ -92,11 +92,7 @@ export const CategoryFormModal = () => {
                   <FormItem>
                     <FormLabel>{t("recommendedPercentage")}</FormLabel>
                     <FormControl>
-                      <MyInputNumber
-                        type="number"
-                        decimalPlaces={2}
-                        value={field.value}
-                        onChange={field.onChange} />
+                      <MyInputNumber {...field} decimalPlaces={2} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

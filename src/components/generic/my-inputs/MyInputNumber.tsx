@@ -1,92 +1,115 @@
-import { ChangeEvent, useEffect, useState } from "react";
+import { useLocale } from "next-intl";
+import { ChangeEvent, ComponentProps, forwardRef, useState } from "react";
 
 import { Input } from "@/components/ui/input";
-import { useNumberFormat } from "@/hooks/use-number-format";
+import { cn } from "@/utils/shadcn-utils";
 
-interface InputBaseProps {
+const formatNumber = (
+  locale: string,
+  decimalPlaces: number,
+  rawValue?: number | string,
+) => {
+  let input = (rawValue + "").replace(/\D/g, "");
+  if (!input) input = "0";
+
+  const divisor = Math.pow(10, decimalPlaces);
+
+  const stringValue = new Intl.NumberFormat(locale, {
+    style: "decimal",
+    minimumFractionDigits: decimalPlaces,
+    maximumFractionDigits: decimalPlaces,
+  }).format(parseFloat(input) / divisor);
+  const numericValue = parseFloat(input) / divisor;
+
+  return { stringValue, numericValue };
+};
+
+type InputBaseProps = {
+  inputType?: "string" | "number";
   decimalPlaces?: number;
-}
+} & Omit<ComponentProps<typeof Input>, "onChange" | "value">;
 
 interface InputStringProps extends InputBaseProps {
-  type: "string";
-  placeholder?: string;
   value?: string;
-  onChange?: (value?: string) => void;
+  onChange?: (value: string) => void;
 }
 
 interface InputNumberProps extends InputBaseProps {
-  type: "number";
   value?: number;
-  onChange?: (value?: number) => void;
+  onChange?: (value: number) => void;
 }
 
-const InputNumber: React.FC<InputNumberProps> = ({
-  value,
-  onChange,
-  decimalPlaces,
-}) => {
-  const { formatNumber } = useNumberFormat(decimalPlaces);
-  const { formattedValue } = formatNumber(value);
-  const [outputValue, setOutputValue] = useState(formattedValue);
+const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
+  ({
+    decimalPlaces = 0,
+    value,
+    onChange,
+    className,
+    ...props
+  }, ref) => {
+    const locale = useLocale();
+    const { stringValue } = formatNumber(locale, decimalPlaces, value);
+    const [outputValue, setOutputValue] = useState(stringValue);
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { formattedValue, numericValue } = formatNumber(e.target.value);
-    setOutputValue(formattedValue);
-    onChange?.(numericValue);
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+      const { stringValue, numericValue } = formatNumber(locale, decimalPlaces, e.target.value);
+      setOutputValue(stringValue);
+      onChange?.(numericValue);
+    }
+
+    return (
+      <Input
+        type="text"
+        inputMode="decimal"
+        className={cn("text-right", className)}
+        value={outputValue}
+        onChange={handleChange}
+        ref={ref}
+        {...props}
+      />
+    );
   }
+);
 
-  useEffect(() => {
-    const { formattedValue } = formatNumber(value);
-    setOutputValue(formattedValue);
-  }, [value]);
+const InputString = forwardRef<HTMLInputElement, InputStringProps>(
+  ({
+    decimalPlaces = 0,
+    value,
+    onChange,
+    className,
+    ...props
+  }, ref) => {
+    const locale = useLocale();
+    const { stringValue } = formatNumber(locale, decimalPlaces, value);
+    const [outputValue, setOutputValue] = useState(stringValue);
 
-  return (
-    <Input
-      type="text"
-      value={outputValue}
-      onChange={handleChange}
-      inputMode="decimal"
-      className="text-right" />
-  );
-};
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+      const { stringValue } = formatNumber(locale, decimalPlaces, e.target.value);
+      setOutputValue(stringValue);
+      onChange?.(stringValue);
+    }
 
-const InputString: React.FC<InputStringProps> = ({
-  value,
-  onChange,
-  decimalPlaces,
-  placeholder,
-}) => {
-  const { formatStringNumber } = useNumberFormat(decimalPlaces);
-  const { formattedValue } = formatStringNumber(value);
-  const [outputValue, setOutputValue] = useState(formattedValue);
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { formattedValue, numericValue } = formatStringNumber(e.target.value);
-    setOutputValue(formattedValue);
-    onChange?.(numericValue);
+    return (
+      <Input
+        type="text"
+        inputMode="decimal"
+        className={cn("text-right", className)}
+        value={outputValue}
+        onChange={handleChange}
+        ref={ref}
+        {...props}
+      />
+    );
   }
+);
 
-  useEffect(() => {
-    const { formattedValue } = formatStringNumber(value);
-    setOutputValue(formattedValue);
-  }, [value]);
-
-  return (
-    <Input
-      type="text"
-      value={outputValue}
-      onChange={handleChange}
-      inputMode="decimal"
-      className="text-right placeholder:text-left"
-      placeholder={placeholder} />
-  );
-};
-
-export const MyInputNumber: React.FC<InputStringProps | InputNumberProps> = ({
-  type,
-  ...props
-}) => {
-  if (type === "string")
-    return <InputString {...props as InputStringProps} />
-  return <InputNumber {...props as InputNumberProps} />
-};
+export const MyInputNumber = forwardRef<HTMLInputElement, InputStringProps | InputNumberProps>(
+  ({
+    inputType = "number",
+    ...props
+  }, ref) => {
+    if (inputType === "number")
+      return <InputNumber ref={ref} {...props as InputNumberProps} />
+    return <InputString ref={ref} {...props as InputStringProps} />
+  }
+);
