@@ -30,17 +30,3 @@ export const formatDate = (
 
   return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
 }
-
-/**
- * Converts a decimal number to a formatted percentage string.
- * 
- * @param value - A number (e.g., 0.75 = 75%).
- * @param fractionDigits - Optional number of decimal places to include (default: 0).
- * @returns A string representing the percentage (e.g., "75%", "45.3%").
- */
-export function toPercent(value: number, fractionDigits = 0): string {
-  if (isNaN(value)) return '0%'
-
-  const percent = value * 100
-  return `${percent.toFixed(fractionDigits)}%`
-}

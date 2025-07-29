@@ -1,7 +1,7 @@
 import { ChangeEvent, useEffect, useState } from "react";
 
 import { Input } from "@/components/ui/input";
-import { useNumberFormat } from "./hooks/useNumberFormat";
+import { useNumberFormat } from "@/hooks/use-number-format";
 
 interface InputBaseProps {
   decimalPlaces?: number;

@@ -2,9 +2,9 @@
 
 import { H4, Muted, P } from "@/components/generic/my-typography";
 import { AssetCategory } from "@/core/types/asset-category";
+import { useNumberFormat } from "@/hooks/use-number-format";
 import { Link, usePathname } from "@/i18n/routing";
 import { cn } from "@/utils/shadcn-utils";
-import { toPercent } from "@/utils/string-utils";
 import { useTranslations } from "next-intl";
 import { CategoryFormModal } from "./CategoryFormModal";
 
@@ -12,6 +12,7 @@ export const CategoryMenuClient = ({ data }: {
   data?: AssetCategory[]
 }) => {
   const t = useTranslations("categoryMenu");
+  const { formatPercent } = useNumberFormat(2, "BRL");
   const pathname = usePathname();
 
   return (
@@ -44,7 +45,7 @@ export const CategoryMenuClient = ({ data }: {
           >
             <article>
               <P>{c.name}</P>
-              <Muted>{t("dataCardLegend")}: {toPercent(c.recommendedPercentage)}</Muted>
+              <Muted>{t("dataCardLegend")}: {formatPercent(c.recommendedPercentage, 2)}</Muted>
             </article>
           </Link>
         )
