@@ -7,10 +7,15 @@ import { ApiResponse } from "@/core/types/api";
 import { CreateAssetCategory } from "@/core/types/asset-category";
 
 export const createAssetCategory = async (
-  asset: CreateAssetCategory
+  category: CreateAssetCategory
 ): ApiResponse => {
 
-  const response = await AssetCategoryService.createAssetCategory(asset);
+  const normalizedCategory = {
+    ...category,
+    recommendedPercentage: category.recommendedPercentage / 100,
+  };
+
+  const response = await AssetCategoryService.createAssetCategory(normalizedCategory);
   if (response.success)
     revalidateTag("createAssetCategory");
 
