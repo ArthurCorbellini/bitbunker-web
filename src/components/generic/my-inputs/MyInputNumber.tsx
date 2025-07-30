@@ -57,6 +57,18 @@ const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
       onChange?.(numericValue);
     }
 
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>): void => {
+      if (['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(e.key)) {
+        e.preventDefault();
+      }
+    };
+
+    const handleClick = (e: React.MouseEvent<HTMLInputElement>) => {
+      const input = e.currentTarget;
+      const len = input.value.length;
+      input.setSelectionRange(len, len);
+    };
+
     return (
       <Input
         type="text"
@@ -64,6 +76,8 @@ const InputNumber = forwardRef<HTMLInputElement, InputNumberProps>(
         className={cn("text-right", className)}
         value={outputValue}
         onChange={handleChange}
+        onKeyDown={handleKeyDown}
+        onClick={handleClick}
         ref={ref}
         {...props}
       />
@@ -89,6 +103,18 @@ const InputString = forwardRef<HTMLInputElement, InputStringProps>(
       onChange?.(stringValue);
     }
 
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>): void => {
+      if (['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(e.key)) {
+        e.preventDefault();
+      }
+    };
+
+    const handleClick = (e: React.MouseEvent<HTMLInputElement>) => {
+      const input = e.currentTarget;
+      const len = input.value.length;
+      input.setSelectionRange(len, len);
+    };
+
     return (
       <Input
         type="text"
@@ -96,6 +122,8 @@ const InputString = forwardRef<HTMLInputElement, InputStringProps>(
         className={cn("text-right", className)}
         value={outputValue}
         onChange={handleChange}
+        onKeyDown={handleKeyDown}
+        onClick={handleClick}
         ref={ref}
         {...props}
       />
