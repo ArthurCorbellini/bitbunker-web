@@ -50,7 +50,9 @@
     "name": "Nome da categoria",
     "recommendedPercentage": "Percentual recomendado",
     "save": "Salvar categoria",
-    "saving": "Salvando..."
+    "saving": "Salvando...",
+    "edit": "Editar",
+    "delete": "Excluir"
   },
   "transactions": {
     "transactionsLegend": "Aqui você pode gerenciar suas transações, criar novas, exportar e mais!",

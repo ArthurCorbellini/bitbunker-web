@@ -1,8 +1,7 @@
 "use client"
 
-import { Plus } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { useTransition } from "react";
+import { useEffect, useTransition } from "react";
 import { useForm } from "react-hook-form";
 
 import { useToast } from "@/components/generic/hooks/useToast";
@@ -15,27 +14,37 @@ import {
   DialogDescription,
   DialogFooter,
   DialogHeader,
-  DialogTitle,
-  DialogTrigger
+  DialogTitle
 } from "@/components/ui/dialog";
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { CreateAssetCategory } from "@/core/types/asset-category";
+import { AssetCategory, CreateAssetCategory } from "@/core/types/asset-category";
 import { intlZodResolver } from "@/core/zod/intlZodResolver";
 import { CreateAssetCategorySchema } from "@/core/zod/schemas";
 import { createAssetCategory } from "../_actions/createAssetCategory";
 
-export const CategoryFormModal = () => {
+interface CategoryFormModalProps {
+  open: boolean,
+  onOpenChange: (open: boolean) => void,
+  assetCategory?: AssetCategory,
+}
+
+export const CategoryFormModal = ({
+  open,
+  onOpenChange,
+  assetCategory,
+}: CategoryFormModalProps) => {
   const t = useTranslations("categoryMenu");
   const { successToast, handleApiErrorToast } = useToast();
   const [isPending, startTransition] = useTransition();
+  const defaultValues = {
+    name: "",
+    recommendedPercentage: 0,
+  }
 
   const form = useForm<CreateAssetCategory>({
     resolver: intlZodResolver(CreateAssetCategorySchema),
-    defaultValues: {
-      name: "",
-      recommendedPercentage: 0,
-    }
+    defaultValues
   })
 
   const onSubmit = (values: CreateAssetCategory) => {
@@ -44,19 +53,21 @@ export const CategoryFormModal = () => {
         if (res.success) {
           successToast(t("createToastDescription"));
           form.reset();
+          onOpenChange(false);
         } else
           handleApiErrorToast(res.error);
       });
     })
   }
 
+  useEffect(() => {
+    if (open) {
+      form.reset(assetCategory ?? defaultValues);
+    }
+  }, [open, assetCategory, form]);
+
   return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <Button onClick={() => form.reset()}>
-          <Plus /> {t("addButton")}
-        </Button>
-      </DialogTrigger>
+    <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="min-w-[33%]">
         <DialogHeader>
           <DialogTitle>
