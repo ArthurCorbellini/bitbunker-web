@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { CreateAssetCategorySchema } from "../zod/schemas";
+import { AssetCategoryFormSchema } from "../zod/schemas";
 
 export interface AssetCategory {
   id: number;
@@ -7,4 +7,4 @@ export interface AssetCategory {
   recommendedPercentage: number;
 }
 
-export type CreateAssetCategory = z.infer<typeof CreateAssetCategorySchema>;
+export type AssetCategoryFormType = z.infer<typeof AssetCategoryFormSchema>;

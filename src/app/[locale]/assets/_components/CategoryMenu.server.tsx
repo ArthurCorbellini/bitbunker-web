@@ -4,9 +4,9 @@ import { ApiErrorToast } from "../../_components/common/ApiErrorToast";
 import { CategoryMenuClient } from "./CategoryMenu.client";
 
 export const CategoryMenuServer = async () => {
-  const response = await assetCategoryApi.fetchAll({
+  const response = await assetCategoryApi.getAll({
     tags: [
-      "createAssetCategory"
+      "saveAssetCategory"
     ]
   });
 

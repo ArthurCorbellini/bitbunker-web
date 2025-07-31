@@ -4,20 +4,19 @@ import { revalidateTag } from "next/cache";
 
 import { assetCategoryApi } from "@/core/api/asset-category.api";
 import { ApiResponse } from "@/core/types/api";
-import { CreateAssetCategory } from "@/core/types/asset-category";
+import { AssetCategory, AssetCategoryFormType } from "@/core/types/asset-category";
 
-export const createAssetCategory = async (
-  category: CreateAssetCategory
-): ApiResponse => {
+export const saveAssetCategory = async (
+  category: AssetCategoryFormType
+): ApiResponse<AssetCategory> => {
+  let response;
+  if (category.id)
+    response = await assetCategoryApi.update(category);
+  else
+    response = await assetCategoryApi.create(category);
 
-  const normalizedCategory = {
-    ...category,
-    recommendedPercentage: category.recommendedPercentage / 100,
-  };
-
-  const response = await assetCategoryApi.create(normalizedCategory);
   if (response.success)
-    revalidateTag("createAssetCategory");
+    revalidateTag("saveAssetCategory");
 
   return response;
 }

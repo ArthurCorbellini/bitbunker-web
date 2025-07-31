@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl";
 import { useEffect, useTransition } from "react";
 import { useForm } from "react-hook-form";
 
-import { createAssetCategory } from "@/app/_actions/asset-category.action";
+import { saveAssetCategory } from "@/app/_actions/asset-category.action";
 import { useToast } from "@/components/generic/hooks/useToast";
 import { MyForm } from "@/components/generic/my-form";
 import { MyInputNumber } from "@/components/generic/my-inputs/MyInputNumber";
@@ -19,9 +19,9 @@ import {
 } from "@/components/ui/dialog";
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { AssetCategory, CreateAssetCategory } from "@/core/types/asset-category";
+import { AssetCategory, AssetCategoryFormType } from "@/core/types/asset-category";
 import { intlZodResolver } from "@/core/zod/intlZodResolver";
-import { CreateAssetCategorySchema } from "@/core/zod/schemas";
+import { AssetCategoryFormSchema } from "@/core/zod/schemas";
 
 interface CategoryFormModalProps {
   open: boolean,
@@ -42,14 +42,14 @@ export const CategoryFormModal = ({
     recommendedPercentage: 0,
   }
 
-  const form = useForm<CreateAssetCategory>({
-    resolver: intlZodResolver(CreateAssetCategorySchema),
+  const form = useForm<AssetCategoryFormType>({
+    resolver: intlZodResolver(AssetCategoryFormSchema),
     defaultValues
   })
 
-  const onSubmit = (values: CreateAssetCategory) => {
+  const onSubmit = (values: AssetCategoryFormType) => {
     startTransition(() => {
-      createAssetCategory(values).then((res) => {
+      saveAssetCategory(values).then((res) => {
         if (res.success) {
           form.reset();
           successToast(t("createToastDescription"));
