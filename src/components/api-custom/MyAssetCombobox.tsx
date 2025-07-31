@@ -1,7 +1,7 @@
 import { useTranslations } from "next-intl";
 import { ComponentProps, useState } from "react";
 
-import { AssetService } from "@/core/services/AssetService";
+import { AssetApi } from "@/core/api/asset.api";
 import { useToast } from "../generic/hooks/useToast";
 import { ComboboxOptions, MyCombobox } from "../generic/my-combobox";
 
@@ -22,7 +22,7 @@ export const MyAssetCombobox = ({ ...props }: MyAssetComboboxProps) => {
   const loadOptions = async () => {
     setLoading(true);
     try {
-      const response = await AssetService.fetchAssets();
+      const response = await AssetApi.fetchAssets();
       if (!response.success) {
         handleApiErrorToast(response.error);
         return;

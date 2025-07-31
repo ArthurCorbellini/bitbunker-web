@@ -2,7 +2,7 @@
 
 import { revalidateTag } from "next/cache";
 
-import { TransactionService } from "@/core/services/TransactionService";
+import { TransactionApi } from "@/core/api/transaction.api";
 import { ApiPayload } from "@/core/types/api";
 import { TransactionFormType } from "../_hooks/useSchema";
 
@@ -11,7 +11,7 @@ export const createTransaction = async (
   type: "deposit" | "withdrawal",
 ): Promise<ApiPayload> => {
   const upperType = type.toUpperCase() as Uppercase<typeof type>;
-  const response = await TransactionService.createTransaction({ type: upperType, ...transaction });
+  const response = await TransactionApi.createTransaction({ type: upperType, ...transaction });
   if (response.success)
     revalidateTag("createTransaction");
 

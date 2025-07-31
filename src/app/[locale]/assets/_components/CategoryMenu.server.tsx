@@ -1,9 +1,10 @@
-import { AssetCategoryService } from "@/core/services/AssetCategoryService";
+
+import { assetCategoryApi } from "@/core/api/asset-category.api";
 import { ApiErrorToast } from "../../_components/common/ApiErrorToast";
 import { CategoryMenuClient } from "./CategoryMenu.client";
 
 export const CategoryMenuServer = async () => {
-  const response = await AssetCategoryService.fetchAll({
+  const response = await assetCategoryApi.fetchAll({
     tags: [
       "createAssetCategory"
     ]

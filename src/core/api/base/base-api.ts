@@ -7,7 +7,7 @@ export interface NextFetchOptions {
   revalidate?: number
 }
 
-export class BaseService {
+export class Api {
 
   private static async buildUnknownErrorResponse<T>(): ApiResponse<T> {
     return {
@@ -21,7 +21,7 @@ export class BaseService {
     };
   }
 
-  protected static async get<T>(
+  static async get<T>(
     url: string,
     next?: NextFetchOptions,
   ): ApiResponse<T> {
@@ -34,7 +34,7 @@ export class BaseService {
     }
   }
 
-  protected static async post<D, T>(url: string, payload: D): ApiResponse<T> {
+  static async post<D, T>(url: string, payload: D): ApiResponse<T> {
     try {
       const response = await fetch(root + url, {
         method: 'POST',

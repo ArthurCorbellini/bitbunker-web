@@ -1,8 +1,8 @@
 import { ApiPayload } from "../types/api";
 import { CreateBuyAndSellTransactions, CreateTransaction, Transaction } from "../types/transaction";
-import { BaseService, NextFetchOptions } from "./base/BaseService";
+import { Api, NextFetchOptions } from "./base/base-api";
 
-export class TransactionService extends BaseService {
+export class TransactionApi extends Api {
 
   static async fetchTransactions(
     next?: NextFetchOptions

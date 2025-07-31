@@ -2,7 +2,7 @@
 
 import { revalidateTag } from "next/cache";
 
-import { AssetCategoryService } from "@/core/services/AssetCategoryService";
+import { assetCategoryApi } from "@/core/api/asset-category.api";
 import { ApiResponse } from "@/core/types/api";
 import { CreateAssetCategory } from "@/core/types/asset-category";
 
@@ -15,7 +15,7 @@ export const createAssetCategory = async (
     recommendedPercentage: category.recommendedPercentage / 100,
   };
 
-  const response = await AssetCategoryService.createAssetCategory(normalizedCategory);
+  const response = await assetCategoryApi.create(normalizedCategory);
   if (response.success)
     revalidateTag("createAssetCategory");
 
