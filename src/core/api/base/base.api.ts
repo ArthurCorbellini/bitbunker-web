@@ -36,8 +36,6 @@ export class Api {
 
   static async post<D, T>(url: string, payload: D): ApiResponse<T> {
     try {
-      console.log(url)
-      console.log(payload)
       const response = await fetch(root + url, {
         method: 'POST',
         headers: {
@@ -50,4 +48,34 @@ export class Api {
       return this.buildUnknownErrorResponse<T>();
     }
   }
+
+  static async put<D, T>(url: string, payload: D): ApiResponse<T> {
+    try {
+      const response = await fetch(root + url, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+      return response.json();
+    } catch {
+      return this.buildUnknownErrorResponse<T>();
+    }
+  }
+
+  static async delete<T>(url: string): ApiResponse<T> {
+    try {
+      const response = await fetch(root + url, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      return response.json();
+    } catch {
+      return this.buildUnknownErrorResponse<T>();
+    }
+  }
+
 }
