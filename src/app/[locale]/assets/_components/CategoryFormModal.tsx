@@ -4,6 +4,7 @@ import { useTranslations } from "next-intl";
 import { useEffect, useTransition } from "react";
 import { useForm } from "react-hook-form";
 
+import { createAssetCategory } from "@/app/_actions/asset-category.action";
 import { useToast } from "@/components/generic/hooks/useToast";
 import { MyForm } from "@/components/generic/my-form";
 import { MyInputNumber } from "@/components/generic/my-inputs/MyInputNumber";
@@ -21,7 +22,6 @@ import { Input } from "@/components/ui/input";
 import { AssetCategory, CreateAssetCategory } from "@/core/types/asset-category";
 import { intlZodResolver } from "@/core/zod/intlZodResolver";
 import { CreateAssetCategorySchema } from "@/core/zod/schemas";
-import { createAssetCategory } from "../_actions/createAssetCategory";
 
 interface CategoryFormModalProps {
   open: boolean,
@@ -51,8 +51,8 @@ export const CategoryFormModal = ({
     startTransition(() => {
       createAssetCategory(values).then((res) => {
         if (res.success) {
-          successToast(t("createToastDescription"));
           form.reset();
+          successToast(t("createToastDescription"));
           onOpenChange(false);
         } else
           handleApiErrorToast(res.error);

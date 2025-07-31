@@ -1,6 +1,6 @@
 import { ApiPayload } from "../types/api";
 import { CreateBuyAndSellTransactions, CreateTransaction, Transaction } from "../types/transaction";
-import { Api, NextFetchOptions } from "./base/base-api";
+import { Api, NextFetchOptions } from "./base/base.api";
 
 export class TransactionApi extends Api {
 

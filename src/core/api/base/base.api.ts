@@ -36,6 +36,8 @@ export class Api {
 
   static async post<D, T>(url: string, payload: D): ApiResponse<T> {
     try {
+      console.log(url)
+      console.log(payload)
       const response = await fetch(root + url, {
         method: 'POST',
         headers: {

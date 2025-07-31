@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 
 import { CreateAssetFormType, useSchema } from "@/app/[locale]/assets/_hooks/useSchema";
+import { createAsset } from "@/app/_actions/asset.action";
 import { MyAssetTierCombobox } from "@/components/api-custom/MyAssetTierCombobox";
 import { MyAssetTypeCombobox } from "@/components/api-custom/MyAssetTypeCombobox";
 import { useToast } from "@/components/generic/hooks/useToast";
@@ -24,7 +25,6 @@ import {
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useTransition } from "react";
-import { createAsset } from "../_actions/createAsset";
 
 export const AssetFormDialog = () => {
   const t = useTranslations("common");

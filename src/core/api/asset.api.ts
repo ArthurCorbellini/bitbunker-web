@@ -1,6 +1,6 @@
 import { ApiPayload } from "../types/api";
 import { Asset, CreateAsset, TierOption, TypeOption } from "../types/asset";
-import { Api, NextFetchOptions } from "./base/base-api";
+import { Api, NextFetchOptions } from "./base/base.api";
 
 export class AssetApi extends Api {
   static async fetchAssets(next?: NextFetchOptions): Promise<ApiPayload<Asset[]>> {
