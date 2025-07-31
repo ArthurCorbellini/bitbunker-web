@@ -26,13 +26,13 @@ import { createAssetCategory } from "../_actions/createAssetCategory";
 interface CategoryFormModalProps {
   open: boolean,
   onOpenChange: (open: boolean) => void,
-  assetCategory?: AssetCategory,
+  editAssetCategory?: AssetCategory,
 }
 
 export const CategoryFormModal = ({
   open,
   onOpenChange,
-  assetCategory,
+  editAssetCategory,
 }: CategoryFormModalProps) => {
   const t = useTranslations("categoryMenu");
   const { successToast, handleApiErrorToast } = useToast();
@@ -62,19 +62,19 @@ export const CategoryFormModal = ({
 
   useEffect(() => {
     if (open) {
-      form.reset(assetCategory ?? defaultValues);
+      form.reset(editAssetCategory ?? defaultValues);
     }
-  }, [open, assetCategory, form]);
+  }, [open, editAssetCategory, form]);
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="min-w-[33%]">
         <DialogHeader>
           <DialogTitle>
-            {assetCategory ? t("editTitle") : t("addTitle")}
+            {editAssetCategory ? t("editTitle") : t("addTitle")}
           </DialogTitle>
           <DialogDescription>
-            {assetCategory ? t("editDescription") : t("addDescription")}
+            {editAssetCategory ? t("editDescription") : t("addDescription")}
           </DialogDescription>
         </DialogHeader>
         <MyForm form={form} onSubmit={onSubmit}>

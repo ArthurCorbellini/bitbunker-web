@@ -9,7 +9,7 @@ import { AssetCategory } from "@/core/types/asset-category";
 import { useNumberFormat } from "@/hooks/use-number-format";
 import { Link, usePathname } from "@/i18n/routing";
 import { cn } from "@/utils/shadcn-utils";
-import { MoreHorizontal, Plus } from "lucide-react";
+import { MoreHorizontal, PenIcon, Plus, Trash2Icon } from "lucide-react";
 import { useState } from "react";
 import { CategoryFormModal } from "./CategoryFormModal";
 
@@ -58,9 +58,13 @@ export const CategoryMenuClient = ({ data }: {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
                   <DropdownMenuItem onClick={() => openModal(c)}>
+                    <PenIcon />
                     {t("edit")}
                   </DropdownMenuItem>
-                  <DropdownMenuItem>{t("delete")}</DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Trash2Icon />
+                    {t("delete")}
+                  </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
             </article>
@@ -75,7 +79,7 @@ export const CategoryMenuClient = ({ data }: {
       <CategoryFormModal
         open={open}
         onOpenChange={setOpen}
-        assetCategory={assetCategory} />
+        editAssetCategory={assetCategory} />
     </div>
   );
 }
