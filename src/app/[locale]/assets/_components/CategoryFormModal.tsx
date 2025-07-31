@@ -71,10 +71,10 @@ export const CategoryFormModal = ({
       <DialogContent className="min-w-[33%]">
         <DialogHeader>
           <DialogTitle>
-            {t("addTitle")}
+            {assetCategory ? t("editTitle") : t("addTitle")}
           </DialogTitle>
           <DialogDescription>
-            {t("addDescription")}
+            {assetCategory ? t("editDescription") : t("addDescription")}
           </DialogDescription>
         </DialogHeader>
         <MyForm form={form} onSubmit={onSubmit}>
