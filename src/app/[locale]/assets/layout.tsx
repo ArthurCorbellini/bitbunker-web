@@ -1,4 +1,4 @@
-import { CategoryMenuServer } from "./_components/CategoryMenu.server";
+import { SideMenuServer } from "./_components/category-side-menu/side-menu.server";
 
 export default async function Layout({ children }: {
   children: React.ReactNode
@@ -9,7 +9,7 @@ export default async function Layout({ children }: {
         {children}
       </div>
       <div className="w-1/4">
-        <CategoryMenuServer />
+        <SideMenuServer />
       </div>
     </div>
   );

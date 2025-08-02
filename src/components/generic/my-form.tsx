@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { FieldValues, FormProvider, UseFormReturn } from "react-hook-form";
+import { FieldValues, UseFormReturn } from "react-hook-form";
 import { Form } from "../ui/form";
 
 interface MyFormProps<T extends FieldValues> {
@@ -14,12 +14,10 @@ export const MyForm = <T extends FieldValues>({
   onSubmit
 }: MyFormProps<T>) => {
   return (
-    <FormProvider {...form}>
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-          {children}
-        </form>
-      </Form>
-    </FormProvider>
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+        {children}
+      </form>
+    </Form>
   );
 }

@@ -10,7 +10,6 @@ import { MyForm } from "@/components/generic/my-form";
 import { MyInputNumber } from "@/components/generic/my-inputs/MyInputNumber";
 import { Button } from "@/components/ui/button";
 import {
-  Dialog,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -23,17 +22,15 @@ import { AssetCategory, AssetCategoryFormType } from "@/core/types/asset-categor
 import { intlZodResolver } from "@/core/zod/intlZodResolver";
 import { AssetCategoryFormSchema } from "@/core/zod/schemas";
 
-interface CategoryFormModalProps {
-  open: boolean,
-  onOpenChange: (open: boolean) => void,
+interface Props {
+  closeDialog: () => void,
   editAssetCategory?: AssetCategory,
 }
 
-export const CategoryFormModal = ({
-  open,
-  onOpenChange,
+export const FormDialogContent = ({
+  closeDialog,
   editAssetCategory,
-}: CategoryFormModalProps) => {
+}: Props) => {
   const t = useTranslations("categoryMenu");
   const { successToast, handleApiErrorToast } = useToast();
   const [isPending, startTransition] = useTransition();
@@ -53,7 +50,7 @@ export const CategoryFormModal = ({
         if (res.success) {
           form.reset();
           successToast(t("createToastDescription"));
-          onOpenChange(false);
+          closeDialog();
         } else
           handleApiErrorToast(res.error);
       });
@@ -61,62 +58,58 @@ export const CategoryFormModal = ({
   }
 
   useEffect(() => {
-    if (open) {
-      form.reset(editAssetCategory ?? defaultValues);
-    }
-  }, [open, editAssetCategory, form]);
+    form.reset(editAssetCategory ?? defaultValues);
+  }, [editAssetCategory, form]);
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="min-w-[33%]">
-        <DialogHeader>
-          <DialogTitle>
-            {editAssetCategory ? t("editTitle") : t("addTitle")}
-          </DialogTitle>
-          <DialogDescription>
-            {editAssetCategory ? t("editDescription") : t("addDescription")}
-          </DialogDescription>
-        </DialogHeader>
-        <MyForm form={form} onSubmit={onSubmit}>
-          <div className="flex flex-col gap-4">
-            <div className="flex gap-4">
-              <div className="w-full">
-                <FormField
-                  control={form.control}
-                  name="name"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>{t("name")}</FormLabel>
-                      <FormControl>
-                        <Input {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )} />
-              </div>
-            </div>
+    <DialogContent className="min-w-[33%]">
+      <DialogHeader>
+        <DialogTitle>
+          {editAssetCategory ? t("editTitle") : t("addTitle")}
+        </DialogTitle>
+        <DialogDescription>
+          {editAssetCategory ? t("editDescription") : t("addDescription")}
+        </DialogDescription>
+      </DialogHeader>
+      <MyForm form={form} onSubmit={onSubmit}>
+        <div className="flex flex-col gap-4">
+          <div className="flex gap-4">
             <div className="w-full">
               <FormField
                 control={form.control}
-                name={"recommendedPercentage"}
+                name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{t("recommendedPercentage")}</FormLabel>
+                    <FormLabel>{t("name")}</FormLabel>
                     <FormControl>
-                      <MyInputNumber {...field} decimalPlaces={2} />
+                      <Input {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )} />
             </div>
           </div>
-          <DialogFooter>
-            <Button type="submit" disabled={isPending}>
-              {isPending ? t("saving") : t("save")}
-            </Button>
-          </DialogFooter>
-        </MyForm>
-      </DialogContent>
-    </Dialog>
+          <div className="w-full">
+            <FormField
+              control={form.control}
+              name={"recommendedPercentage"}
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>{t("recommendedPercentage")}</FormLabel>
+                  <FormControl>
+                    <MyInputNumber {...field} decimalPlaces={2} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )} />
+          </div>
+        </div>
+        <DialogFooter>
+          <Button type="submit" disabled={isPending}>
+            {isPending ? t("saving") : t("save")}
+          </Button>
+        </DialogFooter>
+      </MyForm>
+    </DialogContent>
   )
 }
