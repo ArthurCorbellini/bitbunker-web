@@ -10,6 +10,7 @@ import { MyForm } from "@/components/generic/my-form";
 import { MyInputNumber } from "@/components/generic/my-inputs/MyInputNumber";
 import { Button } from "@/components/ui/button";
 import {
+  Dialog,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -23,12 +24,14 @@ import { intlZodResolver } from "@/core/zod/intlZodResolver";
 import { AssetCategoryFormSchema } from "@/core/zod/schemas";
 
 interface Props {
-  closeDialog: () => void,
+  open: boolean,
+  setOpen: (open: boolean) => void;
   editAssetCategory?: AssetCategory,
 }
 
-export const FormDialogContent = ({
-  closeDialog,
+export const FormDialog = ({
+  open,
+  setOpen,
   editAssetCategory,
 }: Props) => {
   const t = useTranslations("categoryMenu");
@@ -49,8 +52,8 @@ export const FormDialogContent = ({
       saveAssetCategory(values).then((res) => {
         if (res.success) {
           form.reset();
-          successToast(t("createToastDescription"));
-          closeDialog();
+          successToast(editAssetCategory ? t("updateToastDescription") : t("createToastDescription"));
+          setOpen(false);
         } else
           handleApiErrorToast(res.error);
       });
@@ -62,54 +65,56 @@ export const FormDialogContent = ({
   }, [editAssetCategory, form]);
 
   return (
-    <DialogContent className="min-w-[33%]">
-      <DialogHeader>
-        <DialogTitle>
-          {editAssetCategory ? t("editTitle") : t("addTitle")}
-        </DialogTitle>
-        <DialogDescription>
-          {editAssetCategory ? t("editDescription") : t("addDescription")}
-        </DialogDescription>
-      </DialogHeader>
-      <MyForm form={form} onSubmit={onSubmit}>
-        <div className="flex flex-col gap-4">
-          <div className="flex gap-4">
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogContent className="min-w-[33%]">
+        <DialogHeader>
+          <DialogTitle>
+            {editAssetCategory ? t("editTitle") : t("addTitle")}
+          </DialogTitle>
+          <DialogDescription>
+            {editAssetCategory ? t("editDescription") : t("addDescription")}
+          </DialogDescription>
+        </DialogHeader>
+        <MyForm form={form} onSubmit={onSubmit}>
+          <div className="flex flex-col gap-4">
+            <div className="flex gap-4">
+              <div className="w-full">
+                <FormField
+                  control={form.control}
+                  name="name"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>{t("name")}</FormLabel>
+                      <FormControl>
+                        <Input {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )} />
+              </div>
+            </div>
             <div className="w-full">
               <FormField
                 control={form.control}
-                name="name"
+                name={"recommendedPercentage"}
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{t("name")}</FormLabel>
+                    <FormLabel>{t("recommendedPercentage")}</FormLabel>
                     <FormControl>
-                      <Input {...field} />
+                      <MyInputNumber {...field} decimalPlaces={2} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )} />
             </div>
           </div>
-          <div className="w-full">
-            <FormField
-              control={form.control}
-              name={"recommendedPercentage"}
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>{t("recommendedPercentage")}</FormLabel>
-                  <FormControl>
-                    <MyInputNumber {...field} decimalPlaces={2} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )} />
-          </div>
-        </div>
-        <DialogFooter>
-          <Button type="submit" disabled={isPending}>
-            {isPending ? t("saving") : t("save")}
-          </Button>
-        </DialogFooter>
-      </MyForm>
-    </DialogContent>
+          <DialogFooter>
+            <Button type="submit" disabled={isPending}>
+              {isPending ? t("saving") : t("save")}
+            </Button>
+          </DialogFooter>
+        </MyForm>
+      </DialogContent>
+    </Dialog>
   )
 }

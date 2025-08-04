@@ -45,6 +45,7 @@
     "dataCardLegend": "Alocação por ativo",
     "addButton": "Criar categoria",
     "createToastDescription": "Categoria criada com sucesso!",
+    "updateToastDescription": "Categoria atualizada com sucesso!",
     "addTitle": "Nova categoria",
     "editTitle": "Editar categoria",
     "addDescription": "Crie novas categorias aqui. Clique em salvar quando terminar.",
