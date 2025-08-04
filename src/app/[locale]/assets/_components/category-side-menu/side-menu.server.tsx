@@ -1,13 +1,11 @@
 
+import { ApiErrorToast } from "@/app/[locale]/_components/common/ApiErrorToast";
 import { assetCategoryApi } from "@/core/api/asset-category.api";
-import { ApiErrorToast } from "../../../_components/common/ApiErrorToast";
 import { SideMenuClient } from "./side-menu.client";
 
 export const SideMenuServer = async () => {
   const response = await assetCategoryApi.getAll({
-    tags: [
-      "saveAssetCategory"
-    ]
+    tags: ["categories"]
   });
 
   return (

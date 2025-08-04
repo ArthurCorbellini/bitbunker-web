@@ -55,7 +55,13 @@
     "save": "Salvar categoria",
     "saving": "Salvando...",
     "edit": "Editar",
-    "delete": "Excluir"
+    "delete": "Excluir",
+    "confirm": "Confirmar",
+    "cancel": "Cancelar",
+    "deleteTitle": "Você está excluindo a categoria \"{value}\"",
+    "deleteDescription": "Todos os ativos e transações nessa categoria também serão excluídos.",
+    "deleteToastDescription": "Categoria excluída com sucesso!",
+    "deleting": "Excluindo..."
   },
   "transactions": {
     "transactionsLegend": "Aqui você pode gerenciar suas transações, criar novas, exportar e mais!",

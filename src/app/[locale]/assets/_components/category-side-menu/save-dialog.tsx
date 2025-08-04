@@ -9,14 +9,7 @@ import { useToast } from "@/components/generic/hooks/useToast";
 import { MyForm } from "@/components/generic/my-form";
 import { MyInputNumber } from "@/components/generic/my-inputs/MyInputNumber";
 import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { AssetCategory, AssetCategoryFormType } from "@/core/types/asset-category";
@@ -26,13 +19,13 @@ import { AssetCategoryFormSchema } from "@/core/zod/schemas";
 interface Props {
   open: boolean,
   setOpen: (open: boolean) => void;
-  editAssetCategory?: AssetCategory,
+  category?: AssetCategory,
 }
 
 export const SaveDialog = ({
   open,
   setOpen,
-  editAssetCategory,
+  category,
 }: Props) => {
   const t = useTranslations("categoryMenu");
   const { successToast, handleApiErrorToast } = useToast();
@@ -52,7 +45,7 @@ export const SaveDialog = ({
       saveAssetCategory(values).then((res) => {
         if (res.success) {
           form.reset();
-          successToast(editAssetCategory ? t("updateToastDescription") : t("createToastDescription"));
+          successToast(category ? t("updateToastDescription") : t("createToastDescription"));
           setOpen(false);
         } else
           handleApiErrorToast(res.error);
@@ -61,18 +54,18 @@ export const SaveDialog = ({
   }
 
   useEffect(() => {
-    form.reset(editAssetCategory ?? defaultValues);
-  }, [editAssetCategory, form]);
+    form.reset(category ?? defaultValues);
+  }, [category, form]);
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogContent className="min-w-[33%]">
         <DialogHeader>
           <DialogTitle>
-            {editAssetCategory ? t("editTitle") : t("addTitle")}
+            {category ? t("editTitle") : t("addTitle")}
           </DialogTitle>
           <DialogDescription>
-            {editAssetCategory ? t("editDescription") : t("addDescription")}
+            {category ? t("editDescription") : t("addDescription")}
           </DialogDescription>
         </DialogHeader>
         <MyForm form={form} onSubmit={onSubmit}>

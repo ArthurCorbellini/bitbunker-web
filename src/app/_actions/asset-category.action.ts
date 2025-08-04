@@ -16,7 +16,18 @@ export const saveAssetCategory = async (
     response = await assetCategoryApi.create(category);
 
   if (response.success)
-    revalidateTag("saveAssetCategory");
+    revalidateTag("categories");
+
+  return response;
+}
+
+export const deleteAssetCategory = async (
+  id: number
+): ApiResponse<string> => {
+  const response = await assetCategoryApi.delete(id);
+
+  if (response.success)
+    revalidateTag("categories");
 
   return response;
 }

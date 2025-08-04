@@ -11,6 +11,6 @@ export const assetCategoryApi = {
     Api.post(root, data),
   update: ({ id, ...rest }: AssetCategoryFormType): ApiResponse<AssetCategory> =>
     Api.put(`${root}/${id}`, { ...rest }),
-  delete: (id: string): ApiResponse<string> =>
+  delete: (id: number): ApiResponse<string> =>
     Api.delete(`${root}/${id}`),
 }
