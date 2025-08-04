@@ -29,7 +29,7 @@ interface Props {
   editAssetCategory?: AssetCategory,
 }
 
-export const FormDialog = ({
+export const SaveDialog = ({
   open,
   setOpen,
   editAssetCategory,

@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button"
 import { Plus } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useState } from "react"
-import { FormDialog } from "./form-dialog"
+import { SaveDialog } from "./save-dialog"
 
 export const AddButton = () => {
   const t = useTranslations("categoryMenu");
@@ -14,7 +14,7 @@ export const AddButton = () => {
         <Plus /> {t("addButton")}
       </Button>
 
-      <FormDialog open={openCreate} setOpen={setOpenCreate} />
+      <SaveDialog open={openCreate} setOpen={setOpenCreate} />
     </>
   )
 }

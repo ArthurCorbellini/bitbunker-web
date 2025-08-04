@@ -4,7 +4,7 @@ import { AssetCategory } from "@/core/types/asset-category"
 import { MoreHorizontal, PenIcon, Trash2Icon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useState } from "react"
-import { FormDialog } from "./form-dialog"
+import { SaveDialog } from "./save-dialog"
 
 interface Props {
   className?: string,
@@ -38,7 +38,7 @@ export const MoreButton = ({
         </DropdownMenuContent>
       </DropdownMenu>
 
-      <FormDialog
+      <SaveDialog
         open={openUpdate}
         setOpen={setOpenUpdate}
         editAssetCategory={category}
