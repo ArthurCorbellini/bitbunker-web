@@ -8,10 +8,14 @@ import { useState } from "react"
 import { FormDialogContent } from "./form-dialog-content"
 
 interface Props {
+  className?: string,
   category?: AssetCategory,
 }
 
-export const MoreButton = ({ category }: Props) => {
+export const MoreButton = ({
+  className,
+  category
+}: Props) => {
   const t = useTranslations("categoryMenu");
   const [dialogType, setDialogType] = useState<"update" | "delete" | "none">("none");
   const [open, setOpen] = useState(false);
@@ -39,7 +43,7 @@ export const MoreButton = ({ category }: Props) => {
     <Dialog open={open} onOpenChange={setOpen}>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="link" size="icon">
+          <Button variant="link" size="icon" className={className}>
             <MoreHorizontal />
           </Button>
         </DropdownMenuTrigger>

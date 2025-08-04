@@ -34,13 +34,13 @@ export const SideMenuClient = ({ data }: {
         return (
           <li
             key={c.id}
-            className={cn("flex items-center", commonStyle, active && activeStyle)}
+            className={cn("relative flex items-center", commonStyle, active && activeStyle)}
           >
             <Link href={href} className="p-2 flex-1">
               <P>{c.name}</P>
               <Muted>{t("dataCardLegend")}: {formatPercent(c.recommendedPercentage, 2)}</Muted>
             </Link>
-            <MoreButton category={c} />
+            <MoreButton category={c} className="absolute right-2 top-1/2 -translate-y-1/2" />
           </li>
         )
       })}
