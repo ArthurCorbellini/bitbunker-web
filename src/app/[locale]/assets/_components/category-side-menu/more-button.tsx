@@ -59,6 +59,6 @@ export const MoreButton = ({ category }: Props) => {
         </DropdownMenuContent>
       </DropdownMenu>
       {handleDialogContent()}
-    </Dialog >
+    </Dialog>
   )
 }

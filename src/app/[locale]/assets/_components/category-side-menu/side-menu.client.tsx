@@ -17,15 +17,13 @@ export const SideMenuClient = ({ data }: {
   const pathname = usePathname();
   const { formatPercent } = useNumberFormat();
 
-  const commonStyle = "p-2 rounded-md hover:bg-accent hover:text-accent-foreground";
+  const commonStyle = "rounded-md hover:bg-accent hover:text-accent-foreground";
   const activeStyle = "bg-accent text-accent-foreground"
 
   return (
     <div className="flex flex-col gap-2">
-      <Link href={`/assets`}>
-        <article className={cn(commonStyle, pathname === "/assets" && activeStyle)}>
-          <P>{t("overview")}</P>
-        </article>
+      <Link href={`/assets`} className={cn("p-2", commonStyle, pathname === "/assets" && activeStyle)}>
+        <P>{t("overview")}</P>
       </Link>
 
       <H4>{t("title")}</H4>
@@ -34,19 +32,18 @@ export const SideMenuClient = ({ data }: {
         const href = `/assets/categories/${c.id}`;
         const active = pathname === href;
         return (
-          <Link key={c.id} href={href}>
-            <article className={cn("flex justify-between items-center", commonStyle, active && activeStyle)}>
-              <div>
-                <P>{c.name}</P>
-                <Muted>{t("dataCardLegend")}: {formatPercent(c.recommendedPercentage, 2)}</Muted>
-              </div>
-
-              <MoreButton category={c} />
-            </article>
-          </Link>
+          <li
+            key={c.id}
+            className={cn("flex items-center", commonStyle, active && activeStyle)}
+          >
+            <Link href={href} className="p-2 flex-1">
+              <P>{c.name}</P>
+              <Muted>{t("dataCardLegend")}: {formatPercent(c.recommendedPercentage, 2)}</Muted>
+            </Link>
+            <MoreButton category={c} />
+          </li>
         )
       })}
-
       <AddButton />
     </div>
   );
